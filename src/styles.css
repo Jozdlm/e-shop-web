@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.btn {
+  border: 1px solid #cfcccf;
+  border-radius: 4px;
+  padding: 10px 16px;
+
+  display: block;
+  background-color: transparent;
+  color: #1B5E20;
+  font-weight: 600;
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.btn:hover {
+  border: 1px solid #1B5E20;
+  background-color: #E8F5E9;
+}
+
+.btn-primary {
+  border: none;
+  background-color: #275db4;
+  color: white;
+}

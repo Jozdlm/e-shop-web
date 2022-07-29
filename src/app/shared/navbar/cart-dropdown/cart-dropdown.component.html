@@ -1,0 +1,23 @@
+<div class="cart-dropdown">
+  <button class="cart-toggle" (click)="toggleDropdownMenu()">
+    <div class="badge cart-badge">{{itemsCount > 9 ? '+9' : itemsCount}}</div>
+    <i class="fas fa-shopping-cart"></i>
+  </button>
+  <div class="dropdown-menu" [class.active]="showDropdownMenu">
+    <ul class="cart">
+      <li class="cart-item" *ngFor="let item of cartItems">
+        <div class="item-info">
+          <h5 class="item-name">{{item.product.name}}</h5>
+          <p class="item-price">{{item.product.price |currency:'Q'}}</p>
+        </div>
+        <p class="item-qty">{{item.quantity}}</p>
+      </li>
+    </ul>
+    <div class="summary">
+      <h3 class="total">Total: {{ammount |currency:'Q' }}</h3>
+    </div>
+    <div class="dropdown-action">
+      <button class="btn dropdown-btn">Ir a la cesta</button>
+    </div>
+  </div>
+</div>
