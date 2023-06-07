@@ -58,7 +58,6 @@ export class ShoppingCartService {
   }
 
   private existThisItem(id: number): boolean {
-    const itemsId = this._cartItems.map(item => item.product.id);
-    return itemsId.includes(id);
+    return this._cartItems.some(item => item.product.id === id);
   }
 }

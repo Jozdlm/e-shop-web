@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {StoreModule} from "./store/store.module";
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarModule} from "./shared/navbar/navbar.module";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {NavbarModule} from "./shared/navbar/navbar.module";
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     StoreModule,
     NavbarModule,
     HttpClientModule

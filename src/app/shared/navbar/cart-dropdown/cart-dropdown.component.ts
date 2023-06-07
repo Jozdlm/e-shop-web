@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {ICartItem} from "../../../store/interfaces/cart-item";
 import {ShoppingCartService} from "../../../store/services/shopping-cart.service";
 
@@ -22,12 +22,19 @@ export class CartDropdownComponent implements OnInit {
     return this.cartService.ammount;
   }
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
   }
 
   public toggleDropdownMenu(): void {
     this.showDropdownMenu = !this.showDropdownMenu;
+  }
+
+  @HostListener('document:click', ['$event'])
+  public clickedOut(event: MouseEvent) {
+    if (!this.elementRef.nativeElement.contains(event.target)) {
+      this.showDropdownMenu = false;
+    }
   }
 }

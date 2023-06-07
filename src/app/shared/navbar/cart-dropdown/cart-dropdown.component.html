@@ -17,7 +17,13 @@
       <h3 class="total">Total: {{ammount |currency:'Q' }}</h3>
     </div>
     <div class="dropdown-action">
-      <button class="btn dropdown-btn">Ir a la cesta</button>
+      <button
+        class="btn dropdown-btn"
+        routerLink="shopping-cart"
+        (click)="toggleDropdownMenu()"
+      >
+        Ir a la cesta
+      </button>
     </div>
   </div>
 </div>

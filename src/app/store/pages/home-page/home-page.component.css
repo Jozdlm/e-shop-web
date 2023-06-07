@@ -1,10 +1,4 @@
-/* Products */
-.content-wrapper {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 1200px;
-  width: 90%;
-
+.product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
