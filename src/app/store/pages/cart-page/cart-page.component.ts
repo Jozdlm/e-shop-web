@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ICartItem} from "../../interfaces/cart-item";
 
@@ -7,13 +7,10 @@ import {ICartItem} from "../../interfaces/cart-item";
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css']
 })
-export class CartPageComponent implements OnInit {
-  public cartItems: ICartItem[] = [];
+export class CartPageComponent {
+  private _shoppingCartService = inject(ShoppingCartService);
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  public cartItems: ICartItem[] = this._shoppingCartService.shoppingCart();
 
-  ngOnInit(): void {
-    this.cartItems = this.shoppingCartService.cartItems;
-  }
-
+  constructor() { }
 }

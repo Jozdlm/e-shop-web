@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, inject, OnInit} from '@angular/core';
 import {ICartItem} from "../../../store/interfaces/cart-item";
 import {ShoppingCartService} from "../../../store/services/shopping-cart.service";
 
@@ -10,19 +10,17 @@ import {ShoppingCartService} from "../../../store/services/shopping-cart.service
 export class CartDropdownComponent implements OnInit {
   public showDropdownMenu: boolean = false;
 
-  get cartItems(): ICartItem[] {
-    return this.cartService.cartItems;
-  }
+  public cartItems: ICartItem[] = this._shoppingCartService.shoppingCart();
 
   get itemsCount(): number {
-    return this.cartService.itemsCount;
+    return this._shoppingCartService.itemsCount;
   }
 
   get ammount(): number {
-    return this.cartService.ammount;
+    return this._shoppingCartService.ammount;
   }
 
-  constructor(private cartService: ShoppingCartService, private elementRef: ElementRef) { }
+  constructor(private _shoppingCartService: ShoppingCartService, private elementRef: ElementRef) { }
 
   ngOnInit(): void {
   }

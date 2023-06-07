@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {ICartItem} from "../interfaces/cart-item";
 import {IProduct} from "../interfaces/product";
 import Decimal from "decimal.js";
@@ -9,9 +9,7 @@ import Decimal from "decimal.js";
 export class ShoppingCartService {
   private _cartItems: ICartItem[] = [];
 
-  get cartItems(): ICartItem[] {
-    return [...this._cartItems];
-  }
+  public shoppingCart = signal<ICartItem[]>([]);
 
   get itemsCount(): number {
     if (this._cartItems.length === 0) return 0;
@@ -33,6 +31,7 @@ export class ShoppingCartService {
   }
 
   constructor() {
+    this.shoppingCart.set(JSON.parse(localStorage.getItem('cartItems')!))
     this._cartItems = JSON.parse(localStorage.getItem('cartItems')!) || [];
   }
 
