@@ -1,5 +1,8 @@
 <h1>Carrito de compras</h1>
 
-<div *ngIf="cartItems.length > 0">
-  <p *ngFor="let item of cartItems">{{item.product.name}}</p>
+<div *ngIf="cartItems().length > 0">
+  <div class="cart-item" *ngFor="let item of cartItems()">
+    <p>{{item.product.name}}</p>
+    <p>{{item.quantity}}</p>
+  </div>
 </div>
