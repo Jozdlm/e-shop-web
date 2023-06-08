@@ -2,7 +2,11 @@
 
 <div *ngIf="cartItems().length > 0">
   <div class="cart-item" *ngFor="let item of cartItems()">
-    <p>{{item.product.name}}</p>
-    <p>{{item.quantity}}</p>
+    <p>{{ item.product.name }}</p>
+    <p>{{ item.quantity }}</p>
   </div>
+</div>
+
+<div class="total">
+  <p>Total: {{ cartAmmount() | currency : "Q" }}</p>
 </div>

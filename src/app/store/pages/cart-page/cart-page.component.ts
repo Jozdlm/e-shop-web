@@ -10,6 +10,7 @@ export class CartPageComponent {
   private _shoppingCartService = inject(ShoppingCartService);
 
   public cartItems = this._shoppingCartService.shoppingCart;
+  public cartAmmount = this._shoppingCartService.cartAmmount;
 
   constructor() { }
 }
