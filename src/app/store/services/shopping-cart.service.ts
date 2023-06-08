@@ -1,4 +1,4 @@
-import {Injectable, signal} from '@angular/core';
+import {computed, effect, Injectable, signal} from '@angular/core';
 import {ICartItem} from "../interfaces/cart-item";
 import {IProduct} from "../interfaces/product";
 import Decimal from "decimal.js";
@@ -7,56 +7,46 @@ import Decimal from "decimal.js";
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  private _cartItems: ICartItem[] = [];
-
   public shoppingCart = signal<ICartItem[]>([]);
 
-  get itemsCount(): number {
-    if (this._cartItems.length === 0) return 0;
+  public cartUnits = computed<number>(() => {
+    let units = this.shoppingCart().map(item => item.quantity);
+    return units.reduce((previous, current) => previous + current, 0);
+  });
 
-    const itemsQty = this._cartItems.map(item => item.quantity);
-    return itemsQty.reduce((previousValue, currentValue) => previousValue + currentValue);
-  }
+  public cartAmmount = computed<number>(() => {
+    const prices = this.shoppingCart().map(item => {
+      let unitPrice = new Decimal(item.product.price);
+      return unitPrice.mul(item.quantity);
+    });
 
-  get ammount(): number {
-    if (this._cartItems.length === 0) return 0;
-
-    const subtotal = this._cartItems.map(item => {
-      let price = new Decimal(item.product.price);
-      return price.mul(item.quantity);
-    })
-
-    const total = subtotal.reduce((previousValue, currentValue) => previousValue.add(currentValue));
-    return total.toNumber()
-  }
+    const total = prices.reduce((previous, current) => previous.add(current), new Decimal(0));
+    return total.toNumber();
+  });
 
   constructor() {
     this.shoppingCart.set(JSON.parse(localStorage.getItem('cartItems')!))
-    this._cartItems = JSON.parse(localStorage.getItem('cartItems')!) || [];
+
+    effect(() => {
+      localStorage.setItem('cartItems', JSON.stringify(this.shoppingCart()));
+    });
   }
 
   public addToCart(product: IProduct): void {
-    let cartItem: ICartItem = {product, quantity: 1}
+    const index = this.shoppingCart().findIndex(item => item.product.id == product.id);
 
-    this.addOrIncreaseQty(product, cartItem);
-
-    localStorage.setItem('cartItems', JSON.stringify(this._cartItems));
-  }
-
-  private addOrIncreaseQty(product: IProduct, cartItem: ICartItem): void {
-    if (this.existThisItem(product.id)) {
-      this._cartItems = this._cartItems.map(item => {
-        if (item.product.id != product.id) return item;
-
-        item.quantity += 1;
-        return item;
+    if (index === -1) {
+      this.shoppingCart.mutate(value => {
+        value.push({ product, quantity: 1 });
       });
     } else {
-      this._cartItems.push(cartItem);
+      this.shoppingCart.mutate(items => {
+        items[index] = { product, quantity: items[index].quantity + 1 };
+      })
     }
   }
 
-  private existThisItem(id: number): boolean {
-    return this._cartItems.some(item => item.product.id === id);
+  public clearShoppingCart(): void {
+    this.shoppingCart.set([]);
   }
 }
