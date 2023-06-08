@@ -1,6 +1,5 @@
-import {Component, ElementRef, HostListener, inject, OnInit} from '@angular/core';
-import {ICartItem} from "../../../store/interfaces/cart-item";
-import {ShoppingCartService} from "../../../store/services/shopping-cart.service";
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { ShoppingCartService } from "../../../store/services/shopping-cart.service";
 
 @Component({
   selector: 'app-cart-dropdown',
@@ -10,15 +9,9 @@ import {ShoppingCartService} from "../../../store/services/shopping-cart.service
 export class CartDropdownComponent implements OnInit {
   public showDropdownMenu: boolean = false;
 
-  public cartItems: ICartItem[] = this._shoppingCartService.shoppingCart();
-
-  get itemsCount(): number {
-    return this._shoppingCartService.itemsCount;
-  }
-
-  get ammount(): number {
-    return this._shoppingCartService.ammount;
-  }
+  public cartItems = this._shoppingCartService.shoppingCart;
+  public cartUnits = this._shoppingCartService.cartUnits;
+  public cartAmmount = this._shoppingCartService.cartAmmount;
 
   constructor(private _shoppingCartService: ShoppingCartService, private elementRef: ElementRef) { }
 
@@ -27,6 +20,10 @@ export class CartDropdownComponent implements OnInit {
 
   public toggleDropdownMenu(): void {
     this.showDropdownMenu = !this.showDropdownMenu;
+  }
+
+  public clearShoppingCart(): void {
+    this._shoppingCartService.clearShoppingCart();
   }
 
   @HostListener('document:click', ['$event'])
