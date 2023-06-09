@@ -25,7 +25,7 @@ export class ShoppingCartService {
   });
 
   constructor() {
-    this.shoppingCart.set(JSON.parse(localStorage.getItem('cartItems')!))
+    this.shoppingCart.set(JSON.parse(localStorage.getItem('cartItems')!) || []);
 
     effect(() => {
       localStorage.setItem('cartItems', JSON.stringify(this.shoppingCart()));
