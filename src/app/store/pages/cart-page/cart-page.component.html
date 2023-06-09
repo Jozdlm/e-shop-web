@@ -2,8 +2,9 @@
 
 <div *ngIf="cartItems().length > 0">
   <div class="cart-item" *ngFor="let item of cartItems()">
-    <p>{{ item.product.name }}</p>
-    <p>{{ item.quantity }}</p>
+    <p>Producto: {{ item.product.name }}</p>
+    <p>Cantidad: {{ item.quantity }}</p>
+    <p>Subtotal: {{ item.quantity * item.product.price | currency : "Q" }}</p>
   </div>
 </div>
 
