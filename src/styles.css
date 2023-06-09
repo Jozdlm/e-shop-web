@@ -24,6 +24,10 @@ body {
   font-size: 14px;
 }
 
+.btn-small {
+  padding: 4px 10px;
+}
+
 .btn:hover {
   border: 1px solid #1B5E20;
   background-color: #E8F5E9;

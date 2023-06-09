@@ -1,3 +1,9 @@
 .cart-item {
   margin-bottom: 1rem;
 }
+
+.cart-qty {
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
+}
