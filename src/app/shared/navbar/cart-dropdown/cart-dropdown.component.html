@@ -1,6 +1,6 @@
 <div class="cart-dropdown">
   <button class="cart-toggle" (click)="toggleDropdownMenu()">
-    <div class="badge cart-badge">{{cartUnits() > 9 ? '+9' : cartUnits()}}</div>
+    <div class="badge cart-badge" *ngIf="cartUnits() > 0">{{cartUnits() > 9 ? '+9' : cartUnits()}}</div>
     <i class="fas fa-shopping-cart"></i>
   </button>
   <div class="dropdown-menu" [class.active]="showDropdownMenu">
