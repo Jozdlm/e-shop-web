@@ -1,14 +1,14 @@
 <h1>Carrito de compras</h1>
 
-<div *ngIf="cartItems().length > 0">
-  <div class="cart-item" *ngFor="let item of cartItems()">
+<div *ngIf="shoppingCart().length > 0">
+  <div class="cart-item" *ngFor="let item of shoppingCart()">
     <p>Producto: {{ item.product.name }}</p>
     <div class="cart-qty">
       <button class="btn btn-small">-</button>
       <p>{{ item.quantity }}</p>
       <button class="btn btn-small">+</button>
     </div>
-    <p>Subtotal: {{ item.quantity * item.product.price | currency : "Q" }}</p>
+    <p>Subtotal: {{ item.subtotal | currency : "Q" }}</p>
   </div>
 </div>
 
