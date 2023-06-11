@@ -46,6 +46,14 @@ export class ShoppingCartService {
     }
   }
 
+  public decreaseQuantity(productId: number) {
+    const index = this.shoppingCart().findIndex(item => item.product.id == productId);
+
+    this.shoppingCart.mutate(items => {
+      items[index] = { ...items[index], quantity: items[index].quantity - 1 };
+    })
+  }
+
   public removeFromCart(productId: number): void {
     this.shoppingCart.mutate(value => {
       return value.filter(item => item.product.id == productId);
