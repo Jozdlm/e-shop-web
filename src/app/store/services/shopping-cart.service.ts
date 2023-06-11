@@ -55,8 +55,8 @@ export class ShoppingCartService {
   }
 
   public removeFromCart(productId: number): void {
-    this.shoppingCart.mutate(value => {
-      return value.filter(item => item.product.id == productId);
+    this.shoppingCart.update(value => {
+      return value.filter(item => item.product.id != productId);
     });
   }
 
