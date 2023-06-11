@@ -4,9 +4,13 @@
   <div class="cart-item" *ngFor="let item of shoppingCart()">
     <p>Producto: {{ item.product.name }}</p>
     <div class="cart-qty">
-      <button class="btn btn-small">-</button>
+      <button class="btn btn-small" (click)="decreaseQty(item)">
+        -
+      </button>
       <p>{{ item.quantity }}</p>
-      <button class="btn btn-small">+</button>
+      <button class="btn btn-small" (click)="increaseQty(item.product)">
+        +
+      </button>
     </div>
     <p>Subtotal: {{ item.subtotal | currency : "Q" }}</p>
   </div>

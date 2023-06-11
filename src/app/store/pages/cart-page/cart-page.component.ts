@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import { ICartItem } from '../../interfaces/cart-item';
+import { IProduct } from '../../interfaces/product';
 
 @Component({
   selector: 'app-cart-page',
@@ -20,4 +21,13 @@ export class CartPageComponent {
   });
 
   constructor() { }
+
+  public increaseQty(product: IProduct): void {
+    this._shoppingCartService.addToCart(product);
+  }
+
+  public decreaseQty(cartItem: ICartItem): void {
+    const {product, quantity} = cartItem;
+    this._shoppingCartService.decreaseQuantity(product.id, quantity);
+  }
 }
