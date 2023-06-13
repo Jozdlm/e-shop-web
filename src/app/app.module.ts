@@ -5,7 +5,8 @@ import {AppComponent} from './app.component';
 import {StoreModule} from "./store/store.module";
 import {HttpClientModule} from "@angular/common/http";
 import {NavbarModule} from "./shared/navbar/navbar.module";
-import {AppRoutingModule} from "./app-routing.module";
+import { RouterModule } from '@angular/router';
+import { APP_ROUTES } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import {AppRoutingModule} from "./app-routing.module";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule.forRoot(APP_ROUTES),
     StoreModule,
     NavbarModule,
     HttpClientModule
