@@ -1,15 +1,15 @@
 import { Component, computed, inject } from '@angular/core';
-import {ShoppingCartService} from "../../services/shopping-cart.service";
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { ICartItem } from '../../interfaces/cart-item';
 import { IProduct } from '../../interfaces/product';
 import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-cart-page',
-    templateUrl: './cart-page.component.html',
-    styleUrls: ['./cart-page.component.css'],
-    standalone: true,
-    imports: [NgIf, NgFor, CurrencyPipe]
+  selector: 'app-cart-page',
+  templateUrl: './cart-page.component.html',
+  styleUrls: ['./cart-page.component.css'],
+  standalone: true,
+  imports: [NgIf, NgFor, CurrencyPipe],
 })
 export class CartPageComponent {
   private _shoppingCartService = inject(ShoppingCartService);
@@ -19,18 +19,18 @@ export class CartPageComponent {
 
   public shoppingCart = computed<ICartItem[]>(() => {
     return this.cartItems().map((item) => {
-      return {...item, subtotal: item.quantity * item.product.price}
+      return { ...item, subtotal: item.quantity * item.product.price };
     });
   });
 
-  constructor() { }
+  constructor() {}
 
   public increaseQty(product: IProduct): void {
     this._shoppingCartService.addToCart(product);
   }
 
   public decreaseQty(cartItem: ICartItem): void {
-    const {product, quantity} = cartItem;
+    const { product, quantity } = cartItem;
     this._shoppingCartService.decreaseQuantity(product.id, quantity);
   }
 
