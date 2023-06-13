@@ -1,10 +1,14 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ShoppingCartService } from "../../../store/services/shopping-cart.service";
+import { RouterLink } from '@angular/router';
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-cart-dropdown',
-  templateUrl: './cart-dropdown.component.html',
-  styleUrls: ['./cart-dropdown.component.css']
+    selector: 'app-cart-dropdown',
+    templateUrl: './cart-dropdown.component.html',
+    styleUrls: ['./cart-dropdown.component.css'],
+    standalone: true,
+    imports: [NgIf, NgFor, RouterLink, CurrencyPipe]
 })
 export class CartDropdownComponent implements OnInit {
   public showDropdownMenu: boolean = false;
