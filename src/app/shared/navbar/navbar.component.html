@@ -1,12 +1,18 @@
 <nav class="navbar">
-  <a class="navbar-logo" routerLink="">{{businessName}}</a>
+  <a class="navbar-logo" routerLink="">{{ businessName }}</a>
   <form autocomplete="off" class="search">
-    <input type="text" name="search_product" id="search-product" class="search-input" placeholder="Buscar producto...">
+    <input
+      type="text"
+      name="search_product"
+      id="search-product"
+      class="font-sans rounded-full border-slate-400 border bg-zinc-100 text-sm py-2 px-4 w-full"
+      placeholder="Busca cualquier producto..."
+    />
   </form>
   <div class="navbar-options">
     <app-cart-dropdown></app-cart-dropdown>
     <div class="user-dropdown">
-      <img src="https://github.com/mdo.png" alt="User image" class="user-img">
+      <img src="https://github.com/mdo.png" alt="User image" class="user-img" />
     </div>
   </div>
 </nav>
