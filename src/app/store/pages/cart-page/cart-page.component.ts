@@ -30,4 +30,8 @@ export class CartPageComponent {
     const {product, quantity} = cartItem;
     this._shoppingCartService.decreaseQuantity(product.id, quantity);
   }
+
+  public removeFromCart(productId: number): void {
+    this._shoppingCartService.removeFromCart(productId);
+  }
 }
