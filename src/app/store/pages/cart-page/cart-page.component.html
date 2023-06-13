@@ -2,17 +2,30 @@
 
 <div *ngIf="shoppingCart().length > 0">
   <div class="cart-item" *ngFor="let item of shoppingCart()">
-    <p>Producto: {{ item.product.name }}</p>
-    <div class="cart-qty">
-      <button class="btn btn-small" (click)="decreaseQty(item)">
-        -
+    <div class="item-info">
+      <button class="border border-slate-300 p-1.5 rounded" (click)="removeFromCart(item.product.id)">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
+          />
+        </svg>
       </button>
-      <p>{{ item.quantity }}</p>
-      <button class="btn btn-small" (click)="increaseQty(item.product)">
-        +
-      </button>
+      <img [src]="item.product.imgUrl" alt="Item img" />
+      <p>Producto: {{ item.product.name }}</p>
     </div>
-    <p>Subtotal: {{ item.subtotal | currency : "Q" }}</p>
+    <div class="item-price">
+      <div class="item-qty">
+        <button class="btn btn-small" (click)="decreaseQty(item)">-</button>
+        <p>{{ item.quantity }}</p>
+        <button class="btn btn-small" (click)="increaseQty(item.product)">+</button>
+      </div>
+      <p class="price">{{ item.subtotal | currency : "Q" }}</p>
+    </div>
   </div>
 </div>
 
