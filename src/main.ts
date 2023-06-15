@@ -7,7 +7,7 @@ import {
   provideHttpClient,
 } from '@angular/common/http';
 import { APP_ROUTES } from './app/app.routes';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 
 if (environment.production) {
@@ -17,7 +17,7 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule),
-    provideRouter(APP_ROUTES),
+    provideRouter(APP_ROUTES, withComponentInputBinding()),
     provideHttpClient(withInterceptorsFromDi()),
   ],
 }).catch((err) => console.error(err));
