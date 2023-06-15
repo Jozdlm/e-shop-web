@@ -16,12 +16,10 @@ export class ShoppingCartService {
 
   public cartAmmount = computed<number>(() => {
     const prices = this.shoppingCart().map(item => {
-      let unitPrice = new Decimal(item.product.price);
-      return unitPrice.mul(item.quantity);
+      return item.product.price * item.quantity;
     });
 
-    const total = prices.reduce((previous, current) => previous.add(current), new Decimal(0));
-    return total.toNumber();
+    return prices.reduce((previous, current) => previous + current, 0);
   });
 
   public tax = computed<number>(() => {
