@@ -1,8 +1,15 @@
 <div class="card">
-  <img class="product-img" [src]="product.imgUrl" [alt]="product.name">
-  <div class="card-body">
-    <h3 class="product-title">{{product.name}}</h3>
-    <h4 class="product-price">{{product.price |currency:'Q'}}</h4>
-    <button class="btn card-action" (click)="addToCart(product)">Agregar al carrito</button>
+  <img
+    class="product-img cursor-pointer"
+    [src]="product.imgUrl"
+    [alt]="product.name"
+    [routerLink]="['/product', product.id]"
+  />
+  <div class="p-4">
+    <h3 class="product-title">{{ product.name }}</h3>
+    <h4 class="text-xl mb-5">{{ product.price | currency : "Q" }}</h4>
+    <button class="btn w-full" (click)="addToCart(product)">
+      Agregar al carrito
+    </button>
   </div>
 </div>

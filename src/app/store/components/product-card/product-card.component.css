@@ -11,10 +11,6 @@
   object-fit: cover;
 }
 
-.card-body {
-  padding: 16px;
-}
-
 .product-title {
   margin-bottom: 8px;
 
@@ -26,13 +22,4 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-}
-
-.product-price {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.card-action {
-  width: 100%;
 }
