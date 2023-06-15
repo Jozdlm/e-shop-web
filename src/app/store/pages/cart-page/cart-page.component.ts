@@ -17,6 +17,7 @@ export class CartPageComponent {
 
   public cartItems = this._shoppingCartService.shoppingCart;
   public cartAmmount = this._shoppingCartService.cartAmmount;
+  public tax = this._shoppingCartService.tax;
 
   public shoppingCart = computed<ICartItem[]>(() => {
     return this.cartItems().map((item) => {
