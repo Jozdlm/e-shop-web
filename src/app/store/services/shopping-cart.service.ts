@@ -1,21 +1,20 @@
-import {computed, effect, Injectable, signal} from '@angular/core';
-import {ICartItem} from "../interfaces/cart-item";
-import {IProduct} from "../interfaces/product";
-import Decimal from "decimal.js";
+import { computed, effect, Injectable, signal } from '@angular/core';
+import { ICartItem } from '../interfaces/cart-item';
+import { IProduct } from '../interfaces/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingCartService {
   public shoppingCart = signal<ICartItem[]>([]);
 
   public cartUnits = computed<number>(() => {
-    let units = this.shoppingCart().map(item => item.quantity);
+    let units = this.shoppingCart().map((item) => item.quantity);
     return units.reduce((previous, current) => previous + current, 0);
   });
 
   public cartAmmount = computed<number>(() => {
-    const prices = this.shoppingCart().map(item => {
+    const prices = this.shoppingCart().map((item) => {
       return item.product.price * item.quantity;
     });
 
@@ -35,24 +34,28 @@ export class ShoppingCartService {
   }
 
   public addToCart(product: IProduct): void {
-    const index = this.shoppingCart().findIndex(item => item.product.id == product.id);
+    const index = this.shoppingCart().findIndex(
+      (item) => item.product.id == product.id
+    );
 
     if (index === -1) {
-      this.shoppingCart.mutate(value => {
+      this.shoppingCart.mutate((value) => {
         value.push({ product, quantity: 1 });
       });
     } else {
-      this.shoppingCart.mutate(items => {
+      this.shoppingCart.mutate((items) => {
         items[index] = { product, quantity: items[index].quantity + 1 };
-      })
+      });
     }
   }
 
   public decreaseQuantity(productId: number, currentQty: number) {
-    if(currentQty > 1) {
-      const index = this.shoppingCart().findIndex(item => item.product.id == productId);
+    if (currentQty > 1) {
+      const index = this.shoppingCart().findIndex(
+        (item) => item.product.id == productId
+      );
 
-      this.shoppingCart.mutate(items => {
+      this.shoppingCart.mutate((items) => {
         items[index] = { ...items[index], quantity: items[index].quantity - 1 };
       });
     } else {
@@ -61,8 +64,8 @@ export class ShoppingCartService {
   }
 
   public removeFromCart(productId: number): void {
-    this.shoppingCart.update(value => {
-      return value.filter(item => item.product.id != productId);
+    this.shoppingCart.update((value) => {
+      return value.filter((item) => item.product.id != productId);
     });
   }
 
