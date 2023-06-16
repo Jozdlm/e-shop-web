@@ -1,8 +1,15 @@
-<p>product-detail works!</p>
+<div *ngIf="product" class="grid grid-cols-2">
+  <div>
+    <img [src]="product.imgUrl" [alt]="product.name" class="block" />
+  </div>
+  <div>
+    <h1 class="text-2xl">{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price | currency : "GTQ" }}</p>
+    <button class="btn">Añadir al carrito</button>
+  </div>
+</div>
 
-<div *ngIf="product">
-    <p>product id {{id}}</p>
-    <p> {{product.name}} </p>
-    <p> {{product.price}} </p>
-    <p> {{product.imgUrl}} </p>
+<div>
+  <p>Productos Relacionados</p>
 </div>
