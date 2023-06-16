@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { IProduct } from '../../interfaces/product';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -11,14 +11,13 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
 })
-export class ProductCardComponent implements OnInit {
-  @Input() product!: IProduct;
+export class ProductCardComponent {
+  private readonly _cartService = inject(ShoppingCartService);
 
-  constructor(private cartService: ShoppingCartService) {}
-
-  ngOnInit(): void {}
+  @Input() 
+  public product!: IProduct;
 
   public addToCart(product: IProduct): void {
-    this.cartService.addToCart(product);
+    this._cartService.addToCart(product);
   }
 }
