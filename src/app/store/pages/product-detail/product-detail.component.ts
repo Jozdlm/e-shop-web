@@ -2,13 +2,14 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
+import { ButtonComponent } from 'src/app/common/components/button/button.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styles: []
 })
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);
