@@ -1,2 +1,8 @@
 <p>product-detail works!</p>
-<p>product id {{id}}</p>
+
+<div *ngIf="product">
+    <p>product id {{id}}</p>
+    <p> {{product.name}} </p>
+    <p> {{product.price}} </p>
+    <p> {{product.imgUrl}} </p>
+</div>
