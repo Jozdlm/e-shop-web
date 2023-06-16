@@ -1,26 +1,28 @@
-[
-  {
-    "id": 1,
-    "name": "Manzana Verde Caja 100u",
-    "price": 89.76,
-    "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-  },
-  {
-    "id": 2,
-    "name": "Manzana Roja Caja 100u",
-    "price": 100,
-    "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Uvas Caja 12lbs",
-    "price": 75.9,
-    "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-  },
-  {
-    "id": 4,
-    "name": "Pera Verde Caja 25u",
-    "price": 34.23,
-    "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-  }
-]
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Manzana Verde Caja 100u",
+      "price": 89.76,
+      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Manzana Roja Caja 100u",
+      "price": 100,
+      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Uvas Caja 12lbs",
+      "price": 75.9,
+      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Pera Verde Caja 25u",
+      "price": 34.23,
+      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+    }
+  ]
+}
