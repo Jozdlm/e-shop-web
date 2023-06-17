@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IProduct } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,6 +14,7 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 })
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);
+  private readonly _cartService = inject(ShoppingCartService);
 
   public product: IProduct | undefined = undefined;
 
@@ -21,4 +23,10 @@ export class ProductDetailComponent {
     this._productService.getProductById(productId)
       .subscribe(product => this.product = product);
   };
+
+  public addToCart(): void {
+    if(this.product) {
+      this._cartService.addToCart(this.product);
+    }
+  }
 }
