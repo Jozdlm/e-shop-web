@@ -10,5 +10,5 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   imports: [RouterOutlet, NavbarComponent],
 })
 export class AppComponent {
-  public businessName: string = 'Librería La Joya';
+  public businessName: string = 'El Huerto Verde';
 }
