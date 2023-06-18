@@ -1,5 +1,8 @@
-<div class="cart-dropdown">
-  <button class="cart-toggle rounded py-2.5 px-4" (click)="toggleDropdownMenu()">
+<div class="relative">
+  <button
+    class="flex gap-x-2 items-center rounded py-2.5 px-4"
+    (click)="toggleDropdownMenu()"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -18,30 +21,40 @@
       {{ cartUnits() > 9 ? "+9" : cartUnits() }}
     </div>
   </button>
-  <div class="dropdown-menu" [class.active]="showDropdownMenu">
-    <ul class="cart">
-      <li class="cart-item" *ngFor="let item of cartItems()">
-        <div class="item-info">
+  <div
+    class="bg-white rounded p-4 right-0 border border-neutral-300 drop-shadow-lg top-11 w-80"
+    [ngClass]="{ absolute: showMenu, hidden: !showMenu }"
+  >
+    <ul class="list-none">
+      <li
+        class="border-b border-neutral-300 flex justify-start py-4 gap-x-4 items-center first:pt-0"
+        *ngFor="let item of cartItems()"
+      >
+        <img
+          [productImage]="item.product.img_url"
+          alt=""
+          class="block w-16 h-16 object-contain"
+        />
+        <div>
           <p>{{ item.product.name }}</p>
-          <p class="text-sm">{{ item.product.price | currency : "GTQ" }}</p>
+          <p class="text-sm">Cantidad: {{ item.quantity }}</p>
         </div>
-        <p class="item-qty">{{ item.quantity }}</p>
       </li>
     </ul>
-    <div class="p-4">
-      <div>
-        <h3 class="text-base font-medium">Total: {{ cartAmmount() | currency : "GTQ" }}</h3>
+    <div>
+      <div class="my-6 flex justify-between items-center">
+        <p>Subtotal</p>
+        <p class="text-base font-medium">
+          {{ cartAmmount() | currency : "GTQ" }}
+        </p>
       </div>
-      <button class="btn dropdown-btn" (click)="clearShoppingCart()">
-        Limpiar cesta
-      </button>
-      <button
-        class="btn dropdown-btn"
+      <app-button
+        [fullWidth]="true"
         routerLink="shopping-cart"
         (click)="toggleDropdownMenu()"
       >
         Ir a la cesta
-      </button>
+      </app-button>
     </div>
   </div>
 </div>
