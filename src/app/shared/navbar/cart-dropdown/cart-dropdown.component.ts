@@ -1,41 +1,43 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
 import { RouterLink } from '@angular/router';
-import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 
 @Component({
   selector: 'app-cart-dropdown',
   templateUrl: './cart-dropdown.component.html',
-  styleUrls: ['./cart-dropdown.component.css'],
+  styles: [],
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, CurrencyPipe],
+  imports: [CommonModule, RouterLink, ButtonComponent, ProductImageDirective],
 })
-export class CartDropdownComponent implements OnInit {
-  public showDropdownMenu: boolean = false;
+export class CartDropdownComponent {
+  private _cartService = inject(ShoppingCartService);
+  private _elementRef = inject(ElementRef);
 
-  public cartItems = this._shoppingCartService.shoppingCart;
-  public cartUnits = this._shoppingCartService.cartUnits;
-  public cartAmmount = this._shoppingCartService.cartAmmount;
+  public showMenu: boolean = false;
 
-  constructor(
-    private _shoppingCartService: ShoppingCartService,
-    private elementRef: ElementRef
-  ) {}
+  public cartItems = this._cartService.shoppingCart;
+  public cartUnits = this._cartService.cartUnits;
+  public cartAmmount = this._cartService.cartAmmount;
 
-  ngOnInit(): void {}
+  constructor() {}
 
   public toggleDropdownMenu(): void {
-    this.showDropdownMenu = !this.showDropdownMenu;
-  }
-
-  public clearShoppingCart(): void {
-    this._shoppingCartService.clearShoppingCart();
+    this.showMenu = !this.showMenu;
   }
 
   @HostListener('document:click', ['$event'])
   public clickedOut(event: MouseEvent) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.showDropdownMenu = false;
+    if (!this._elementRef.nativeElement.contains(event.target)) {
+      this.showMenu = false;
     }
   }
 }
