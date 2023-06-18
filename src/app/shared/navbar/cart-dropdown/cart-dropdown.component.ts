@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
