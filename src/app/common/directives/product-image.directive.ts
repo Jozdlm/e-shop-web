@@ -9,7 +9,7 @@ export class ProductImageDirective {
 
   @Input()
   public set productImage(imgUrl: string) {
-    if (imgUrl.trim().length > 1) {
+    if (imgUrl?.trim().length > 1) {
       this._elementRef.nativeElement.src = imgUrl;
     } else {
       this._elementRef.nativeElement.src = 'assets/images/no-product-img.jpg';
