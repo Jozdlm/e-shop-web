@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ICartItem } from '../../interfaces/cart-item';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { IProduct } from '../../interfaces/product';
+import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 
 @Component({
   selector: 'app-item-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductImageDirective],
   templateUrl: './item-cart.component.html',
   styleUrls: ['./item-cart.component.css'],
 })
