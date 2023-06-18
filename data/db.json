@@ -3,37 +3,134 @@
     {
       "id": 1,
       "name": "Manzana Verde Caja 100u",
-      "description": "Some description",
+      "description": "Deliciosas manzanas verdes de alta calidad, empacadas en una caja de 100 unidades. Estas manzanas son jugosas y refrescantes, perfectas para disfrutar en cualquier momento del día.",
       "price": 89.76,
-      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+      "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg",
+      "options": [
+        {"type": "Caja", "price": 89.76, "in_stock": true},
+        {"type": "Docena", "price": 50.00, "in_stock": true},
+        {"type": "Libra", "price": 27.50, "in_stock": true}
+      ]
     },
     {
       "id": 2,
-      "name": "Manzana Roja Caja 100u",
-      "description": "Some description",
-      "price": 100,
-      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-    },
+      "name": "Manzana Roja Caja 50u",
+      "description": "Sabrosas manzanas rojas de primera calidad, empacadas en una caja de 50 unidades. Estas manzanas tienen un sabor dulce y una textura crujiente, ideales para meriendas o para preparar deliciosos postres.",
+      "price": 45.99,
+      "img_url": "",
+      "options": [
+        {"type": "Caja", "price": 45.99, "in_stock": true},
+        {"type": "Docena", "price": 25.00, "in_stock": true},
+        {"type": "Libra", "price": 13.99, "in_stock": true}
+      ]
+    },    
     {
       "id": 3,
-      "name": "Uvas Caja 12lbs",
-      "description": "Some description",
-      "price": 75.9,
-      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+      "name": "Uvas Negras Caja 10lbs",
+      "description": "Deliciosas uvas negras de alta calidad, cuidadosamente seleccionadas y empacadas en una caja de 10 libras. Estas uvas son jugosas y tienen un sabor dulce y ligeramente afrutado. Perfectas para disfrutar como refrigerio o para añadir a ensaladas y platos gourmet.",
+      "price": 32.99,
+      "img_url": "",
+      "options": [
+        {"type": "Caja", "price": 32.99, "in_stock": true},
+        {"type": "Libra", "price": 3.99, "in_stock": true},
+        {"type": "Kilo", "price": 7.99, "in_stock": true}
+      ]
     },
     {
       "id": 4,
-      "name": "Pera Verde Caja 25u",
-      "description": "Some description",
-      "price": 34.23,
-      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+      "name": "Pera Amarilla Caja 20u",
+      "description": "Peras amarillas de alta calidad, dulces y jugosas, en una caja de 20 unidades. Estas peras tienen una textura suave y un sabor deliciosamente fragante. Son ideales para disfrutar solas o como ingrediente en postres y ensaladas.",
+      "price": 19.99,
+      "img_url": "",
+      "options": [
+        {"type": "Caja", "price": 19.99, "in_stock": true},
+        {"type": "Docena", "price": 9.99, "in_stock": true},
+        {"type": "Libra", "price": 2.99, "in_stock": true}
+      ]
     },
     {
       "id": 5,
-      "name": "Bananos maduros arroba",
-      "description": "Some description",
-      "price": 50.12,
-      "imgUrl": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-    }
-  ]
+      "name": "Plátanos Maduros Caja 30lbs",
+      "description": "Plátanos maduros de calidad premium, empacados en una caja de 30 libras. Estos plátanos tienen una dulzura intensa y una textura cremosa, perfectos para hacer batidos, postres o como un delicioso tentempié.",
+      "price": 55.50,
+      "img_url": "",
+      "options": [
+        {"type": "Caja", "price": 55.50, "in_stock": true},
+        {"type": "Docena", "price": 11.99, "in_stock": true},
+        {"type": "Libra", "price": 2.50, "in_stock": true}
+      ]
+    },    
+    {
+      "id": 6,
+      "name": "Naranjas Valencia Bolsa 5kg",
+      "description": "Jugosas naranjas Valencia, recién cosechadas y envasadas en una bolsa de 5 kilogramos. Estas naranjas tienen un sabor equilibrado entre dulce y ácido, perfecto para hacer jugos frescos o disfrutar como refrigerio saludable.",
+      "price": 28.75,
+      "img_url": "",
+      "options": [
+        {"type": "Bolsa", "price": 28.75, "in_stock": true},
+        {"type": "Docena", "price": 7.99, "in_stock": true},
+        {"type": "Libra", "price": 1.99, "in_stock": true}
+      ]
+    },    
+    {
+      "id": 7,
+      "name": "Sandía Dulce Entera",
+      "description": "Disfruta de una sandía dulce y refrescante. Esta jugosa sandía está lista para ser cortada y disfrutada en días calurosos de verano. Ideal para compartir con amigos y familiares en barbacoas y reuniones al aire libre.",
+      "price": 12.99,
+      "img_url": "",
+      "options": [
+        {"type": "Entera", "price": 12.99, "in_stock": true},
+        {"type": "Medio", "price": 6.99, "in_stock": true},
+        {"type": "Cuarto", "price": 3.99, "in_stock": true}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Piña Tropical",
+      "description": "Descubre el sabor exótico de la piña tropical. Esta piña está madura y lista para ser degustada. Con su sabor dulce y jugoso, es perfecta para comer fresca, añadir a ensaladas tropicales o preparar deliciosos cócteles.",
+      "price": 8.99,
+      "img_url": "",
+      "options": [
+        {"type": "Entera", "price": 8.99, "in_stock": true},
+        {"type": "Mitades", "price": 4.99, "in_stock": true},
+        {"type": "Rodajas", "price": 2.99, "in_stock": true}
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Melocotones Dulces Caja 12u",
+      "description": "Disfruta de la dulzura de los melocotones frescos en una caja de 12 unidades. Estos melocotones tienen una pulpa jugosa y un sabor intensamente dulce. Perfectos para comer solos, hacer mermeladas caseras o añadir a tus recetas favoritas.",
+      "price": 15.50,
+      "img_url": "",
+      "options": [
+        {"type": "Caja", "price": 15.50, "in_stock": true},
+        {"type": "Docena", "price": 7.99, "in_stock": true},
+        {"type": "Libra", "price": 1.99, "in_stock": true}
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Limones Frescos Bolsa 2kg",
+      "description": "Agrega un toque de acidez y frescura a tus platos con estos limones frescos en una bolsa de 2 kilogramos. Estos limones tienen un aroma cítrico pronunciado y son ideales para aderezar ensaladas, preparar cócteles o dar sabor a tus platos favoritos.",
+      "price": 11.25,
+      "img_url": "",
+      "options": [
+        {"type": "Bolsa", "price": 11.25, "in_stock": true},
+        {"type": "Docena", "price": 2.99, "in_stock": true},
+        {"type": "Unidad", "price": 0.49, "in_stock": true}
+      ]
+    }                
+  ],
+  "my_orders": [],
+  "whish_list": [],
+  "business": {
+    "name": "El Huerto Verde"
+  },
+  "account": {
+    "id": 1,
+    "username": "Jozuan Martínez",
+    "email": "jmprueba@gmail.com",
+    "phone": "99999999",
+    "address": ""
+  }
 }
