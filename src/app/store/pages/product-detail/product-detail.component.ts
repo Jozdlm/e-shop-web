@@ -4,11 +4,12 @@ import { IProduct } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
+import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent, ProductImageDirective],
   templateUrl: './product-detail.component.html',
   styles: []
 })
