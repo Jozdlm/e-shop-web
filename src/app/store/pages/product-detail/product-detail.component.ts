@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
@@ -18,12 +18,21 @@ export class ProductDetailComponent {
   private readonly _cartService = inject(ShoppingCartService);
 
   public product: IProduct | undefined = undefined;
+  public selectedOption = signal<string>('');
 
   @Input()
   public set id(productId: number) {
     this._productService.getProductById(productId)
       .subscribe(product => this.product = product);
   };
+
+  public selectOption(option: string): void {
+    if(this.selectedOption() == option) {
+      this.selectedOption.set('');
+    } else {
+      this.selectedOption.set(option);
+    }
+  }
 
   public addToCart(): void {
     if(this.product) {
