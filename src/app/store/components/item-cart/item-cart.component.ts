@@ -10,7 +10,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
   standalone: true,
   imports: [CommonModule, ProductImageDirective],
   templateUrl: './item-cart.component.html',
-  styleUrls: ['./item-cart.component.css'],
+  styles: []
 })
 export class ItemCartComponent {
   private _cartService = inject(ShoppingCartService);
