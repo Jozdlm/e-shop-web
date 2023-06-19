@@ -4,6 +4,7 @@ import { SearchInputComponent } from './search-input/search-input.component';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { WishlistDropdownComponent } from './wishlist-dropdown/wishlist-dropdown.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ import { WishlistDropdownComponent } from './wishlist-dropdown/wishlist-dropdown
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     ButtonComponent,
     CartDropdownComponent,
     SearchInputComponent,
