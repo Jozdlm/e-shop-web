@@ -2,15 +2,7 @@
   class="flex items-center justify-between border-b border-neutral-300 py-2 px-6 mb-6"
 >
   <a class="block text-lg font-semibold" routerLink="">{{ businessName }}</a>
-  <form autocomplete="off" class="max-w-[800px] w-full">
-    <input
-      type="text"
-      name="search_product"
-      id="search-product"
-      class="rounded-full border-slate-400 border bg-stone-100 text-sm py-2.5 px-4 w-full outline-none"
-      placeholder="Busca cualquier producto..."
-    />
-  </form>
+  <app-search-input></app-search-input>
   <div class="flex items-center gap-x-2">
     <app-dropdown>
       <div id="toggle-content">

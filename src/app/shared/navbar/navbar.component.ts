@@ -2,13 +2,19 @@ import { Component, Input } from '@angular/core';
 import { CartDropdownComponent } from './cart-dropdown/cart-dropdown.component';
 import { RouterLink } from '@angular/router';
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styles: [],
   standalone: true,
-  imports: [RouterLink, CartDropdownComponent, DropdownComponent],
+  imports: [
+    RouterLink,
+    CartDropdownComponent,
+    DropdownComponent,
+    SearchInputComponent,
+  ],
 })
 export class NavbarComponent {
   @Input() businessName: string = '';
