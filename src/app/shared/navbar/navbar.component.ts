@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { CartDropdownComponent } from './cart-dropdown/cart-dropdown.component';
-import { RouterLink } from '@angular/router';
-import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
 import { SearchInputComponent } from './search-input/search-input.component';
+import { CommonModule } from '@angular/common';
+import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { WishlistDropdownComponent } from './wishlist-dropdown/wishlist-dropdown.component';
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +11,11 @@ import { SearchInputComponent } from './search-input/search-input.component';
   styles: [],
   standalone: true,
   imports: [
-    RouterLink,
+    CommonModule,
+    ButtonComponent,
     CartDropdownComponent,
-    DropdownComponent,
     SearchInputComponent,
+    WishlistDropdownComponent,
   ],
 })
 export class NavbarComponent {
