@@ -14,7 +14,6 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 })
 export class CartDropdownComponent {
   private _cartService = inject(ShoppingCartService);
-  private _elementRef = inject(ElementRef);
 
   public showMenu: boolean = false;
 
@@ -24,14 +23,11 @@ export class CartDropdownComponent {
 
   constructor() {}
 
-  public toggleDropdownMenu(): void {
-    this.showMenu = !this.showMenu;
+  public displayDropdown(): void {
+    this.showMenu = true;
   }
 
-  @HostListener('document:click', ['$event'])
-  public clickedOut(event: MouseEvent) {
-    if (!this._elementRef.nativeElement.contains(event.target)) {
-      this.showMenu = false;
-    }
+  public hideDropdown(): void {
+    this.showMenu = false;
   }
 }

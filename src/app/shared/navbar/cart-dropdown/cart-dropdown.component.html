@@ -1,7 +1,11 @@
-<div class="relative">
+<div
+  class="relative"
+  (mouseenter)="displayDropdown()"
+  (mouseleave)="hideDropdown()"
+>
   <button
-    class="flex gap-x-2 items-center rounded py-2.5 px-4"
-    (click)="toggleDropdownMenu()"
+    class="flex items-center gap-x-2 rounded px-4 py-2.5"
+    routerLink="shopping-cart"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,7 +13,7 @@
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="w-6 h-6 text-neutral-500 hover:text-neutral-700"
+      class="h-6 w-6 text-neutral-500 hover:text-neutral-700"
     >
       <path
         stroke-linecap="round"
@@ -22,18 +26,18 @@
     </div>
   </button>
   <div
-    class="bg-white rounded p-4 right-0 border border-neutral-300 drop-shadow-lg top-11 w-80"
+    class="right-0 top-11 w-80 rounded border border-neutral-300 bg-white p-4 drop-shadow-lg"
     [ngClass]="{ absolute: showMenu, hidden: !showMenu }"
   >
     <ul class="list-none">
       <li
-        class="border-b border-neutral-300 flex justify-start py-4 gap-x-4 items-center first:pt-0"
+        class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
         *ngFor="let item of cartItems()"
       >
         <img
           [productImage]="item.product.img_url"
           alt=""
-          class="block w-16 h-16 object-contain"
+          class="block h-16 w-16 object-contain"
         />
         <div>
           <p>{{ item.product.name }}</p>
@@ -42,7 +46,7 @@
       </li>
     </ul>
     <div>
-      <div class="my-6 flex justify-between items-center">
+      <div class="my-6 flex items-center justify-between">
         <p>Subtotal</p>
         <p class="text-base font-medium">
           {{ cartAmmount() | currency : "GTQ" }}
@@ -51,7 +55,6 @@
       <app-button
         [fullWidth]="true"
         routerLink="shopping-cart"
-        (click)="toggleDropdownMenu()"
       >
         Ir a la cesta
       </app-button>
