@@ -1,12 +1,5 @@
-<div
-  class="relative"
-  (mouseenter)="displayDropdown()"
-  (mouseleave)="hideDropdown()"
->
-  <button
-    class="flex items-center gap-x-2 rounded px-4 py-2.5"
-    routerLink="shopping-cart"
-  >
+<app-dropdown pageUrl="shopping-cart">
+  <div id="toggle-content" class="flex items-center gap-x-2">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -24,11 +17,8 @@
     <div>
       {{ cartUnits() > 9 ? "+9" : cartUnits() }}
     </div>
-  </button>
-  <div
-    class="right-0 top-11 w-80 rounded border border-neutral-300 bg-white p-4 drop-shadow-lg"
-    [ngClass]="{ absolute: showMenu, hidden: !showMenu }"
-  >
+  </div>
+  <div id="dropdown-content">
     <ul class="list-none">
       <li
         class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
@@ -52,12 +42,9 @@
           {{ cartAmmount() | currency : "GTQ" }}
         </p>
       </div>
-      <app-button
-        [fullWidth]="true"
-        routerLink="shopping-cart"
-      >
+      <app-button [fullWidth]="true" routerLink="shopping-cart">
         Ir a la cesta
       </app-button>
     </div>
   </div>
-</div>
+</app-dropdown>
