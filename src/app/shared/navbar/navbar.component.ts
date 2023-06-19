@@ -1,18 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartDropdownComponent } from './cart-dropdown/cart-dropdown.component';
 import { RouterLink } from '@angular/router';
+import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styles: [],
   standalone: true,
-  imports: [RouterLink, CartDropdownComponent],
+  imports: [RouterLink, CartDropdownComponent, DropdownComponent],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   @Input() businessName: string = '';
 
   constructor() {}
-
-  ngOnInit(): void {}
 }
