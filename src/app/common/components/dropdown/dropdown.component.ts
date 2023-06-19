@@ -8,11 +8,11 @@ import { CommonModule } from '@angular/common';
   template: `
     <div class="relative">
       <!-- Dropdown Toggle -->
-      <button class="rounded py-2.5 px-4" (click)="toggleDropdown()">
+      <button class="rounded px-4 py-2.5" (click)="toggleDropdown()">
         <ng-content select="#toggle-content"></ng-content>
       </button>
       <div
-        class="bg-white rounded p-4 right-0 border border-neutral-300 drop-shadow-lg top-11 w-80"
+        class="right-0 top-11 w-80 rounded border border-neutral-300 bg-white p-4 drop-shadow-lg"
         [ngClass]="{ absolute: showDropdown, hidden: !showDropdown }"
       >
         <!-- Contenido del Dropdown -->
