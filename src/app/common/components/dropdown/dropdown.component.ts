@@ -1,14 +1,19 @@
-import { Component, ElementRef, HostListener, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dropdown',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
-    <div class="relative">
+    <div
+      class="relative"
+      (mouseenter)="displayDropdown()"
+      (mouseleave)="hideDropdown()"
+    >
       <!-- Dropdown Toggle -->
-      <button class="rounded px-4 py-2.5" (click)="toggleDropdown()">
+      <button class="rounded px-4 py-2.5" [routerLink]="pageUrl">
         <ng-content select="#toggle-content"></ng-content>
       </button>
       <div
@@ -23,20 +28,18 @@ import { CommonModule } from '@angular/common';
   styles: [],
 })
 export class DropdownComponent {
-  private _elementRef = inject(ElementRef);
-
   public showDropdown: boolean = false;
+
+  @Input()
+  public pageUrl: string = '';
 
   constructor() {}
 
-  public toggleDropdown(): void {
-    this.showDropdown = !this.showDropdown;
+  public displayDropdown(): void {
+    this.showDropdown = true;
   }
 
-  @HostListener('document:click', ['$event'])
-  public clickedOut(event: MouseEvent) {
-    if (!this._elementRef.nativeElement.contains(event.target)) {
-      this.showDropdown = false;
-    }
+  public hideDropdown(): void {
+    this.showDropdown = false;
   }
 }
