@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -17,8 +17,13 @@ import { RouterModule } from '@angular/router';
         <ng-content select="#toggle-content"></ng-content>
       </button>
       <div
-        class="right-0 top-11 w-80 rounded border border-neutral-300 bg-white p-4 drop-shadow-lg"
-        [ngClass]="{ absolute: showDropdown, hidden: !showDropdown }"
+        class="right-0 top-11 rounded border border-neutral-300 bg-white drop-shadow-lg"
+        [ngClass]="{
+          absolute: showDropdown,
+          hidden: !showDropdown,
+          'w-40 py-1': isMenu,
+          'w-80 p-4': !isMenu
+        }"
       >
         <!-- Contenido del Dropdown -->
         <ng-content select="#dropdown-content"></ng-content>
@@ -32,6 +37,9 @@ export class DropdownComponent {
 
   @Input()
   public pageUrl: string = '';
+
+  @Input()
+  public isMenu: boolean = false;
 
   constructor() {}
 
