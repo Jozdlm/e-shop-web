@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
       (mouseleave)="hideDropdown()"
     >
       <!-- Dropdown Toggle -->
-      <button class="rounded px-4 py-2.5" [routerLink]="pageUrl">
+      <button class="rounded p-2" [routerLink]="pageUrl">
         <ng-content select="#toggle-content"></ng-content>
       </button>
       <div
