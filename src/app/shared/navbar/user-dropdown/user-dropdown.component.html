@@ -1,4 +1,4 @@
-<app-dropdown pageUrl="account">
+<app-dropdown pageUrl="my-account" [isMenu]="true">
   <div id="toggle-content">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +16,12 @@
     </svg>
   </div>
   <div id="dropdown-content">
-    <p>Lista de opciones del usuario</p>
+    <a
+      *ngFor="let item of menuItems"
+      [routerLink]="item.link"
+      class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
+    >
+      <span class="text-sm">{{ item.placeholder }}</span>
+    </a>
   </div>
 </app-dropdown>
