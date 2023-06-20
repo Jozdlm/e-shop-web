@@ -15,7 +15,6 @@ import { UserDropdownComponent } from './user-dropdown/user-dropdown.component';
   imports: [
     CommonModule,
     RouterModule,
-    ButtonComponent,
     CartDropdownComponent,
     SearchInputComponent,
     WishlistDropdownComponent,
