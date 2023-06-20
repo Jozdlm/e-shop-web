@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
         [ngClass]="{
           absolute: showDropdown,
           hidden: !showDropdown,
-          'w-40 py-1': isMenu,
+          'w-52 py-1': isMenu,
           'w-80 p-4': !isMenu
         }"
       >
