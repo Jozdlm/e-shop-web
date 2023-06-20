@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { WishlistDropdownComponent } from './wishlist-dropdown/wishlist-dropdown.component';
 import { RouterModule } from '@angular/router';
+import { UserDropdownComponent } from './user-dropdown/user-dropdown.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     CartDropdownComponent,
     SearchInputComponent,
     WishlistDropdownComponent,
+    UserDropdownComponent
   ],
 })
 export class NavbarComponent {
