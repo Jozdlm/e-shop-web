@@ -1,13 +1,20 @@
-<h1 class="text-2xl mb-8">Carrito de compras</h1>
-
-<div class="flex gap-x-20">
-  <div *ngIf="shoppingCart().length > 0" class="grow">
-    <app-item-cart *ngFor="let item of shoppingCart()" [cartItem]="item" />
-  </div>
-  <div class="total w-72 p-6 border border-slate-200 rounded">
-    <p class="text-2xl">Total: {{ cartAmmount() | currency : "Q" }}</p>
-    <p>Impuesto: {{tax() | currency: 'Q'}}</p>
-  </div>
+<div class="mb-10">
+  <h1 class="mb-1 text-2xl">Carrito de compras</h1>
+  <button
+    *ngIf="shoppingCart().length > 0"
+    class="text-neutral-600 hover:text-black"
+    (click)="clearShoppingCart()"
+  >
+    Vaciar Carrito
+  </button>
 </div>
 
-
+<div class="flex gap-x-20" *ngIf="shoppingCart().length > 0">
+  <div class="grow">
+    <app-item-cart *ngFor="let item of shoppingCart()" [cartItem]="item" />
+  </div>
+  <div class="w-72 p-6">
+    <p class="text-2xl">Total: {{ cartAmmount() | currency : "Q" }}</p>
+    <p>Impuesto: {{ tax() | currency : "Q" }}</p>
+  </div>
+</div>

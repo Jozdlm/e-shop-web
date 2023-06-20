@@ -12,11 +12,11 @@ import { ItemCartComponent } from '../../components/item-cart/item-cart.componen
   imports: [CommonModule, ItemCartComponent],
 })
 export class CartPageComponent {
-  private _shoppingCartService = inject(ShoppingCartService);
+  private _cartService = inject(ShoppingCartService);
 
-  public cartItems = this._shoppingCartService.shoppingCart;
-  public cartAmmount = this._shoppingCartService.cartAmmount;
-  public tax = this._shoppingCartService.tax;
+  public cartItems = this._cartService.shoppingCart;
+  public cartAmmount = this._cartService.cartAmmount;
+  public tax = this._cartService.tax;
 
   public shoppingCart = computed<ICartItem[]>(() => {
     return this.cartItems().map((item) => {
@@ -25,4 +25,8 @@ export class CartPageComponent {
   });
 
   constructor() {}
+  
+  public clearShoppingCart(): void {
+    this._cartService.clearShoppingCart();
+  }
 }
