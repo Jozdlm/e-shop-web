@@ -15,13 +15,29 @@
       />
     </svg>
   </div>
-  <div id="dropdown-content">
-    <a
-      *ngFor="let item of menuItems"
-      [routerLink]="item.link"
-      class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
-    >
-      <span class="text-sm">{{ item.placeholder }}</span>
+  <div id="dropdown-content" class="divide-y">
+    <div class="flex items-center gap-x-3 px-4 py-3">
+      <img
+        src="https://randomuser.me/api/portraits/men/44.jpg"
+        alt="Imagen del perfil del usuario"
+        class="h-10 w-10 rounded-full"
+      />
+      <div>
+        <p class="text-sm font-semibold">Jozuan Martínez</p>
+        <p class="text-sm text-neutral-800">correo@correo.com</p>
+      </div>
+    </div>
+    <div>
+      <a
+        *ngFor="let item of menuItems"
+        [routerLink]="item.link"
+        class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
+      >
+        <span class="text-sm">{{ item.placeholder }}</span>
+      </a>
+    </div>
+    <a class="block cursor-pointer px-4 py-2 hover:bg-gray-100">
+      <span class="text-sm">Cerrar Sesión</span>
     </a>
   </div>
 </app-dropdown>
