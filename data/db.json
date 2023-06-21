@@ -132,6 +132,7 @@
     "last_name": "Martínez",
     "email": "jmprueba@gmail.com",
     "email_verified": true,
+    "img_url": "https://randomuser.me/api/portraits/men/44.jpg",
     "phone": {
       "code": 502,
       "number": "99999999"
