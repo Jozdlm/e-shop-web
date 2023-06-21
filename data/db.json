@@ -126,11 +126,21 @@
   "business": {
     "name": "El Huerto Verde"
   },
-  "account": {
+  "user": {
     "id": 1,
-    "username": "Jozuan Martínez",
+    "first_name": "Jozuan",
+    "last_name": "Martínez",
     "email": "jmprueba@gmail.com",
-    "phone": "99999999",
-    "address": ""
+    "email_verified": true,
+    "phone": {
+      "code": 502,
+      "number": "99999999"
+    },
+    "address": {
+      "country": "Guatemala",
+      "state": "Quetzaltenango",
+      "city": "San Mateo",
+      "exact_address": "12 Avenida C 54-30 zona 1"
+    }
   }
 }
