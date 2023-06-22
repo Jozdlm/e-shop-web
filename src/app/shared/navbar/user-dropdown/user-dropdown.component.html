@@ -22,9 +22,9 @@
         alt="Imagen del perfil del usuario"
         class="h-10 w-10 rounded-full"
       />
-      <div>
-        <p class="text-sm font-semibold">Jozuan Martínez</p>
-        <p class="text-sm text-neutral-800">correo@correo.com</p>
+      <div class="overflow-hidden">
+        <p class="text-sm text-neutral-800 font-semibold">{{user()?.first_name}} {{user()?.last_name}}</p>
+        <p class="text-sm text-neutral-600 truncate">{{user()?.email}}</p>
       </div>
     </div>
     <div>
