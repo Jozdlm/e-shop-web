@@ -8,7 +8,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css'],
+  styles: [],
   standalone: true,
   imports: [CommonModule, RouterModule, ProductImageDirective],
 })

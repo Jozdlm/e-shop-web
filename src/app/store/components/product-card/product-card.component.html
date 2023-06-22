@@ -1,13 +1,13 @@
-<div class="card">
+<div class="rounded border border-slate-300 overflow-hidden">
   <img
-    class="product-img cursor-pointer"
+    class="cursor-pointer object-contain w-full h-[200px]"
     [productImage]="product.img_url"
     [alt]="product.name"
     [routerLink]="['/product', product.id]"
   />
   <div class="p-4">
-    <h3 class="product-title">{{ product.name }}</h3>
-    <h4 class="text-xl mb-5">{{ product.price | currency : "Q" }}</h4>
+    <h3 class="line-clamp-2">{{ product.name }}</h3>
+    <h4 class="text-xl mb-5">{{ product.price | currency : "GTQ" }}</h4>
     <button class="btn w-full" (click)="addToCart(product)">
       Agregar al carrito
     </button>
