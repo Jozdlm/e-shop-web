@@ -33,19 +33,25 @@ export class ShoppingCartService {
     });
   }
 
-  public addToCart(product: IProduct): void {
+  public addToCart(product: IProduct, type?: string): void {
     const index = this.shoppingCart().findIndex(
       (item) => item.product.id == product.id
     );
 
     if (index === -1) {
       this.shoppingCart.mutate((value) => {
-        value.push({ product, quantity: 1, unit_price: product.price });
+        value.push({
+          product,
+          type: type || product.options[0].type,
+          quantity: 1,
+          unit_price: product.price,
+        });
       });
     } else {
       this.shoppingCart.mutate((items) => {
         items[index] = {
           product,
+          type: type || product.options[0].type,
           quantity: items[index].quantity + 1,
           unit_price: product.price,
         };
