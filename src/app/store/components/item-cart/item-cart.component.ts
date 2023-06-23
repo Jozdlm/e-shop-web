@@ -10,7 +10,6 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
   standalone: true,
   imports: [CommonModule, ProductImageDirective],
   templateUrl: './item-cart.component.html',
-  styles: []
 })
 export class ItemCartComponent {
   private _cartService = inject(ShoppingCartService);
@@ -19,7 +18,7 @@ export class ItemCartComponent {
   public item!: ICartItem;
 
   public increaseQty(product: IProduct): void {
-    this._cartService.addToCart(product);
+    this._cartService.increaseQuantity(product.id);
   }
 
   public decreaseQty(cartItem: ICartItem): void {
