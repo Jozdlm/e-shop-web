@@ -4,10 +4,10 @@ export interface IProduct {
   description: string;
   price: number;
   img_url: string;
-  options: Option[]
+  options: ProductOption[]
 }
 
-export interface Option {
+export interface ProductOption {
   type: string;
   price: number;
   in_stock: boolean;
