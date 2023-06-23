@@ -25,6 +25,10 @@ export class ShoppingCartService {
     return this.subtotal() * 0.12;
   });
 
+  public total = computed<number>(() => {
+    return this.subtotal() + this.tax();
+  });
+
   constructor() {
     this.shoppingCart.set(JSON.parse(localStorage.getItem('cartItems')!) || []);
 
