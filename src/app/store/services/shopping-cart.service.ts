@@ -1,6 +1,6 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
-import { IProduct } from '../interfaces/product';
+import { IProduct, ProductOption } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root',
@@ -33,30 +33,35 @@ export class ShoppingCartService {
     });
   }
 
-  public addToCart(product: IProduct, type?: string): void {
+  public addToCart(product: IProduct, option?: ProductOption): void {
     const index = this.shoppingCart().findIndex(
       (item) => item.product.id == product.id
     );
 
+    const newItem: ICartItem = {
+      product,
+      type: option?.type || product.options[0].type,
+      quantity: 1,
+      unit_price: option?.price || product.options[0].price,
+    };
+
     if (index === -1) {
       this.shoppingCart.mutate((value) => {
-        value.push({
-          product,
-          type: type || product.options[0].type,
-          quantity: 1,
-          unit_price: product.price,
-        });
+        value.push(newItem);
       });
     } else {
-      this.shoppingCart.mutate((items) => {
-        items[index] = {
-          product,
-          type: type || product.options[0].type,
-          quantity: items[index].quantity + 1,
-          unit_price: product.price,
-        };
-      });
+      this.increaseQuantity(product.id);
     }
+  }
+
+  public increaseQuantity(productId: number): void {
+    const index = this.shoppingCart().findIndex(
+      (item) => item.product.id == productId
+    );
+
+    this.shoppingCart.mutate((items) => {
+      items[index] = { ...items[index], quantity: items[index].quantity + 1 };
+    });
   }
 
   public decreaseQuantity(productId: number, currentQty: number) {
