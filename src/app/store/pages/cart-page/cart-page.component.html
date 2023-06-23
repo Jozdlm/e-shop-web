@@ -14,7 +14,9 @@
     <app-item-cart *ngFor="let item of shoppingCart()" [cartItem]="item" />
   </div>
   <div class="w-72">
+    <p>Subtotal {{ subtotal() | currency : "Q" }}</p>
     <p>Impuesto: {{ tax() | currency : "Q" }}</p>
-    <p class="text-2xl">Total: {{ subtotal() | currency : "Q" }}</p>
+    <p class="text-2xl mb-4">Total: {{ total() | currency : "Q" }}</p>
+    <app-button [fullWidth]="true">Finalizar pedido</app-button>
   </div>
 </div>
