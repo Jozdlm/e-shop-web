@@ -40,11 +40,15 @@ export class ShoppingCartService {
 
     if (index === -1) {
       this.shoppingCart.mutate((value) => {
-        value.push({ product, quantity: 1 });
+        value.push({ product, quantity: 1, unit_price: product.price });
       });
     } else {
       this.shoppingCart.mutate((items) => {
-        items[index] = { product, quantity: items[index].quantity + 1 };
+        items[index] = {
+          product,
+          quantity: items[index].quantity + 1,
+          unit_price: product.price,
+        };
       });
     }
   }
