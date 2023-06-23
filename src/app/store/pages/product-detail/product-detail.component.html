@@ -13,9 +13,9 @@
           class="cursor-pointer rounded border border-slate-300 px-3 py-2"
           [ngClass]="{
             'border-transparent outline outline-2 outline-offset-0 outline-green-700':
-              option.type == selectedOption()
+            option.type == selectedOption()?.type
           }"
-          (click)="selectOption(option.type)"
+          (click)="selectOption(option)"
         >
           <p class="text-xs font-medium">{{ option.type }}</p>
           <p>{{ option.price | currency : "GTQ" }}</p>

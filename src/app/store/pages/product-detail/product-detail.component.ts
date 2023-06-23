@@ -1,6 +1,6 @@
 import { Component, Input, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IProduct } from '../../interfaces/product';
+import { IProduct, ProductOption } from '../../interfaces/product';
 import { ProductsService } from '../../services/products.service';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
@@ -11,32 +11,32 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
   standalone: true,
   imports: [CommonModule, ButtonComponent, ProductImageDirective],
   templateUrl: './product-detail.component.html',
-  styles: []
 })
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);
   private readonly _cartService = inject(ShoppingCartService);
 
   public product: IProduct | undefined = undefined;
-  public selectedOption = signal<string>('');
+  public selectedOption = signal<ProductOption | undefined>(undefined);
 
   @Input()
   public set id(productId: number) {
-    this._productService.getProductById(productId)
-      .subscribe(product => this.product = product);
-  };
+    this._productService
+      .getProductById(productId)
+      .subscribe((product) => (this.product = product));
+  }
 
-  public selectOption(option: string): void {
-    if(this.selectedOption() == option) {
-      this.selectedOption.set('');
+  public selectOption(option: ProductOption): void {
+    if (this.selectedOption()?.type == option.type) {
+      this.selectedOption.set(undefined);
     } else {
       this.selectedOption.set(option);
     }
   }
 
   public addToCart(): void {
-    if(this.product) {
-      this._cartService.addToCart(this.product);
+    if (this.product && this.selectedOption()) {
+      this._cartService.addToCart(this.product, this.selectedOption());
     }
   }
 }
