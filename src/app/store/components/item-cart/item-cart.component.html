@@ -21,7 +21,10 @@
         alt="Item img"
         class="w-16 h-16 border rounded object-contain object-center"
       />
-      <p>Producto: {{ item.product.name }}</p>
+      <div>
+        <p>Producto: {{ item.product.name }}</p>
+        <p class="text-sm text-neutral-700">Tipo: {{ item.type }}</p>
+      </div>
     </div>
   </div>
   <div class="flex items-center gap-x-10">
