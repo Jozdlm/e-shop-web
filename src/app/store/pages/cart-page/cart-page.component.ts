@@ -7,7 +7,6 @@ import { ItemCartComponent } from '../../components/item-cart/item-cart.componen
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
-  styles: [''],
   standalone: true,
   imports: [CommonModule, ItemCartComponent],
 })
@@ -20,7 +19,7 @@ export class CartPageComponent {
 
   public shoppingCart = computed<ICartItem[]>(() => {
     return this.cartItems().map((item) => {
-      return { ...item, subtotal: item.quantity * item.product.price };
+      return { ...item, subtotal: item.quantity * item.unit_price };
     });
   });
 

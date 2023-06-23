@@ -15,7 +15,7 @@ export class ShoppingCartService {
 
   public cartAmmount = computed<number>(() => {
     const prices = this.shoppingCart().map((item) => {
-      return item.product.price * item.quantity;
+      return item.unit_price * item.quantity;
     });
 
     return prices.reduce((previous, current) => previous + current, 0);
