@@ -14,7 +14,7 @@ export class CartPageComponent {
   private _cartService = inject(ShoppingCartService);
 
   public cartItems = this._cartService.shoppingCart;
-  public cartAmmount = this._cartService.cartAmmount;
+  public subtotal = this._cartService.subtotal;
   public tax = this._cartService.tax;
 
   public shoppingCart = computed<ICartItem[]>(() => {

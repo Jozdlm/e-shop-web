@@ -13,8 +13,8 @@
   <div class="grow">
     <app-item-cart *ngFor="let item of shoppingCart()" [cartItem]="item" />
   </div>
-  <div class="w-72 p-6">
-    <p class="text-2xl">Total: {{ cartAmmount() | currency : "Q" }}</p>
+  <div class="w-72">
     <p>Impuesto: {{ tax() | currency : "Q" }}</p>
+    <p class="text-2xl">Total: {{ subtotal() | currency : "Q" }}</p>
   </div>
 </div>

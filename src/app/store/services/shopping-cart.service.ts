@@ -13,7 +13,7 @@ export class ShoppingCartService {
     return units.reduce((previous, current) => previous + current, 0);
   });
 
-  public cartAmmount = computed<number>(() => {
+  public subtotal = computed<number>(() => {
     const prices = this.shoppingCart().map((item) => {
       return item.unit_price * item.quantity;
     });
@@ -22,7 +22,7 @@ export class ShoppingCartService {
   });
 
   public tax = computed<number>(() => {
-    return this.cartAmmount() * 0.12;
+    return this.subtotal() * 0.12;
   });
 
   constructor() {

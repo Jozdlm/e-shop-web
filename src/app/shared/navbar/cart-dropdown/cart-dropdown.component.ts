@@ -24,7 +24,7 @@ export class CartDropdownComponent {
 
   public cartItems = this._cartService.shoppingCart;
   public cartUnits = this._cartService.cartUnits;
-  public cartAmmount = this._cartService.cartAmmount;
+  public subtotal = this._cartService.subtotal;
 
   constructor() {}
 }

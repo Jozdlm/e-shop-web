@@ -39,7 +39,7 @@
       <div class="my-6 flex items-center justify-between">
         <p>Subtotal</p>
         <p class="text-base font-medium">
-          {{ cartAmmount() | currency : "GTQ" }}
+          {{ subtotal() | currency : "GTQ" }}
         </p>
       </div>
       <app-button [fullWidth]="true" routerLink="shopping-cart">
