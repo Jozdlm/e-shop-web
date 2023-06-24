@@ -16,6 +16,7 @@ export class CartPageComponent {
 
   public cartItems = this._cartService.shoppingCart;
   public subtotal = this._cartService.subtotal;
+  public shipping = this._cartService.shipping;
   public tax = this._cartService.tax;
   public total = this._cartService.total;
 

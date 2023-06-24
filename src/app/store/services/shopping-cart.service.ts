@@ -21,6 +21,8 @@ export class ShoppingCartService {
     return prices.reduce((previous, current) => previous + current, 0);
   });
 
+  public shipping = computed<number>(() => (this.subtotal() >= 250) ? 0 : 50);
+
   public tax = computed<number>(() => {
     return this.subtotal() * 0.12;
   });
