@@ -6,15 +6,15 @@ import { IProduct, ProductOption } from '../interfaces/product';
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  public shoppingCart = signal<ICartItem[]>([]);
+  public cartItems = signal<ICartItem[]>([]);
 
   public cartUnits = computed<number>(() => {
-    let units = this.shoppingCart().map((item) => item.quantity);
+    let units = this.cartItems().map((item) => item.quantity);
     return units.reduce((previous, current) => previous + current, 0);
   });
 
   public subtotal = computed<number>(() => {
-    const prices = this.shoppingCart().map((item) => {
+    const prices = this.cartItems().map((item) => {
       return item.unit_price * item.quantity;
     });
 
@@ -32,15 +32,15 @@ export class ShoppingCartService {
   });
 
   constructor() {
-    this.shoppingCart.set(JSON.parse(localStorage.getItem('cartItems')!) || []);
+    this.cartItems.set(JSON.parse(localStorage.getItem('cartItems')!) || []);
 
     effect(() => {
-      localStorage.setItem('cartItems', JSON.stringify(this.shoppingCart()));
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems()));
     });
   }
 
   public addToCart(product: IProduct, option?: ProductOption): void {
-    const index = this.shoppingCart().findIndex(
+    const index = this.cartItems().findIndex(
       (item) => item.product.id == product.id
     );
 
@@ -52,7 +52,7 @@ export class ShoppingCartService {
     };
 
     if (index === -1) {
-      this.shoppingCart.mutate((value) => {
+      this.cartItems.mutate((value) => {
         value.push(newItem);
       });
     } else {
@@ -61,24 +61,24 @@ export class ShoppingCartService {
   }
 
   public increaseQuantity(productId: number): void {
-    const index = this.shoppingCart().findIndex(
+    const index = this.cartItems().findIndex(
       (item) => item.product.id == productId
     );
 
-    this.shoppingCart.mutate((items) => {
+    this.cartItems.mutate((items) => {
       items[index] = { ...items[index], quantity: items[index].quantity + 1 };
     });
   }
 
   public decreaseQuantity(productId: number) {
-    const cartItem = this.shoppingCart().find(item => item.product.id == productId);
+    const cartItem = this.cartItems().find(item => item.product.id == productId);
 
     if (cartItem!.quantity > 1) {
-      const index = this.shoppingCart().findIndex(
+      const index = this.cartItems().findIndex(
         (item) => item.product.id == productId
       );
 
-      this.shoppingCart.mutate((items) => {
+      this.cartItems.mutate((items) => {
         items[index] = { ...items[index], quantity: items[index].quantity - 1 };
       });
     } else {
@@ -87,12 +87,12 @@ export class ShoppingCartService {
   }
 
   public removeFromCart(productId: number): void {
-    this.shoppingCart.update((value) => {
+    this.cartItems.update((value) => {
       return value.filter((item) => item.product.id != productId);
     });
   }
 
   public clearShoppingCart(): void {
-    this.shoppingCart.set([]);
+    this.cartItems.set([]);
   }
 }

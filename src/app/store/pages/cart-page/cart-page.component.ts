@@ -14,7 +14,7 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 export class CartPageComponent {
   private _cartService = inject(ShoppingCartService);
 
-  public cartItems = this._cartService.shoppingCart;
+  public cartItems = this._cartService.cartItems;
   public subtotal = this._cartService.subtotal;
   public shipping = this._cartService.shipping;
   public tax = this._cartService.tax;
