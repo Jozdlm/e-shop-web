@@ -22,8 +22,7 @@ export class ItemCartComponent {
   }
 
   public decreaseQty(cartItem: ICartItem): void {
-    const { product, quantity } = cartItem;
-    this._cartService.decreaseQuantity(product.id, quantity);
+    this._cartService.decreaseQuantity(cartItem.product.id);
   }
 
   public removeItem(productId: number): void {

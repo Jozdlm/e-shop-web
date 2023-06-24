@@ -68,8 +68,10 @@ export class ShoppingCartService {
     });
   }
 
-  public decreaseQuantity(productId: number, currentQty: number) {
-    if (currentQty > 1) {
+  public decreaseQuantity(productId: number) {
+    const cartItem = this.shoppingCart().find(item => item.product.id == productId);
+
+    if (cartItem!.quantity > 1) {
       const index = this.shoppingCart().findIndex(
         (item) => item.product.id == productId
       );
