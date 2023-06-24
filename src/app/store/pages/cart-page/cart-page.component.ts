@@ -13,18 +13,7 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 })
 export class CartPageComponent {
   private _cartService = inject(ShoppingCartService);
-
-  public cartItems = this._cartService.cartItems;
-  public subtotal = this._cartService.subtotal;
-  public shipping = this._cartService.shipping;
-  public tax = this._cartService.tax;
-  public total = this._cartService.total;
-
-  public shoppingCart = computed<ICartItem[]>(() => {
-    return this.cartItems().map((item) => {
-      return { ...item, subtotal: item.quantity * item.unit_price };
-    });
-  });
+  public cart = this._cartService.shoppingCart;
 
   constructor() {}
 

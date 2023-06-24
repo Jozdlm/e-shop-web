@@ -1,7 +1,7 @@
 <div class="mb-10">
   <h1 class="mb-1 text-2xl">Carrito de compras</h1>
   <button
-    *ngIf="shoppingCart().length > 0"
+    *ngIf="cart().items.length > 0"
     class="text-neutral-600 hover:text-black"
     (click)="clearShoppingCart()"
   >
@@ -9,9 +9,9 @@
   </button>
 </div>
 
-<div class="flex gap-x-20" *ngIf="shoppingCart().length > 0">
+<div class="flex gap-x-20" *ngIf="cart().items.length > 0">
   <div class="grow">
-    <app-item-cart *ngFor="let item of shoppingCart()" [cartItem]="item" />
+    <app-item-cart *ngFor="let item of cart().items" [cartItem]="item" />
   </div>
   <div class="w-72">
     <p class="mb-4 text-xl">Resumen</p>
@@ -19,21 +19,21 @@
       <div class="mb-4">
         <p class="mb-2 flex justify-between">
           <span>Subtotal</span>
-          <span>{{ subtotal() | currency : "Q" }}</span>
+          <span>{{ cart().subtotal | currency : "Q" }}</span>
         </p>
         <p class="mb-2 flex justify-between">
           <span>Envío</span>
-          <span>{{ shipping() | currency : "Q" }}</span>
+          <span>{{ cart().shipping | currency : "Q" }}</span>
         </p>
         <p class="mb-2 flex justify-between">
           <span>Impuesto</span>
-          <span>{{ tax() | currency : "Q" }}</span>
+          <span>{{ cart().tax | currency : "Q" }}</span>
         </p>
       </div>
       <div class="pb-2 pt-4">
         <p class="flex justify-between text-lg">
           <span>Total</span>
-          <span>{{ total() | currency : "Q" }}</span>
+          <span>{{ cart().total | currency : "Q" }}</span>
         </p>
       </div>
     </div>
