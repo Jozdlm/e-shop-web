@@ -1,11 +1,21 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
 import { IProduct, ProductOption } from '../interfaces/product';
+import { IShoppingCart } from '../interfaces/shopping-cart';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
+  public shoppingCart = computed<IShoppingCart>(() => ({
+    items: this.cartItems(),
+    units_count: this.cartUnits(),
+    subtotal: this.subtotal(),
+    shipping: this.shipping(),
+    tax: this.tax(),
+    total: this.total(),
+  }));
+
   public cartItems = signal<ICartItem[]>([]);
 
   public cartUnits = computed<number>(() => {
@@ -21,7 +31,7 @@ export class ShoppingCartService {
     return prices.reduce((previous, current) => previous + current, 0);
   });
 
-  public shipping = computed<number>(() => (this.subtotal() >= 250) ? 0 : 50);
+  public shipping = computed<number>(() => (this.subtotal() >= 250 ? 0 : 50));
 
   public tax = computed<number>(() => {
     return this.subtotal() * 0.12;
@@ -71,7 +81,9 @@ export class ShoppingCartService {
   }
 
   public decreaseQuantity(productId: number) {
-    const cartItem = this.cartItems().find(item => item.product.id == productId);
+    const cartItem = this.cartItems().find(
+      (item) => item.product.id == productId
+    );
 
     if (cartItem!.quantity > 1) {
       const index = this.cartItems().findIndex(
