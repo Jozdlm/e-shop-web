@@ -15,14 +15,14 @@
       />
     </svg>
     <div>
-      {{ cartUnits() > 9 ? "+9" : cartUnits() }}
+      {{ cart().units_count > 9 ? "+9" : cart().units_count }}
     </div>
   </div>
   <div id="dropdown-content">
     <ul class="list-none">
       <li
         class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
-        *ngFor="let item of cartItems()"
+        *ngFor="let item of cart().items"
       >
         <img
           [productImage]="item.product.img_url"
@@ -39,7 +39,7 @@
       <div class="my-6 flex items-center justify-between">
         <p>Subtotal</p>
         <p class="text-base font-medium">
-          {{ subtotal() | currency : "GTQ" }}
+          {{ cart().subtotal | currency : "GTQ" }}
         </p>
       </div>
       <app-button [fullWidth]="true" routerLink="shopping-cart">

@@ -21,10 +21,7 @@ import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.c
 })
 export class CartDropdownComponent {
   private _cartService = inject(ShoppingCartService);
-
-  public cartItems = this._cartService.cartItems;
-  public cartUnits = this._cartService.cartUnits;
-  public subtotal = this._cartService.subtotal;
+  public cart = this._cartService.shoppingCart;
 
   constructor() {}
 }
