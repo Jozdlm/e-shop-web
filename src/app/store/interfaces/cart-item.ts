@@ -5,5 +5,5 @@ export interface ICartItem {
   type: string;
   unit_price: number;
   quantity: number;
-  ammount?: number;
+  ammount: number;
 }

@@ -54,11 +54,14 @@ export class ShoppingCartService {
       (item) => item.product.id == product.id
     );
 
+    const productPrice = option?.price || product.options[0].price;
+
     const newItem: ICartItem = {
       product,
       type: option?.type || product.options[0].type,
       quantity: 1,
-      unit_price: option?.price || product.options[0].price,
+      unit_price: productPrice,
+      ammount: productPrice
     };
 
     if (index === -1) {
@@ -76,7 +79,10 @@ export class ShoppingCartService {
     );
 
     this.cartItems.mutate((items) => {
-      items[index] = { ...items[index], quantity: items[index].quantity + 1 };
+      const quantity = items[index].quantity + 1;
+      const ammount = quantity * items[index].unit_price;
+      
+      items[index] = { ...items[index], quantity, ammount};
     });
   }
 
