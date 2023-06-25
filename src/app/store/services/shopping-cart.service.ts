@@ -2,6 +2,7 @@ import { computed, effect, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
 import { IProduct, ProductOption } from '../interfaces/product';
 import { IShoppingCart } from '../interfaces/shopping-cart';
+import { v4 as uuid} from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +58,7 @@ export class ShoppingCartService {
     const productPrice = option?.price || product.options[0].price;
 
     const newItem: ICartItem = {
+      id: uuid(),
       product,
       type: option?.type || product.options[0].type,
       quantity: 1,
