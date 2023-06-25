@@ -25,7 +25,7 @@ export class ItemCartComponent {
     this._cartService.decreaseQuantity(cartItem.product.id);
   }
 
-  public removeItem(productId: number): void {
-    this._cartService.removeFromCart(productId);
+  public removeItem(itemId: string): void {
+    this._cartService.removeFromCart(itemId);
   }
 }

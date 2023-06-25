@@ -102,13 +102,13 @@ export class ShoppingCartService {
         items[index] = { ...items[index], quantity: items[index].quantity - 1 };
       });
     } else {
-      this.removeFromCart(productId);
+      this.removeFromCart(cartItem!.id);
     }
   }
 
-  public removeFromCart(productId: number): void {
+  public removeFromCart(itemId: string): void {
     this.cartItems.update((value) => {
-      return value.filter((item) => item.product.id != productId);
+      return value.filter((item) => item.id != itemId);
     });
   }
 
