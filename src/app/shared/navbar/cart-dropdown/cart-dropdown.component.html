@@ -22,7 +22,7 @@
     <ul class="list-none">
       <li
         class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
-        *ngFor="let item of cart().items"
+        *ngFor="let item of cart().items.slice(0, 4)"
       >
         <img
           [productImage]="item.product.img_url"
@@ -42,9 +42,12 @@
           {{ cart().subtotal | currency : "GTQ" }}
         </p>
       </div>
-      <app-button [fullWidth]="true" routerLink="shopping-cart">
-        Ir a la cesta
-      </app-button>
+      <div class="flex flex-col gap-y-2 items-center">
+        <app-button [fullWidth]="true" routerLink="shopping-cart" class="w-full">
+          Ir a la cesta
+        </app-button>
+        <p class="text-sm text-neutral-600 text-center">Navega a la cesta para ver todos los articulos*</p>
+      </div>
     </div>
   </div>
 </app-dropdown>
