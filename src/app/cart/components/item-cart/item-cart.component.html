@@ -34,7 +34,7 @@
     <div class="flex items-center gap-x-2">
       <button
         class="border border-slate-300 p-1.5 rounded"
-        (click)="decreaseQty(item)"
+        (click)="decreaseQty(item.id)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +48,7 @@
       <p>{{ item.quantity }}</p>
       <button
         class="border border-slate-300 p-1.5 rounded"
-        (click)="increaseQty(item.product)"
+        (click)="increaseQty(item.id)"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

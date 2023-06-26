@@ -17,12 +17,12 @@ export class ItemCartComponent {
   @Input({ alias: 'cartItem', required: true })
   public item!: ICartItem;
 
-  public increaseQty(product: IProduct): void {
-    this._cartService.increaseQuantity(product.id);
+  public increaseQty(itemId: string): void {
+    this._cartService.increaseQuantity(itemId);
   }
 
-  public decreaseQty(cartItem: ICartItem): void {
-    this._cartService.decreaseQuantity(cartItem.product.id);
+  public decreaseQty(itemId: string): void {
+    this._cartService.decreaseQuantity(itemId);
   }
 
   public removeItem(itemId: string): void {
