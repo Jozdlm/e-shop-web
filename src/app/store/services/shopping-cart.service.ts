@@ -1,13 +1,16 @@
-import { computed, effect, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
 import { IProduct, ProductOption } from '../interfaces/product';
 import { IShoppingCart } from '../../cart/cart';
 import { v4 as uuid} from 'uuid';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
+  private _cartService: CartService = inject(CartService);
+
   public shoppingCart = computed<IShoppingCart>(() => ({
     items: this.cartItems(),
     units_count: this.cartUnits(),
@@ -47,7 +50,16 @@ export class ShoppingCartService {
 
     effect(() => {
       localStorage.setItem('cartItems', JSON.stringify(this.cartItems()));
+      this.saveShoppingCart();
     });
+  }
+
+  public saveShoppingCart(): void {
+    const cart = {...this.shoppingCart(), id: '1'};
+    this._cartService.saveShoppingCart(cart)
+      .subscribe({
+        next: (value) => console.log('Todo correctamente', value) 
+      });
   }
 
   public addToCart(product: IProduct, option?: ProductOption): void {
