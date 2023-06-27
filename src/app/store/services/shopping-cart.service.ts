@@ -1,7 +1,7 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
 import { IProduct, ProductOption } from '../interfaces/product';
-import { IShoppingCart } from '../interfaces/shopping-cart';
+import { IShoppingCart } from '../../cart/shopping-cart';
 import { v4 as uuid} from 'uuid';
 
 @Injectable({
