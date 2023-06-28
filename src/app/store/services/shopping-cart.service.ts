@@ -2,7 +2,7 @@ import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
 import { IProduct, ProductOption } from '../interfaces/product';
 import { IShoppingCart } from '../../cart/cart';
-import { v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { CartService } from 'src/app/cart/services/cart.service';
 
 @Injectable({
@@ -46,7 +46,10 @@ export class ShoppingCartService {
   });
 
   constructor() {
-    this.cartItems.set(JSON.parse(localStorage.getItem('cartItems')!) || []);
+    this._cartService.getCartById('1').subscribe({
+      next: (cart) => this.cartItems.set(cart.items),
+      error: (error) => this.cartItems.set([]),
+    });
 
     effect(() => {
       localStorage.setItem('cartItems', JSON.stringify(this.cartItems()));
@@ -75,7 +78,7 @@ export class ShoppingCartService {
       type: option?.type || product.options[0].type,
       quantity: 1,
       unit_price: productPrice,
-      ammount: productPrice
+      ammount: productPrice,
     };
 
     if (carItem) {
@@ -88,27 +91,21 @@ export class ShoppingCartService {
   }
 
   public increaseQuantity(itemId: string): void {
-    const index = this.cartItems().findIndex(
-      (item) => item.id == itemId
-    );
+    const index = this.cartItems().findIndex((item) => item.id == itemId);
 
     this.cartItems.mutate((items) => {
       const quantity = items[index].quantity + 1;
       const ammount = quantity * items[index].unit_price;
-      
-      items[index] = { ...items[index], quantity, ammount};
+
+      items[index] = { ...items[index], quantity, ammount };
     });
   }
 
   public decreaseQuantity(itemId: string) {
-    const cartItem = this.cartItems().find(
-      (item) => item.id == itemId
-    );
+    const cartItem = this.cartItems().find((item) => item.id == itemId);
 
     if (cartItem!.quantity > 1) {
-      const index = this.cartItems().findIndex(
-        (item) => item.id == itemId
-      );
+      const index = this.cartItems().findIndex((item) => item.id == itemId);
 
       this.cartItems.mutate((items) => {
         items[index] = { ...items[index], quantity: items[index].quantity - 1 };
