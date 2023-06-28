@@ -14,7 +14,7 @@
         },
         {
           "type": "Docena",
-          "price": 50.0,
+          "price": 50,
           "in_stock": true
         },
         {
@@ -38,7 +38,7 @@
         },
         {
           "type": "Docena",
-          "price": 25.0,
+          "price": 25,
           "in_stock": true
         },
         {
@@ -242,7 +242,109 @@
     }
   ],
   "my_orders": [],
-  "whish_list": [],
+  "my_whislist": [],
+  "my_cart": [
+    {
+      "id": "b44ba1ef-4505-468a-b7dd-eaa5c80eb172",
+      "items": [
+        {
+          "id": 1,
+          "product_id": 2,
+          "type": "Caja",
+          "quantity": 3,
+          "unit_price": 45.99,
+          "ammount": 137.97
+        },
+        {
+          "id": 2,
+          "product_id": 3,
+          "type": "Caja",
+          "quantity": 3,
+          "unit_price": 32.99,
+          "ammount": 98.97
+        },
+        {
+          "id": 3,
+          "product_id": 1,
+          "type": "Caja",
+          "quantity": 1,
+          "unit_price": 89.76,
+          "ammount": 89.76
+        },
+        {
+          "id": 4,
+          "product_id": 6,
+          "type": "Bolsa",
+          "quantity": 1,
+          "unit_price": 28.75,
+          "ammount": 28.75
+        },
+        {
+          "id": 5,
+          "product_id": 5,
+          "type": "Caja",
+          "quantity": 1,
+          "unit_price": 55.5,
+          "ammount": 55.5
+        },
+        {
+          "id": 6,
+          "product_id": 9,
+          "type": "Caja",
+          "quantity": 1,
+          "unit_price": 15.5,
+          "ammount": 15.5
+        },
+        {
+          "id": 7,
+          "product_id": 10,
+          "type": "Bolsa",
+          "quantity": 1,
+          "unit_price": 11.25,
+          "ammount": 11.25
+        }
+      ],
+      "units_count": 11,
+      "subtotal": 437.7,
+      "shipping": 0,
+      "tax": 52.523999999999994,
+      "total": 490.224
+    },
+    {
+      "items": [
+        {
+          "id": "3bfac00e-bc03-4484-84f4-e3af23020e43",
+          "product": {
+            "id": 1,
+            "name": "Manzana Verde Caja 100u",
+            "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+          },
+          "type": "Caja",
+          "quantity": 1,
+          "unit_price": 89.76,
+          "ammount": 179.52
+        },
+        {
+          "id": "25159a5f-9047-4262-9ff2-9f32ade9240d",
+          "product": {
+            "id": 3,
+            "name": "Uvas Negras Caja 10lbs",
+            "img_url": ""
+          },
+          "type": "Caja",
+          "quantity": 2,
+          "unit_price": 32.99,
+          "ammount": 65.98
+        }
+      ],
+      "units_count": 3,
+      "subtotal": 155.74,
+      "shipping": 50,
+      "tax": 18.6888,
+      "total": 174.42880000000002,
+      "id": "1"
+    }
+  ],
   "business": {
     "name": "El Huerto Verde"
   },
