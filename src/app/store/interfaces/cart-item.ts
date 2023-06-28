@@ -1,8 +1,10 @@
-import { IProduct } from './product';
-
 export interface ICartItem {
   id: string;
-  product: IProduct;
+  product: {
+    id: number;
+    name: string;
+    img_url: string;
+  }
   type: string;
   unit_price: number;
   quantity: number;
