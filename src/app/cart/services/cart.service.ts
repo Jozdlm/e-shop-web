@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IShoppingCart } from '../cart';
-import { switchMap } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +12,13 @@ export class CartService {
 
   constructor() {}
 
-  public saveShoppingCart(cart: IShoppingCart) {
-    return this.getCartById(cart.id!).pipe(
-      switchMap((cart) => {
-        if (cart.id) {
-          return this.updateCart(cart);
+  public saveShoppingCart(cart: IShoppingCart, userId: string) {
+    return this.getCartById(userId).pipe(
+      switchMap(({id: cartId}) => {
+        if (cartId) {
+          return this.updateCart(cartId, cart);
         } else {
-          return this.createCart(cart);
+          return this.createCart(userId, cart);
         }
       })
     );
@@ -28,13 +28,14 @@ export class CartService {
     return this._http.get<IShoppingCart>(`${this._apiUrl}/my_cart/${cartId}`);
   }
 
-  public createCart(cart: IShoppingCart) {
+  public createCart(userId: string, cart: IShoppingCart) {
+    cart = {...cart, id: userId};
     return this._http.post<IShoppingCart>(`${this._apiUrl}/my_cart`, cart);
   }
 
-  public updateCart(cart: IShoppingCart) {
+  public updateCart(cartId: string, cart: IShoppingCart) {
     return this._http.put<IShoppingCart>(
-      `${this._apiUrl}/my_cart/${cart.id}`,
+      `${this._apiUrl}/my_cart/${cartId}`,
       cart
     );
   }

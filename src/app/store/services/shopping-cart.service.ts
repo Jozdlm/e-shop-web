@@ -48,21 +48,17 @@ export class ShoppingCartService {
   constructor() {
     this._cartService.getCartById('1').subscribe({
       next: (cart) => this.cartItems.set(cart.items),
-      error: (error) => this.cartItems.set([]),
+      error: (_) => this.cartItems.set([]),
     });
 
     effect(() => {
-      localStorage.setItem('cartItems', JSON.stringify(this.cartItems()));
-      this.saveShoppingCart();
-    });
-  }
+      const cart = this.shoppingCart();
+      const userId = '1'; //User id of the current user logged
 
-  public saveShoppingCart(): void {
-    const cart = {...this.shoppingCart(), id: '1'};
-    this._cartService.saveShoppingCart(cart)
-      .subscribe({
-        next: (value) => console.log('Todo correctamente', value) 
+      this._cartService.saveShoppingCart(cart, userId).subscribe({
+        next: (_) => _,
       });
+    });
   }
 
   public addToCart(product: IProduct, option?: ProductOption): void {
@@ -71,10 +67,11 @@ export class ShoppingCartService {
     );
 
     const productPrice = option?.price || product.options[0].price;
+    const { id, name, img_url } = product;
 
     const newItem: ICartItem = {
       id: uuid(),
-      product,
+      product: { id, name, img_url },
       type: option?.type || product.options[0].type,
       quantity: 1,
       unit_price: productPrice,
