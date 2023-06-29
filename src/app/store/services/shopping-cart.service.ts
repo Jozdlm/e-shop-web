@@ -4,12 +4,16 @@ import { IProduct, ProductOption } from '../interfaces/product';
 import { IShoppingCart } from '../../cart/cart';
 import { v4 as uuid } from 'uuid';
 import { CartService } from 'src/app/cart/services/cart.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
   private _cartService: CartService = inject(CartService);
+  private _authService: AuthService = inject(AuthService);
+
+  private _userId: string = this._authService.currentSession().id;
 
   public shoppingCart = computed<IShoppingCart>(() => ({
     items: this.cartItems(),
@@ -46,18 +50,15 @@ export class ShoppingCartService {
   });
 
   constructor() {
-    this._cartService.getCartById('1').subscribe({
+    this._cartService.getCartById(this._userId).subscribe({
       next: (cart) => this.cartItems.set(cart.items),
       error: (_) => this.cartItems.set([]),
     });
 
     effect(() => {
       const cart = this.shoppingCart();
-      const userId = '1'; //User id of the current user logged
 
-      this._cartService.saveShoppingCart(cart, userId).subscribe({
-        next: (_) => _,
-      });
+      this._cartService.saveShoppingCart(cart, this._userId).subscribe();
     });
   }
 
