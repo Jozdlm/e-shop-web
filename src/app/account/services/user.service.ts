@@ -12,6 +12,10 @@ export class UserService {
 
   constructor() {}
 
+  public getUserById(id: string): Observable<IUser> {
+    return this._http.get<IUser>(`${this._apiUrl}/users/${id}`);
+  }
+
   public getUserByEmail(email: string): Observable<IUser> {
     return this._http
       .get<IUser[]>(`${this._apiUrl}/users`, {
