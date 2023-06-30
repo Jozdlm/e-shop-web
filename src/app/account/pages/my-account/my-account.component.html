@@ -1,8 +1,6 @@
 <div class="mx-auto w-96">
   <h1 class="mb-8 text-2xl">Mi cuenta</h1>
 
-  <pre>{{user() | json}}</pre>
-
   <div class="mb-8 flex justify-center">
     <img
       src="https://randomuser.me/api/portraits/men/44.jpg"
@@ -11,101 +9,112 @@
     />
   </div>
 
-  <form autocomplete="off">
-    <div class="mb-8 flex flex-col gap-y-4">
-      <div class="flex flex-col">
-        <label
-          class="mb-1.5 text-sm font-medium text-neutral-800"
-          for="first_name"
-          >Nombre:</label
+  <ng-container *ngIf="profileForm">
+    <form autocomplete="off" [formGroup]="profileForm">
+      <div class="mb-8 flex flex-col gap-y-4">
+        <div class="flex flex-col">
+          <label
+            class="mb-1.5 text-sm font-medium text-neutral-800"
+            for="first_name"
+            >Nombre:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="first_name"
+            formControlName="first_name"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label
+            class="mb-1.5 text-sm font-medium text-neutral-800"
+            for="last_name"
+            >Apellido:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="last_name"
+            formControlName="last_name"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="email"
+            >Correo:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="email"
+            placeholder="account@example.com"
+            formControlName="email"
+          />
+        </div>
+      </div>
+  
+      <div class="mb-8 flex flex-col" formGroupName="phone">
+        <label class="mb-1.5 text-sm font-medium text-neutral-800" for="phone"
+          >Telefono:</label
         >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="first_name"
-        />
+        <div>
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="phone"
+            formControlName="number"
+          />
+        </div>
       </div>
-      <div class="flex flex-col">
-        <label
-          class="mb-1.5 text-sm font-medium text-neutral-800"
-          for="last_name"
-          >Apellido:</label
-        >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="last_name"
-        />
+  
+      <div class="flex flex-col gap-y-4 mb-8" formGroupName="address">
+        <div class="flex flex-col">
+          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="country"
+            >País:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="country"
+            formControlName="country"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="state"
+            >Departamento:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="state"
+            formControlName="state"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="city"
+            >Municipio:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="city"
+            formControlName="city"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label
+            class="mb-1.5 text-sm font-medium text-neutral-800"
+            for="exact_address"
+            >Dirección Exacta:</label
+          >
+          <input
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+            type="text"
+            id="exact_address"
+            formControlName="exact_address"
+          />
+        </div>
       </div>
-      <div class="flex flex-col">
-        <label class="mb-1.5 text-sm font-medium text-neutral-800" for="email"
-          >Correo:</label
-        >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="email"
-          placeholder="account@example.com"
-        />
-      </div>
-    </div>
-
-    <div class="mb-8 flex flex-col">
-      <label class="mb-1.5 text-sm font-medium text-neutral-800" for="phone"
-        >Telefono:</label
-      >
-      <div>
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="phone"
-        />
-      </div>
-    </div>
-
-    <div class="flex flex-col gap-y-4">
-      <div class="flex flex-col">
-        <label class="mb-1.5 text-sm font-medium text-neutral-800" for="country"
-          >País:</label
-        >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="country"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label class="mb-1.5 text-sm font-medium text-neutral-800" for="state"
-          >Departamento:</label
-        >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="state"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label class="mb-1.5 text-sm font-medium text-neutral-800" for="city"
-          >Municipio:</label
-        >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="city"
-        />
-      </div>
-      <div class="flex flex-col">
-        <label
-          class="mb-1.5 text-sm font-medium text-neutral-800"
-          for="exact_address"
-          >Dirección Exacta:</label
-        >
-        <input
-          class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-          type="text"
-          id="exact_address"
-        />
-      </div>
-    </div>
-  </form>
+      <app-button [fullWidth]="true">Guardar</app-button>
+    </form>
+  </ng-container>
 </div>
