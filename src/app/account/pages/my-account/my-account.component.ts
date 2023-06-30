@@ -56,4 +56,13 @@ export class MyAccountComponent {
       }),
     });
   }
+
+  public updateUserValues(): void {
+    if(!this.profileForm.valid) return;
+
+    this._userService.updateUser(this.userId, this.profileForm.value)
+      .subscribe({
+        next: (_) => console.log('usuario modificado correctamente')
+      });
+  }
 }
