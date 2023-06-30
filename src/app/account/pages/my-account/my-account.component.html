@@ -114,7 +114,7 @@
           />
         </div>
       </div>
-      <app-button [fullWidth]="true">Guardar</app-button>
+      <app-button [disabled]="!profileForm.valid" [fullWidth]="true">Guardar</app-button>
     </form>
   </ng-container>
 </div>
