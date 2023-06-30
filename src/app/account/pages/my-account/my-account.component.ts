@@ -1,13 +1,20 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from '../../services/user.service';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { IUser } from '../../user';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
   templateUrl: './my-account.component.html',
 })
 export class MyAccountComponent {
@@ -18,19 +25,35 @@ export class MyAccountComponent {
   public userId = this._authService.currentSession().id;
   public user = toSignal(this._userService.getUserById(this.userId));
 
-  public profileForm = this._fb.group({
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    phone: this._fb.group({
-      code: [1, Validators.required],
-      number: [undefined, [Validators.required, Validators.min(0)]],
-    }),
-    address: this._fb.group({
-      country: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      exact_address: ['', Validators.required],
-    }),
-  });
+  public profileForm!: FormGroup;
+
+  constructor() {
+    effect(() => {
+      if (this.user()?.id) {
+        this.createFormGroup(this.user()!);
+      }
+    });
+  }
+
+  public createFormGroup(user: IUser): void {
+    const { first_name, last_name, email } = user;
+    const { code, number } = user.phone;
+    const { country, state, city, exact_address } = user.address;
+
+    this.profileForm = this._fb.nonNullable.group({
+      first_name: [first_name, Validators.required],
+      last_name: [last_name, Validators.required],
+      email: [email, [Validators.required, Validators.email]],
+      phone: this._fb.nonNullable.group({
+        code: [code, Validators.required],
+        number: [number, [Validators.required, Validators.min(0)]],
+      }),
+      address: this._fb.nonNullable.group({
+        country: [country, Validators.required],
+        state: [state, Validators.required],
+        city: [city, Validators.required],
+        exact_address: [exact_address, Validators.required],
+      }),
+    });
+  }
 }
