@@ -16,6 +16,10 @@ export class UserService {
     return this._http.get<IUser>(`${this._apiUrl}/users/${id}`);
   }
 
+  public updateUser(id: string, userValues: IUser): Observable<IUser> {
+    return this._http.put<IUser>(`${this._apiUrl}/users/${id}`, userValues);
+  }
+
   public getUserByEmail(email: string): Observable<IUser> {
     return this._http
       .get<IUser[]>(`${this._apiUrl}/users`, {
