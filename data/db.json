@@ -320,7 +320,7 @@
             "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
           },
           "type": "Caja",
-          "quantity": 1,
+          "quantity": 2,
           "unit_price": 89.76,
           "ammount": 179.52
         },
@@ -332,16 +332,16 @@
             "img_url": ""
           },
           "type": "Caja",
-          "quantity": 2,
+          "quantity": 1,
           "unit_price": 32.99,
-          "ammount": 65.98
+          "ammount": 98.97
         }
       ],
       "units_count": 3,
-      "subtotal": 155.74,
+      "subtotal": 212.51000000000002,
       "shipping": 50,
-      "tax": 18.6888,
-      "total": 174.42880000000002,
+      "tax": 25.5012,
+      "total": 238.01120000000003,
       "id": "1"
     }
   ],
@@ -350,22 +350,20 @@
   },
   "users": [
     {
-      "id": 1,
       "first_name": "Jozuan",
       "last_name": "Martínez",
       "email": "jmprueba@example.com",
-      "email_verified": true,
-      "img_url": "https://randomuser.me/api/portraits/men/44.jpg",
       "phone": {
         "code": 502,
-        "number": "99999999"
+        "number": "99999998"
       },
       "address": {
         "country": "Guatemala",
         "state": "Quetzaltenango",
         "city": "San Mateo",
         "exact_address": "12 Avenida C 54-30 zona 1"
-      }
+      },
+      "id": 1
     },
     {
       "id": 2,
