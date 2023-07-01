@@ -15,7 +15,7 @@
             'border-transparent outline outline-2 outline-offset-0 outline-green-700':
             option.type == selectedOption()?.type
           }"
-          (click)="selectOption(option)"
+          (click)="chooseOption(option)"
         >
           <p class="text-xs font-medium">{{ option.type }}</p>
           <p>{{ option.price | currency : "GTQ" }}</p>

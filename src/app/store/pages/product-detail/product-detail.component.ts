@@ -26,7 +26,7 @@ export class ProductDetailComponent {
       .subscribe((product) => (this.product = product));
   }
 
-  public selectOption(option: ProductOption): void {
+  public chooseOption(option: ProductOption): void {
     if (this.selectedOption()?.type == option.type) {
       this.selectedOption.set(undefined);
     } else {
