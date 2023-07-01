@@ -7,6 +7,11 @@ export const APP_ROUTES: Routes = [
     path: 'cart', 
     loadChildren: () => import('./cart/cart.routes')
   },
+  { 
+    path: 'wish-list', 
+    loadComponent: () => import('./shop/pages/wish-list-page/wish-list-page.component')
+      .then(c => c.WishListPageComponent)
+  },
   {
     path: 'product/:id',
     loadComponent: () =>
