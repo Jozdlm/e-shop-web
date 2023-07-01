@@ -5,6 +5,7 @@ import { ProductsService } from '../../services/products.service';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
+import { WishListService } from 'src/app/shop/services/wish-list.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,6 +16,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);
   private readonly _cartService = inject(ShoppingCartService);
+  private readonly _wishService = inject(WishListService);
 
   public product: IProduct | undefined = undefined;
   public selectedOption = signal<ProductOption | undefined>(undefined);
@@ -37,6 +39,12 @@ export class ProductDetailComponent {
   public addToCart(): void {
     if (this.product && this.selectedOption()) {
       this._cartService.addToCart(this.product, this.selectedOption());
+    }
+  }
+
+  public addToWish(): void {
+    if(this.product && this.selectedOption()) {
+      this._wishService.addToWish(this.product);
     }
   }
 }
