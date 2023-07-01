@@ -11,7 +11,7 @@ export class WishListService {
 
   constructor() {}
 
-  public addToList(product: IProduct): void {
+  public addToWish(product: IProduct): void {
     const index = this.wishItems().findIndex((i) => i.product_id == product.id);
     if (index >= 0) return;
 
