@@ -7,13 +7,13 @@ import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
   providedIn: 'root',
 })
 export class WishListService {
-  public wishItems = signal<IWishItem[]>([]);
-  public wishLength = computed<number>(() => this.wishItems().length);
+  private _wishItems = signal<IWishItem[]>([]);
+  private _wishLength = computed<number>(() => this._wishItems().length);
 
   constructor() {}
 
   public addToWish(product: IProduct, option: ProductOption): void {
-    const currItem = this.wishItems().find(
+    const currItem = this._wishItems().find(
       (i) => i.product_id == product.id && i.type == option.type
     );
 
@@ -28,6 +28,6 @@ export class WishListService {
       img_url: product.img_url,
     };
 
-    this.wishItems.mutate((items) => items.push(wishItem));
+    this._wishItems.mutate((items) => items.push(wishItem));
   }
 }
