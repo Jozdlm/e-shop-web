@@ -62,21 +62,20 @@ export class ShoppingCartService {
     });
   }
 
-  public addToCart(product: IProduct, option?: ProductOption): void {
+  public addToCart(product: IProduct, option: ProductOption): void {
     const carItem = this.cartItems().find(
-      (item) => item.product.id == product.id
+      (item) => item.product.id == product.id && item.type == option.type
     );
 
-    const productPrice = option?.price || product.options[0].price;
     const { id, name, img_url } = product;
 
     const newItem: ICartItem = {
       id: uuid(),
       product: { id, name, img_url },
-      type: option?.type || product.options[0].type,
+      type: option.type || product.options[0].type,
       quantity: 1,
-      unit_price: productPrice,
-      ammount: productPrice,
+      unit_price: option.price,
+      ammount: option.price,
     };
 
     if (carItem) {

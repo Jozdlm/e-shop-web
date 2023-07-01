@@ -38,14 +38,14 @@ export class ProductDetailComponent {
   }
 
   public addToCart(): void {
-    if (this.product) {
-      this._cartService.addToCart(this.product, this.selectedOption());
+    if (this.product && this.selectedOption()) {
+      this._cartService.addToCart(this.product, this.selectedOption()!);
     }
   }
 
   public addToWish(): void {
-    if(this.product) {
-      this._wishService.addToWish(this.product);
+    if(this.product && this.selectedOption()) {
+      this._wishService.addToWish(this.product, this.selectedOption()!);
     }
   }
 }
