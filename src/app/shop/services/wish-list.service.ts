@@ -4,20 +4,25 @@ import { IWishItem } from '../wish-list';
 import { IProduct } from 'src/app/store/interfaces/product';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WishListService {
   public wishItems = signal<IWishItem[]>([]);
 
-  constructor() { }
+  constructor() {}
 
   public addToList(product: IProduct): void {
+    const index = this.wishItems().findIndex((i) => i.product_id == product.id);
+    if (index >= 0) return;
+
     const wishItem: IWishItem = {
       id: uuid(),
       product_id: product.id,
       description: product.description,
+      price: product.price,
       img_url: product.img_url,
-      price: product.price
-    }
+    };
+
+    this.wishItems.mutate((items) => items.push(wishItem));
   }
 }
