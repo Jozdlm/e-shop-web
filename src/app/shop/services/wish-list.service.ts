@@ -1,6 +1,6 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { v4 as uuid } from 'uuid';
-import { IWishItem } from '../wish-list';
+import { IWishItem, IWishList } from '../wish-list';
 import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
 
 @Injectable({
@@ -8,7 +8,12 @@ import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
 })
 export class WishListService {
   private _wishItems = signal<IWishItem[]>([]);
-  private _wishLength = computed<number>(() => this._wishItems().length);
+
+  public wishList = computed<IWishList>(() => ({
+    id: '1',
+    items: this._wishItems(),
+    count: this._wishItems().length
+  }));
 
   constructor() {}
 
