@@ -25,25 +25,26 @@ export class ProductDetailComponent {
   public set id(productId: number) {
     this._productService
       .getProductById(productId)
-      .subscribe((product) => (this.product = product));
+      .subscribe((product) => {
+        this.product = product;
+        this.selectedOption.set(product.options[0])
+      });
   }
 
   public chooseOption(option: ProductOption): void {
-    if (this.selectedOption()?.type == option.type) {
-      this.selectedOption.set(undefined);
-    } else {
-      this.selectedOption.set(option);
-    }
+    if (this.selectedOption()?.type == option.type) return;
+
+    this.selectedOption.set(option);
   }
 
   public addToCart(): void {
-    if (this.product && this.selectedOption()) {
+    if (this.product) {
       this._cartService.addToCart(this.product, this.selectedOption());
     }
   }
 
   public addToWish(): void {
-    if(this.product && this.selectedOption()) {
+    if(this.product) {
       this._wishService.addToWish(this.product);
     }
   }
