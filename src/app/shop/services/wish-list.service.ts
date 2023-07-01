@@ -1,4 +1,4 @@
-import { Injectable, signal, effect } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { IWishItem } from '../wish-list';
 import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
@@ -8,6 +8,7 @@ import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
 })
 export class WishListService {
   public wishItems = signal<IWishItem[]>([]);
+  public wishLength = computed<number>(() => this.wishItems().length);
 
   constructor() {}
 
