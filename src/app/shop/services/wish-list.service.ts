@@ -1,7 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, effect } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { IWishItem } from '../wish-list';
-import { IProduct } from 'src/app/store/interfaces/product';
+import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +11,19 @@ export class WishListService {
 
   constructor() {}
 
-  public addToWish(product: IProduct): void {
-    const index = this.wishItems().findIndex((i) => i.product_id == product.id);
-    if (index >= 0) return;
+  public addToWish(product: IProduct, option: ProductOption): void {
+    const currItem = this.wishItems().find(
+      (i) => i.product_id == product.id && i.type == option.type
+    );
+
+    if (currItem) return;
 
     const wishItem: IWishItem = {
       id: uuid(),
       product_id: product.id,
       description: product.description,
-      price: product.price,
+      type: option?.type || product.options[0].type,
+      price: option?.price || product.options[0].price,
       img_url: product.img_url,
     };
 
