@@ -1,12 +1,17 @@
-import { Injectable, signal, computed } from '@angular/core';
+import {Injectable, signal, computed, inject} from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { IWishItem, IWishList } from '../wish-list';
 import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class WishListService {
+  private _http: HttpClient = inject(HttpClient);
+  private _apiUrl: string = environment.apiUrl;
   private _wishItems = signal<IWishItem[]>([]);
 
   public wishList = computed<IWishList>(() => ({
@@ -16,6 +21,10 @@ export class WishListService {
   }));
 
   constructor() {}
+
+  public createWishList(): Observable<IWishList> {
+    return this._http.post<IWishList>(`${this._apiUrl}/my_wishlist`, this.wishList())
+  }
 
   public addToWish(product: IProduct, option: ProductOption): void {
     const currItem = this._wishItems().find(
