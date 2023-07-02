@@ -27,6 +27,7 @@ export class WishListService {
     const wishItem: IWishItem = {
       id: uuid(),
       product_id: product.id,
+      name: product.name,
       description: product.description,
       type: option?.type || product.options[0].type,
       price: option?.price || product.options[0].price,
