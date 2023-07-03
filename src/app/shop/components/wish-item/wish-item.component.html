@@ -11,7 +11,7 @@
     <p class="text-sm">{{wishItem.type}}</p>
   </div>
   <div class="flex justify-between">
-    <app-button>Añadir al carrito</app-button>
+    <app-button (click)="moveToCart(wishItem)">Añadir al carrito</app-button>
     <button class="rounded px-4 py-2.5 hover:bg-red-100 hover:text-red-800" (click)="removeFromWish(wishItem.id)">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
            class="w-6 h-6">

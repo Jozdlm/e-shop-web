@@ -17,6 +17,10 @@ export class WishItemComponent {
 
   @Input() public wishItem: IWishItem | undefined = undefined;
 
+  public moveToCart(item: IWishItem): void {
+    this._wishService.moveToCart(item);
+  }
+
   public removeFromWish(itemId: string): void {
     this._wishService.removeFromWish(itemId);
   }
