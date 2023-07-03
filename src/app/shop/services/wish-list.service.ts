@@ -30,7 +30,7 @@ export class WishListService {
 
   public saveWishList(wishList: IWishList): Observable<IWishList> {
     const wishId: string = wishList.id;
-    return this._http.get<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`)
+    return this.getWishById(wishId)
       .pipe(
         switchMap(list => {
           if (!list.id) {
@@ -40,6 +40,10 @@ export class WishListService {
           }
         })
       );
+  }
+
+  public getWishById(wishId: string): Observable<IWishList> {
+    return this._http.get<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`);
   }
 
   public createWishList(wishList: IWishList): Observable<IWishList> {
