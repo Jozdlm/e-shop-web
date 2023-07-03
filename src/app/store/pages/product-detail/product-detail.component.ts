@@ -39,7 +39,13 @@ export class ProductDetailComponent {
 
   public addToCart(): void {
     if (this.product && this.selectedOption()) {
-      this._cartService.addToCart(this.product, this.selectedOption()!);
+      this._cartService.addToCart({
+        product_id: this.product.id,
+        name: this.product.name,
+        img_url: this.product.img_url,
+        type: this.selectedOption()!.type,
+        unit_price: this.selectedOption()!.price
+      });
     }
   }
 
