@@ -242,106 +242,61 @@
     }
   ],
   "my_orders": [],
-  "my_whislist": [],
-  "my_cart": [
+  "my_wishlist": [
     {
-      "id": "b44ba1ef-4505-468a-b7dd-eaa5c80eb172",
+      "id": "1",
       "items": [
         {
-          "id": 1,
-          "product_id": 2,
-          "type": "Caja",
-          "quantity": 3,
-          "unit_price": 45.99,
-          "ammount": 137.97
-        },
-        {
-          "id": 2,
-          "product_id": 3,
-          "type": "Caja",
-          "quantity": 3,
-          "unit_price": 32.99,
-          "ammount": 98.97
-        },
-        {
-          "id": 3,
+          "id": "7eeb0aef-c3ff-49bf-a80a-27593afda82c",
           "product_id": 1,
+          "name": "Manzana Verde Caja 100u",
+          "description": "Deliciosas manzanas verdes de alta calidad, empacadas en una caja de 100 unidades. Estas manzanas son jugosas y refrescantes, perfectas para disfrutar en cualquier momento del día.",
           "type": "Caja",
-          "quantity": 1,
+          "price": 89.76,
+          "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
+        },
+        {
+          "id": "31acf0a0-4705-47a6-96de-a653ef587a77",
+          "product_id": 4,
+          "name": "Pera Amarilla Caja 20u",
+          "description": "Peras amarillas de alta calidad, dulces y jugosas, en una caja de 20 unidades. Estas peras tienen una textura suave y un sabor deliciosamente fragante. Son ideales para disfrutar solas o como ingrediente en postres y ensaladas.",
+          "type": "Caja",
+          "price": 19.99,
+          "img_url": ""
+        }
+      ],
+      "count": 2
+    }
+  ],
+  "my_cart": [
+    {
+      "items": [
+        {
+          "id": "d632fd27-64f8-4a74-a308-fbed53b682e4",
+          "product_id": 1,
+          "name": "Manzana Verde Caja 100u",
+          "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg",
+          "type": "Caja",
           "unit_price": 89.76,
+          "quantity": 1,
           "ammount": 89.76
         },
         {
-          "id": 4,
-          "product_id": 6,
-          "type": "Bolsa",
-          "quantity": 1,
-          "unit_price": 28.75,
-          "ammount": 28.75
-        },
-        {
-          "id": 5,
-          "product_id": 5,
+          "id": "04bfdb7a-42df-4f80-b51f-6fdaf7795e7a",
+          "product_id": 2,
+          "name": "Manzana Roja Caja 50u",
+          "img_url": "",
           "type": "Caja",
+          "unit_price": 45.99,
           "quantity": 1,
-          "unit_price": 55.5,
-          "ammount": 55.5
-        },
-        {
-          "id": 6,
-          "product_id": 9,
-          "type": "Caja",
-          "quantity": 1,
-          "unit_price": 15.5,
-          "ammount": 15.5
-        },
-        {
-          "id": 7,
-          "product_id": 10,
-          "type": "Bolsa",
-          "quantity": 1,
-          "unit_price": 11.25,
-          "ammount": 11.25
+          "ammount": 45.99
         }
       ],
-      "units_count": 11,
-      "subtotal": 437.7,
-      "shipping": 0,
-      "tax": 52.523999999999994,
-      "total": 490.224
-    },
-    {
-      "items": [
-        {
-          "id": "3bfac00e-bc03-4484-84f4-e3af23020e43",
-          "product": {
-            "id": 1,
-            "name": "Manzana Verde Caja 100u",
-            "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-          },
-          "type": "Caja",
-          "quantity": 2,
-          "unit_price": 89.76,
-          "ammount": 179.52
-        },
-        {
-          "id": "25159a5f-9047-4262-9ff2-9f32ade9240d",
-          "product": {
-            "id": 3,
-            "name": "Uvas Negras Caja 10lbs",
-            "img_url": ""
-          },
-          "type": "Caja",
-          "quantity": 1,
-          "unit_price": 32.99,
-          "ammount": 98.97
-        }
-      ],
-      "units_count": 3,
-      "subtotal": 212.51000000000002,
+      "units_count": 2,
+      "subtotal": 135.75,
       "shipping": 50,
-      "tax": 25.5012,
-      "total": 238.01120000000003,
+      "tax": 16.29,
+      "total": 152.04,
       "id": "1"
     }
   ],
