@@ -3,9 +3,9 @@ import { v4 as uuid } from 'uuid';
 import { IWishItem, IWishList } from '../wish-list';
 import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
-import {Observable, switchMap} from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import {AuthService} from "../../auth/services/auth.service";
+import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,38 +13,37 @@ import {AuthService} from "../../auth/services/auth.service";
 export class WishListService {
   private _http: HttpClient = inject(HttpClient);
   private _apiUrl: string = environment.apiUrl;
-  private _authService: AuthService = inject(AuthService);
+  private _cartService: ShoppingCartService = inject(ShoppingCartService);
   private _wishItems = signal<IWishItem[]>([]);
 
   public wishList = computed<IWishList>(() => ({
     id: '1',
     items: this._wishItems(),
-    count: this._wishItems().length
+    count: this._wishItems().length,
   }));
 
   constructor() {
     this.getWishById(this.wishList().id).subscribe({
       next: (wishList) => this._wishItems.set(wishList.items),
-      error: (_) => this._wishItems.set([])
+      error: (_) => this._wishItems.set([]),
     });
 
     effect(() => {
       this.saveWishList(this.wishList()).subscribe();
-    })
+    });
   }
 
   public saveWishList(wishList: IWishList): Observable<IWishList> {
     const wishId: string = wishList.id;
-    return this.getWishById(wishId)
-      .pipe(
-        switchMap(list => {
-          if (!list.id) {
-            return this.createWishList(wishList);
-          } else {
-            return this.updateWishList(list.id, wishList);
-          }
-        })
-      );
+    return this.getWishById(wishId).pipe(
+      switchMap((list) => {
+        if (!list.id) {
+          return this.createWishList(wishList);
+        } else {
+          return this.updateWishList(list.id, wishList);
+        }
+      })
+    );
   }
 
   public getWishById(wishId: string): Observable<IWishList> {
@@ -79,9 +78,21 @@ export class WishListService {
     this._wishItems.mutate((items) => items.push(wishItem));
   }
 
+  public moveToCart(item: IWishItem): void {
+    this._cartService.addToCart({
+      product_id: item.product_id,
+      name: item.name,
+      img_url: item.img_url,
+      type: item.type,
+      unit_price: item.price,
+    });
+
+    this.removeFromWish(item.id);
+  }
+
   public removeFromWish(itemId: string): void {
     this._wishItems.update((items) => {
-      return items.filter(i => i.id !== itemId);
+      return items.filter((i) => i.id !== itemId);
     });
   }
 
