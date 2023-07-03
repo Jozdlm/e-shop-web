@@ -12,4 +12,8 @@ export class WishListPageComponent {
   private _wishService: WishListService = inject(WishListService);
 
   public wishList = this._wishService.wishList;
+
+  public clearWishList(): void {
+    this._wishService.clearWishList();
+  }
 }

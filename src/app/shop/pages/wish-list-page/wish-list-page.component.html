@@ -1,4 +1,11 @@
-<h1 class="text-2xl">Lista de deseos <span>({{wishList().count}})</span></h1>
+<h1 class="text-2xl mb-2">Lista de deseos <span>({{wishList().count}})</span></h1>
+<button
+  *ngIf="wishList().items.length > 0"
+  class="text-neutral-600 hover:text-black"
+  (click)="clearWishList()"
+>
+  Vaciar Lista
+</button>
 
 <div class="grid grid-cols-5 gap-x-8">
   <app-wish-item *ngFor="let item of wishList().items" [wishItem]="item"/>
