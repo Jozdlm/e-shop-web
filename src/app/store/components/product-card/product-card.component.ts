@@ -1,6 +1,5 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProduct } from '../../interfaces/product';
-import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
