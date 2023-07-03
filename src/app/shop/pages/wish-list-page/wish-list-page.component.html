@@ -1,3 +1,5 @@
 <h1 class="text-2xl">Lista de deseos <span>({{wishList().count}})</span></h1>
 
-<app-wish-item *ngFor="let item of wishList().items" [wishItem]="item"/>
+<div class="grid grid-cols-5 gap-x-8">
+  <app-wish-item *ngFor="let item of wishList().items" [wishItem]="item"/>
+</div>
