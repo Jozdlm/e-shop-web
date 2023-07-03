@@ -3,13 +3,13 @@ import { HomePageComponent } from './store/pages/home-page/home-page.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
-  { 
-    path: 'cart', 
+  {
+    path: 'cart',
     loadChildren: () => import('./cart/cart.routes')
   },
-  { 
-    path: 'wish-list', 
-    loadComponent: () => import('./shop/pages/wish-list-page/wish-list-page.component')
+  {
+    path: 'wish-list',
+    loadComponent: () => import('./wish/pages/wish-list-page/wish-list-page.component')
       .then(c => c.WishListPageComponent)
   },
   {
