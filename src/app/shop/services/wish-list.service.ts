@@ -79,6 +79,12 @@ export class WishListService {
     this._wishItems.mutate((items) => items.push(wishItem));
   }
 
+  public removeFromWish(itemId: string): void {
+    this._wishItems.update((items) => {
+      return items.filter(i => i.id !== itemId);
+    });
+  }
+
   public clearWishList(): void {
     this._wishItems.set([]);
   }
