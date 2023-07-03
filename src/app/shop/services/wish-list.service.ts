@@ -78,4 +78,8 @@ export class WishListService {
 
     this._wishItems.mutate((items) => items.push(wishItem));
   }
+
+  public clearWishList(): void {
+    this._wishItems.set([]);
+  }
 }
