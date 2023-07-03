@@ -1,7 +1,6 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
-import { IProduct, ProductOption } from '../interfaces/product';
-import { IShoppingCart } from '../../cart/cart';
+import { IAddItemCart, IShoppingCart } from '../../cart/cart';
 import { v4 as uuid } from 'uuid';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -62,22 +61,16 @@ export class ShoppingCartService {
     });
   }
 
-  public addToCart(product: IProduct, option: ProductOption): void {
+  public addToCart(addItemCart: IAddItemCart): void {
     const carItem = this.cartItems().find(
-      (item) => item.product_id == product.id && item.type == option.type
+      (item) => item.product_id == addItemCart.product_id && item.type == addItemCart.type
     );
-
-    const { id, name, img_url } = product;
 
     const newItem: ICartItem = {
       id: uuid(),
-      product_id: id,
-      name: name,
-      img_url: img_url,
-      type: option.type || product.options[0].type,
+      ...addItemCart,
       quantity: 1,
-      unit_price: option.price,
-      ammount: option.price,
+      ammount: addItemCart.unit_price,
     };
 
     if (carItem) {
