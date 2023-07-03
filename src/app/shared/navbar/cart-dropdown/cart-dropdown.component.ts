@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,6 @@ import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.c
 @Component({
   selector: 'app-cart-dropdown',
   templateUrl: './cart-dropdown.component.html',
-  styles: [],
   standalone: true,
   imports: [
     CommonModule,
@@ -20,7 +19,7 @@ import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.c
   ],
 })
 export class CartDropdownComponent {
-  private _cartService = inject(ShoppingCartService);
+  private _cartService: ShoppingCartService = inject(ShoppingCartService);
   public cart = this._cartService.shoppingCart;
 
   constructor() {}
