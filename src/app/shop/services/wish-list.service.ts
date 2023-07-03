@@ -22,10 +22,14 @@ export class WishListService {
     count: this._wishItems().length
   }));
 
-  constructor() {}
+  constructor() {
+    effect(() => {
+      this.saveWishList(this.wishList()).subscribe();
+    })
+  }
 
   public saveWishList(wishList: IWishList): Observable<IWishList> {
-    const wishId = wishList.id;
+    const wishId: string = wishList.id;
     return this._http.get<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`)
       .pipe(
         switchMap(list => {
