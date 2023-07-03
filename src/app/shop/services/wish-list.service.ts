@@ -23,6 +23,11 @@ export class WishListService {
   }));
 
   constructor() {
+    this.getWishById(this.wishList().id).subscribe({
+      next: (wishList) => this._wishItems.set(wishList.items),
+      error: (_) => this._wishItems.set([])
+    });
+
     effect(() => {
       this.saveWishList(this.wishList()).subscribe();
     })
