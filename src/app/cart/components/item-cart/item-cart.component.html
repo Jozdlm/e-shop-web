@@ -17,12 +17,12 @@
     </button>
     <div class="flex items-center gap-x-2">
       <img
-        [productImage]="item.product.img_url"
+        [productImage]="item.img_url"
         alt="Item img"
         class="w-16 h-16 border rounded object-contain object-center"
       />
       <div>
-        <p>Producto: {{ item.product.name }}</p>
+        <p>Producto: {{ item.name }}</p>
         <p class="text-sm text-neutral-700">Empaque: {{ item.type }}</p>
       </div>
     </div>

@@ -25,12 +25,12 @@
         *ngFor="let item of cart().items.slice(0, 4)"
       >
         <img
-          [productImage]="item.product.img_url"
+          [productImage]="item.img_url"
           alt=""
           class="block h-16 w-16 object-contain"
         />
         <div>
-          <p>{{ item.product.name }}</p>
+          <p>{{ item.name }}</p>
           <p class="text-sm">Cantidad: {{ item.quantity }}</p>
         </div>
       </li>

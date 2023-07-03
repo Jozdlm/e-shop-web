@@ -64,14 +64,16 @@ export class ShoppingCartService {
 
   public addToCart(product: IProduct, option: ProductOption): void {
     const carItem = this.cartItems().find(
-      (item) => item.product.id == product.id && item.type == option.type
+      (item) => item.product_id == product.id && item.type == option.type
     );
 
     const { id, name, img_url } = product;
 
     const newItem: ICartItem = {
       id: uuid(),
-      product: { id, name, img_url },
+      product_id: id,
+      name: name,
+      img_url: img_url,
       type: option.type || product.options[0].type,
       quantity: 1,
       unit_price: option.price,
