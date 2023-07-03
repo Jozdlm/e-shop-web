@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { IWishItem, IWishList } from '../wish-list';
 import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, switchMap} from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {AuthService} from "../../auth/services/auth.service";
 
@@ -23,6 +23,20 @@ export class WishListService {
   }));
 
   constructor() {}
+
+  public saveWishList(wishList: IWishList): Observable<IWishList> {
+    const wishId = wishList.id;
+    return this._http.get<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`)
+      .pipe(
+        switchMap(list => {
+          if (!list.id) {
+            return this.createWishList(wishList);
+          } else {
+            return this.updateWishList(list.id, wishList);
+          }
+        })
+      );
+  }
 
   public createWishList(wishList: IWishList): Observable<IWishList> {
     return this._http.post<IWishList>(`${this._apiUrl}/my_wishlist`, wishList);
