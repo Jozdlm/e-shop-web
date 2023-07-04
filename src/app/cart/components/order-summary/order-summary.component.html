@@ -1,1 +1,26 @@
-<p>order-summary works!</p>
+<p class="mb-4 text-xl">Resumen</p>
+
+<div class="mb-4 divide-y">
+  <div class="mb-4">
+    <p class="mb-2 flex justify-between">
+      <span>Subtotal</span>
+      <span>{{ cart().subtotal | currency : "Q" }}</span>
+    </p>
+    <p class="mb-2 flex justify-between">
+      <span>Envío</span>
+      <span>{{ cart().shipping | currency : "Q" }}</span>
+    </p>
+    <p class="mb-2 flex justify-between">
+      <span>Impuesto</span>
+      <span>{{ cart().tax | currency : "Q" }}</span>
+    </p>
+  </div>
+  <div class="pb-2 pt-4">
+    <p class="flex justify-between text-lg">
+      <span>Total</span>
+      <span>{{ cart().total | currency : "Q" }}</span>
+    </p>
+  </div>
+</div>
+
+<app-button [fullWidth]="true" routerLink="./checkout">Pagar</app-button>
