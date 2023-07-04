@@ -7,6 +7,7 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 import { RouterModule } from '@angular/router';
 import { WishListService } from '../../../wish/services/wish-list.service';
 import { WishCartComponent } from '../../components/wish-cart/wish-cart.component';
+import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.component';
 
 @Component({
   selector: 'app-cart-page',
@@ -18,7 +19,8 @@ import { WishCartComponent } from '../../components/wish-cart/wish-cart.componen
     ButtonComponent,
     RouterModule,
     WishCartComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    EmptyCartComponent
   ],
 })
 export class CartPageComponent {

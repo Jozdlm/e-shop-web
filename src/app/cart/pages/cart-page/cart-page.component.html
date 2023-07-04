@@ -11,8 +11,14 @@
 
 <div class="flex gap-x-20">
   <div class="grow divide-y">
-    <div class="pb-4" *ngIf="cart().items.length > 0">
-      <app-item-cart *ngFor="let item of cart().items" [cartItem]="item" />
+    <div class="pb-4" >
+      <ng-container *ngIf="cart().items.length > 0; else empty">
+        <app-item-cart *ngFor="let item of cart().items" [cartItem]="item" />
+      </ng-container>
+      
+      <ng-template #empty>
+        <app-empty-cart />
+      </ng-template>
     </div>
     <div class="pt-8" *ngIf="wish().items.length > 0">
       <p class="text-lg mb-6">Lista de deseos</p>
