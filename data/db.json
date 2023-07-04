@@ -247,16 +247,7 @@
       "id": "1",
       "items": [
         {
-          "id": "7eeb0aef-c3ff-49bf-a80a-27593afda82c",
-          "product_id": 1,
-          "name": "Manzana Verde Caja 100u",
-          "description": "Deliciosas manzanas verdes de alta calidad, empacadas en una caja de 100 unidades. Estas manzanas son jugosas y refrescantes, perfectas para disfrutar en cualquier momento del día.",
-          "type": "Caja",
-          "price": 89.76,
-          "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg"
-        },
-        {
-          "id": "31acf0a0-4705-47a6-96de-a653ef587a77",
+          "id": "e1e1e837-68e9-466b-8c6a-bf0c1a653b27",
           "product_id": 4,
           "name": "Pera Amarilla Caja 20u",
           "description": "Peras amarillas de alta calidad, dulces y jugosas, en una caja de 20 unidades. Estas peras tienen una textura suave y un sabor deliciosamente fragante. Son ideales para disfrutar solas o como ingrediente en postres y ensaladas.",
@@ -265,7 +256,7 @@
           "img_url": ""
         }
       ],
-      "count": 2
+      "count": 1
     }
   ],
   "my_cart": [
@@ -279,7 +270,7 @@
           "type": "Caja",
           "unit_price": 89.76,
           "quantity": 1,
-          "ammount": 89.76
+          "ammount": 179.52
         },
         {
           "id": "04bfdb7a-42df-4f80-b51f-6fdaf7795e7a",
@@ -290,13 +281,23 @@
           "unit_price": 45.99,
           "quantity": 1,
           "ammount": 45.99
+        },
+        {
+          "id": "c36f0897-cdd5-4dbd-8de2-4d0174f2aeed",
+          "product_id": 4,
+          "name": "Pera Amarilla Caja 20u",
+          "img_url": "",
+          "type": "Caja",
+          "unit_price": 19.99,
+          "quantity": 1,
+          "ammount": 19.99
         }
       ],
-      "units_count": 2,
-      "subtotal": 135.75,
+      "units_count": 3,
+      "subtotal": 155.74,
       "shipping": 50,
-      "tax": 16.29,
-      "total": 152.04,
+      "tax": 18.6888,
+      "total": 174.42880000000002,
       "id": "1"
     }
   ],
