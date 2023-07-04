@@ -14,7 +14,7 @@
     <div class="pb-4">
       <app-item-cart *ngFor="let item of cart().items" [cartItem]="item" />
     </div>
-    <div class="pt-8">
+    <div class="pt-8" *ngIf="wish().items.length > 0">
       <p class="text-lg mb-6">Lista de deseos</p>
       <app-wish-cart *ngFor="let item of wish().items" [wishItem]="item" />
     </div>
