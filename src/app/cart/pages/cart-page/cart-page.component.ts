@@ -1,3 +1,4 @@
+import { OrderSummaryComponent } from './../../components/order-summary/order-summary.component';
 import { Component, inject } from '@angular/core';
 import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import { WishCartComponent } from '../../components/wish-cart/wish-cart.componen
     ButtonComponent,
     RouterModule,
     WishCartComponent,
+    OrderSummaryComponent
   ],
 })
 export class CartPageComponent {

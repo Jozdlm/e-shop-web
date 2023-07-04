@@ -9,9 +9,9 @@
   </button>
 </div>
 
-<div class="flex gap-x-20" *ngIf="cart().items.length > 0">
+<div class="flex gap-x-20">
   <div class="grow divide-y">
-    <div class="pb-4">
+    <div class="pb-4" *ngIf="cart().items.length > 0">
       <app-item-cart *ngFor="let item of cart().items" [cartItem]="item" />
     </div>
     <div class="pt-8" *ngIf="wish().items.length > 0">
@@ -19,30 +19,7 @@
       <app-wish-cart *ngFor="let item of wish().items" [wishItem]="item" />
     </div>
   </div>
-  <div class="w-72">
-    <p class="mb-4 text-xl">Resumen</p>
-    <div class="mb-4 divide-y">
-      <div class="mb-4">
-        <p class="mb-2 flex justify-between">
-          <span>Subtotal</span>
-          <span>{{ cart().subtotal | currency : "Q" }}</span>
-        </p>
-        <p class="mb-2 flex justify-between">
-          <span>Envío</span>
-          <span>{{ cart().shipping | currency : "Q" }}</span>
-        </p>
-        <p class="mb-2 flex justify-between">
-          <span>Impuesto</span>
-          <span>{{ cart().tax | currency : "Q" }}</span>
-        </p>
-      </div>
-      <div class="pb-2 pt-4">
-        <p class="flex justify-between text-lg">
-          <span>Total</span>
-          <span>{{ cart().total | currency : "Q" }}</span>
-        </p>
-      </div>
-    </div>
-    <app-button [fullWidth]="true" routerLink="./checkout">Pagar</app-button>
+  <div class="w-72" *ngIf="cart().items.length > 0">
+    <app-order-summary [cart]="cart" />
   </div>
 </div>
