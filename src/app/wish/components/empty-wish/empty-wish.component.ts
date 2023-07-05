@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ButtonComponent } from 'src/app/common/components/button/button.component';
 
 @Component({
   selector: 'app-empty-wish',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, ButtonComponent],
   templateUrl: './empty-wish.component.html',
-  styles: [
-  ]
 })
-export class EmptyWishComponent {
-
-}
+export class EmptyWishComponent {}
