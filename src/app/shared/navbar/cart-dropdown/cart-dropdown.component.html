@@ -19,35 +19,44 @@
     </div>
   </div>
   <div id="dropdown-content">
-    <ul class="list-none">
-      <li
-        class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
-        *ngFor="let item of cart().items.slice(0, 4)"
-      >
-        <img
-          [productImage]="item.img_url"
-          alt=""
-          class="block h-16 w-16 object-contain"
-        />
-        <div>
-          <p>{{ item.name }}</p>
-          <p class="text-sm">Cantidad: {{ item.quantity }}</p>
+    <ng-container *ngIf="cart().items.length > 0;else emptyCart">
+      <ul class="list-none">
+        <li
+          class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
+          *ngFor="let item of cart().items.slice(0, 4)"
+        >
+          <img
+            [productImage]="item.img_url"
+            alt=""
+            class="block h-16 w-16 object-contain"
+          />
+          <div>
+            <p>{{ item.name }}</p>
+            <p class="text-sm">Cantidad: {{ item.quantity }}</p>
+          </div>
+        </li>
+      </ul>
+      <div>
+        <div class="my-6 flex items-center justify-between">
+          <p>Subtotal</p>
+          <p class="text-base font-medium">
+            {{ cart().subtotal | currency : "GTQ" }}
+          </p>
         </div>
-      </li>
-    </ul>
-    <div>
-      <div class="my-6 flex items-center justify-between">
-        <p>Subtotal</p>
-        <p class="text-base font-medium">
-          {{ cart().subtotal | currency : "GTQ" }}
-        </p>
+        <div class="flex flex-col gap-y-2 items-center">
+          <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
+            Ir a la cesta
+          </app-button>
+          <p class="text-sm text-neutral-600 text-center">*Dirigete a la cesta para ver todos los articulos*</p>
+        </div>
       </div>
-      <div class="flex flex-col gap-y-2 items-center">
-        <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
-          Ir a la cesta
-        </app-button>
-        <p class="text-sm text-neutral-600 text-center">*Dirigete a la cesta para ver todos los articulos*</p>
+    </ng-container>
+    <ng-template #emptyCart>
+      <div class="grid items-center justify-center text-center">
+        <p class="text-lg mb-1">Tu carrito está vacío</p>
+        <p class="mb-6 text-sm">Añade un producto al carrito para verlo aquí</p>
+        <app-button class="justify-self-center" routerLink="">Ir a la tienda</app-button>
       </div>
-    </div>
+    </ng-template>
   </div>
 </app-dropdown>
