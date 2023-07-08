@@ -7,10 +7,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ButtonComponent } from 'src/app/common/components/button/button.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, ButtonComponent],
   templateUrl: './signup-page.component.html',
 })
 export class SignupPageComponent {
@@ -29,4 +30,10 @@ export class SignupPageComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
     repeated_password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  public handleSubmit(): void {
+    if (this.signupForm.valid) {
+      console.log(this.signupForm.value);
+    }
+  }
 }
