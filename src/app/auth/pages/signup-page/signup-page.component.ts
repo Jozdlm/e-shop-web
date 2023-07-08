@@ -19,7 +19,13 @@ export class SignupPageComponent {
   public signupForm: FormGroup = this._fb.nonNullable.group({
     first_name: ['', Validators.required],
     last_name: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
+      ],
+    ],
     password: ['', [Validators.required, Validators.minLength(6)]],
     repeated_password: ['', [Validators.required, Validators.minLength(6)]],
   });
