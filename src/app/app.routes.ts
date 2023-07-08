@@ -26,5 +26,9 @@ export const APP_ROUTES: Routes = [
         (c) => c.MyAccountComponent
       ),
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.routes')
+  },
   { path: '**', redirectTo: '' },
 ];
