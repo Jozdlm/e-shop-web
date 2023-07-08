@@ -1,7 +1,7 @@
 <div class="mx-auto grid w-96 grid-cols-1">
   <h1 class="mb-8 justify-self-center text-2xl">Crear una cuenta</h1>
 
-  <form autocomplete="off" class="mb-8 flex flex-col gap-y-4">
+  <form [formGroup]="signupForm" autocomplete="off" class="mb-8 flex flex-col gap-y-4">
     <div class="flex gap-x-4">
       <div class="flex flex-col">
         <label
@@ -13,60 +13,65 @@
           type="text"
           name="first_name"
           id="first-name"
+          formControlName="first_name"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
       </div>
       <div class="flex flex-col">
         <label
-          for="first-name"
+          for="last-name"
           class="mb-1.5 text-sm font-medium text-neutral-800"
           >Apellido</label
         >
         <input
           type="text"
-          name="first_name"
-          id="first-name"
+          name="last_name"
+          id="last-name"
+          formControlName="last_name"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
       </div>
     </div>
     <div class="flex flex-col">
       <label
-        for="first-name"
+        for="email"
         class="mb-1.5 text-sm font-medium text-neutral-800"
         >Correo</label
       >
       <input
         type="text"
-        name="first_name"
-        id="first-name"
+        name="email"
+        id="email"
+        formControlName="email"
         class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
       />
     </div>
     <div class="flex gap-x-4">
       <div class="flex flex-col">
         <label
-          for="first-name"
+          for="password"
           class="mb-1.5 text-sm font-medium text-neutral-800"
           >Contraseña</label
         >
         <input
           type="text"
-          name="first_name"
-          id="first-name"
+          name="password"
+          id="password"
+          formControlName="password"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
       </div>
       <div class="flex flex-col">
         <label
-          for="first-name"
+          for="repeated_pass"
           class="mb-1.5 text-sm font-medium text-neutral-800"
           >Repetir Contraseña</label
         >
         <input
           type="text"
-          name="first_name"
-          id="first-name"
+          name="repeated_pass"
+          id="repeated_pass"
+          formControlName="repeated_password"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
       </div>
