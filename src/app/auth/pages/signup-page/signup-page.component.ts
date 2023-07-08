@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
-import { customEmailValidator } from '../../auth.validators';
+import { customEmailValidator, passwordMatchValidator } from '../../auth.validators';
 
 @Component({
   standalone: true,
@@ -24,7 +24,7 @@ export class SignupPageComponent {
     email: ['', [Validators.required, customEmailValidator]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     repeated_password: ['', [Validators.required, Validators.minLength(6)]],
-  });
+  }, {validators: passwordMatchValidator});
 
   public handleSubmit(): void {
     if (this.signupForm.valid) {
