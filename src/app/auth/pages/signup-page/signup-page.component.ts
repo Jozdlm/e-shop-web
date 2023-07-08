@@ -18,8 +18,8 @@ export class SignupPageComponent {
   private _fb: FormBuilder = inject(FormBuilder);
 
   public signupForm: FormGroup = this._fb.nonNullable.group({
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
+    first_name: ['', [Validators.required, Validators.minLength(3)]],
+    last_name: ['', [Validators.required, Validators.minLength(3)]],
     email: [
       '',
       [
