@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { customEmailValidator } from '../../auth.validators';
 
 @Component({
   standalone: true,
@@ -20,13 +21,7 @@ export class SignupPageComponent {
   public signupForm: FormGroup = this._fb.nonNullable.group({
     first_name: ['', [Validators.required, Validators.minLength(3)]],
     last_name: ['', [Validators.required, Validators.minLength(3)]],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/),
-      ],
-    ],
+    email: ['', [Validators.required, customEmailValidator]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     repeated_password: ['', [Validators.required, Validators.minLength(6)]],
   });
