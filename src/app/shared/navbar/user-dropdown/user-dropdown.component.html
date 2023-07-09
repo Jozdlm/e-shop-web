@@ -1,4 +1,4 @@
-<app-dropdown pageUrl="my-account" [isMenu]="true">
+<app-dropdown pageUrl="account/profile" [isMenu]="true">
   <div id="toggle-content">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
     <div>
       <a
         *ngFor="let item of menuItems"
-        [routerLink]="item.link"
+        [routerLink]="[baseLink, item.link]"
         class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
       >
         <span class="text-sm">{{ item.placeholder }}</span>

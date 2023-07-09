@@ -25,8 +25,10 @@ export class UserDropdownComponent {
     this._userService.getUserById(this._userId)
   );
 
+  public baseLink: string = 'account';
+
   public menuItems: IMenuItem[] = [
-    { link: 'my-account', placeholder: 'Configuración cuenta' },
+    { link: 'profile', placeholder: 'Configuración cuenta' },
     { link: 'my-orders', placeholder: 'Mis pedidos' },
     { link: 'purchase-history', placeholder: 'Historial de compras' },
   ];
