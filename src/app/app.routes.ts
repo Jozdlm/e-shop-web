@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './store/pages/home-page/home-page.component';
+import { authGuard } from './auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'account',
+    canActivate: [authGuard],
     loadChildren: () => import('./account/account.routes')
   },
   {
