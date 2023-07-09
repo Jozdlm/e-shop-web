@@ -20,11 +20,8 @@ export const APP_ROUTES: Routes = [
       ),
   },
   {
-    path: 'my-account',
-    loadComponent: () =>
-      import('./account/pages/my-account/my-account.component').then(
-        (c) => c.MyAccountComponent
-      ),
+    path: 'account',
+    loadChildren: () => import('./account/account.routes')
   },
   {
     path: 'auth',
