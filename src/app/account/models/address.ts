@@ -3,7 +3,10 @@ export interface Address {
     first_name: string;
     last_name: string;
   },
-  phone: string;
+  phone: {
+    calling_code: string;
+    number: string;
+  };
   country: string;
   state: string;
   city: string;
