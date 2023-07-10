@@ -36,24 +36,11 @@ export class MyAccountComponent {
   }
 
   public createFormGroup(user: IUser): void {
-    const { first_name, last_name, email } = user;
-    const { code, number } = user.phone;
-    const { country, state, city, exact_address } = user.address;
+    const { full_name, email } = user;
 
     this.profileForm = this._fb.nonNullable.group({
-      first_name: [first_name, Validators.required],
-      last_name: [last_name, Validators.required],
+      full_name: [full_name, [Validators.required, Validators.minLength(6)]],
       email: [email, [Validators.required, Validators.email]],
-      phone: this._fb.nonNullable.group({
-        code: [code, Validators.required],
-        number: [number, [Validators.required, Validators.min(0)]],
-      }),
-      address: this._fb.nonNullable.group({
-        country: [country, Validators.required],
-        state: [state, Validators.required],
-        city: [city, Validators.required],
-        exact_address: [exact_address, Validators.required],
-      }),
     });
   }
 

@@ -16,26 +16,13 @@
           <label
             class="mb-1.5 text-sm font-medium text-neutral-800"
             for="first_name"
-            >Nombre:</label
+            >Nombre Completo:</label
           >
           <input
             class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
             type="text"
             id="first_name"
-            formControlName="first_name"
-          />
-        </div>
-        <div class="flex flex-col">
-          <label
-            class="mb-1.5 text-sm font-medium text-neutral-800"
-            for="last_name"
-            >Apellido:</label
-          >
-          <input
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-            type="text"
-            id="last_name"
-            formControlName="last_name"
+            formControlName="full_name"
           />
         </div>
         <div class="flex flex-col">
@@ -48,69 +35,6 @@
             id="email"
             placeholder="account@example.com"
             formControlName="email"
-          />
-        </div>
-      </div>
-  
-      <div class="mb-8 flex flex-col" formGroupName="phone">
-        <label class="mb-1.5 text-sm font-medium text-neutral-800" for="phone"
-          >Telefono:</label
-        >
-        <div>
-          <input
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-            type="text"
-            id="phone"
-            formControlName="number"
-          />
-        </div>
-      </div>
-  
-      <div class="flex flex-col gap-y-4 mb-8" formGroupName="address">
-        <div class="flex flex-col">
-          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="country"
-            >País:</label
-          >
-          <input
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-            type="text"
-            id="country"
-            formControlName="country"
-          />
-        </div>
-        <div class="flex flex-col">
-          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="state"
-            >Departamento:</label
-          >
-          <input
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-            type="text"
-            id="state"
-            formControlName="state"
-          />
-        </div>
-        <div class="flex flex-col">
-          <label class="mb-1.5 text-sm font-medium text-neutral-800" for="city"
-            >Municipio:</label
-          >
-          <input
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-            type="text"
-            id="city"
-            formControlName="city"
-          />
-        </div>
-        <div class="flex flex-col">
-          <label
-            class="mb-1.5 text-sm font-medium text-neutral-800"
-            for="exact_address"
-            >Dirección Exacta:</label
-          >
-          <input
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
-            type="text"
-            id="exact_address"
-            formControlName="exact_address"
           />
         </div>
       </div>
