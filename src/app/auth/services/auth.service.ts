@@ -1,7 +1,15 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { ISession } from '../session';
-import { Auth, User, user } from '@angular/fire/auth';
+import {
+  Auth,
+  User,
+  UserCredential,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  user,
+} from '@angular/fire/auth';
+import { Observable, from, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +33,16 @@ export class AuthService {
 
   constructor() {
     effect(() => console.log(this.user()));
+  }
+
+  public signup(fullname: string, email: string, password: string): Observable<User> {
+    return from(createUserWithEmailAndPassword(this._auth, email, password)).pipe(
+      switchMap((userCredentials: UserCredential) => {
+        updateProfile(this._auth.currentUser!, { displayName: fullname })
+        
+        const user = userCredentials.user;
+        return of(user);
+      })
+    );
   }
 }
