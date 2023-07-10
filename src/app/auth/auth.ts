@@ -4,3 +4,9 @@ export interface ISession {
   email: string;
   token: string;
 };
+
+export interface ICreateUser {
+  fullname: string;
+  email: string;
+  password: string;
+}
