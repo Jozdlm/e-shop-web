@@ -1,6 +1,6 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { ISession } from '../session';
+import { ISession } from '../auth';
 import {
   Auth,
   User,
