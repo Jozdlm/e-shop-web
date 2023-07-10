@@ -19,7 +19,8 @@ export class UserDropdownComponent {
 
   public baseLink: string = 'account';
   public menuItems: IMenuItem[] = [
-    { link: 'profile', placeholder: 'Configuración cuenta' },
+    { link: 'profile', placeholder: 'Mi información' },
+    { link: 'shipping_addresses', placeholder: 'Mis direcciones' },
     { link: 'my-orders', placeholder: 'Mis pedidos' },
     { link: 'purchase-history', placeholder: 'Historial de compras' },
   ];
