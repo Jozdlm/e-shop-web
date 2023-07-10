@@ -1,6 +1,6 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { ISession } from '../auth';
+import { ICreateUser, ISession } from '../auth';
 import {
   Auth,
   User,
@@ -35,7 +35,9 @@ export class AuthService {
     effect(() => console.log(this.user()));
   }
 
-  public signup(fullname: string, email: string, password: string): Observable<User> {
+  public signup(newUser: ICreateUser): Observable<User> {
+    const { fullname, email, password } = newUser;
+
     return from(createUserWithEmailAndPassword(this._auth, email, password)).pipe(
       switchMap((userCredentials: UserCredential) => {
         updateProfile(this._auth.currentUser!, { displayName: fullname })

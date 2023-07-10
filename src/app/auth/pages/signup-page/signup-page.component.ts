@@ -8,6 +8,7 @@ import {
   passwordMatchValidator,
 } from '../../auth.validators';
 import { AuthService } from '../../services/auth.service';
+import { ICreateUser } from '../../auth';
 
 @Component({
   standalone: true,
@@ -33,10 +34,15 @@ export class SignupPageComponent {
   public handleSubmit(): void {
     if (this.signupForm.valid) {
       const { first_name, last_name, email, password } = this.signupForm.value;
-      const fullname = `${first_name} ${last_name}`;
+
+      const newUser: ICreateUser = {
+        fullname: `${first_name} ${last_name}`,
+        email: email!,
+        password: password!
+      }
 
       this._authService
-        .signup(fullname, email!, password!)
+        .signup(newUser)
         .subscribe((_) => console.log('registrado correctamente'));
 
       this.signupForm.reset();
