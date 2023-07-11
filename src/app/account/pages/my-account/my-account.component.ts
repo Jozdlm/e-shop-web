@@ -1,4 +1,3 @@
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -10,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
-import { IUser } from '../../user';
+import { User } from '@angular/fire/auth';
 
 @Component({
   standalone: true,
@@ -22,24 +21,23 @@ export class MyAccountComponent {
   private _userService: UserService = inject(UserService);
   private _fb: FormBuilder = inject(FormBuilder);
 
-  public userId = this._authService.currentSession().id;
-  public user = toSignal(this._userService.getUserById(this.userId));
+  public user = this._authService.user;
 
   public profileForm!: FormGroup;
 
   constructor() {
     effect(() => {
-      if (this.user()?.id) {
+      if (this.user()) {
         this.createFormGroup(this.user()!);
       }
     });
   }
 
-  public createFormGroup(user: IUser): void {
-    const { full_name, email } = user;
+  public createFormGroup(user: User): void {
+    const { displayName, email } = user;
 
     this.profileForm = this._fb.nonNullable.group({
-      full_name: [full_name, [Validators.required, Validators.minLength(6)]],
+      full_name: [displayName, [Validators.required, Validators.minLength(6)]],
       email: [email, [Validators.required, Validators.email]],
     });
   }
@@ -47,9 +45,6 @@ export class MyAccountComponent {
   public updateUserValues(): void {
     if(!this.profileForm.valid) return;
 
-    this._userService.updateUser(this.userId, this.profileForm.value)
-      .subscribe({
-        next: (_) => console.log('usuario modificado correctamente')
-      });
+    this._userService.updateUser(this.profileForm.value);
   }
 }
