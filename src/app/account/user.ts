@@ -3,3 +3,8 @@ export interface IUser {
   full_name: string;
   email: string;
 }
+
+export interface IUpdateAccount {
+  full_name: string;
+  email: string;
+}
