@@ -1,15 +1,16 @@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { ICreateUser, ISession } from '../auth';
+import { ICreateUser, ILoginUser, ISession } from '../auth';
 import {
   Auth,
   User,
   UserCredential,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   updateProfile,
   user,
 } from '@angular/fire/auth';
-import { Observable, from, of, switchMap } from 'rxjs';
+import { Observable, from, map, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +47,14 @@ export class AuthService {
         return of(user);
       })
     );
+  }
+
+  public login(credentials: ILoginUser): Observable<User> {
+    const { email, password } = credentials;
+
+    return from(signInWithEmailAndPassword(this._auth, email, password))
+      .pipe(
+        map((value) => value.user)
+      );
   }
 }
