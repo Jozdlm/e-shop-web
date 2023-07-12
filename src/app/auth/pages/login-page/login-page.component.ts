@@ -18,4 +18,8 @@ export class LoginPageComponent {
     email: ['', [Validators.required, customEmailValidator]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  public handleSubmitForm(): void {
+    console.log(this.loginForm.value);
+  }
 }
