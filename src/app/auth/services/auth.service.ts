@@ -7,6 +7,7 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
   user,
 } from '@angular/fire/auth';
@@ -39,10 +40,12 @@ export class AuthService {
   public signup(newUser: ICreateUser): Observable<User> {
     const { fullname, email, password } = newUser;
 
-    return from(createUserWithEmailAndPassword(this._auth, email, password)).pipe(
+    return from(
+      createUserWithEmailAndPassword(this._auth, email, password)
+    ).pipe(
       switchMap((userCredentials: UserCredential) => {
-        updateProfile(this._auth.currentUser!, { displayName: fullname })
-        
+        updateProfile(this._auth.currentUser!, { displayName: fullname });
+
         const user = userCredentials.user;
         return of(user);
       })
@@ -52,9 +55,12 @@ export class AuthService {
   public login(credentials: ILoginUser): Observable<User> {
     const { email, password } = credentials;
 
-    return from(signInWithEmailAndPassword(this._auth, email, password))
-      .pipe(
-        map((value) => value.user)
-      );
+    return from(signInWithEmailAndPassword(this._auth, email, password)).pipe(
+      map((value) => value.user)
+    );
+  }
+
+  public logout(): Observable<void> {
+    return from(signOut(this._auth));
   }
 }
