@@ -1,1 +1,42 @@
-<p>login-page works!</p>
+<div class="mx-auto grid w-96 grid-cols-1">
+  <h1 class="mb-8 justify-self-center text-2xl">Iniciar Sesión</h1>
+
+  <form
+    autocomplete="off"
+    class="mb-8 flex flex-col gap-y-4"
+  >
+    <div class="flex flex-col">
+      <label for="email" class="mb-1.5 text-sm font-medium text-neutral-800"
+        >Correo</label
+      >
+      <input
+        type="text"
+        name="email"
+        id="email"
+        class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label
+        for="password"
+        class="mb-1.5 text-sm font-medium text-neutral-800"
+        >Contraseña</label
+      >
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+      />
+    </div>
+    <app-button [fullWidth]="true" class="mb-6">
+      Iniciar Sesión
+    </app-button>
+    <p class="text-center">
+      ¿No tienes cuenta?
+      <a routerLink="/auth/signup" class="text-green-800 underline"
+        >Crear una cuenta</a
+      >
+    </p>
+  </form>
+</div>
