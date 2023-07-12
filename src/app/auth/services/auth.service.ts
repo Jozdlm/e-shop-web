@@ -58,6 +58,7 @@ export class AuthService {
     const { email, password } = credentials;
 
     return from(signInWithEmailAndPassword(this._auth, email, password)).pipe(
+      tap((_) => this._router.navigate([''])),
       map((value) => value.user)
     );
   }
@@ -65,7 +66,7 @@ export class AuthService {
   public logout(): Observable<void> {
     return from(signOut(this._auth))
       .pipe(
-        tap((_) => this._router.navigate(['']))
+        tap((_) => this._router.navigate(['/auth']))
       );
   }
 }
