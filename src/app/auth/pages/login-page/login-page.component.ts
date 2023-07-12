@@ -4,6 +4,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { customEmailValidator } from '../../auth.validators';
+import { AuthService } from '../../services/auth.service';
+import { ILoginUser } from '../../auth';
 
 @Component({
   selector: 'app-login-page',
@@ -13,6 +15,7 @@ import { customEmailValidator } from '../../auth.validators';
 })
 export class LoginPageComponent {
   private _fb: FormBuilder = inject(FormBuilder);
+  private _authService: AuthService = inject(AuthService);
 
   public loginForm = this._fb.nonNullable.group({
     email: ['', [Validators.required, customEmailValidator]],
@@ -21,7 +24,15 @@ export class LoginPageComponent {
 
   public handleSubmitForm(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      const credentials: ILoginUser = {
+        email: this.loginForm.value.email!,
+        password: this.loginForm.value.password!
+      }
+
+      this._authService.login(credentials).subscribe({
+        next: (_) => console.log('Sesión iniciada correctamente'),
+        error: (error) => console.log(`Ha ocurrido un error: ${error.code}, ${error.message}`)
+      });
     }
   }
 }
