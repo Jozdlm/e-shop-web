@@ -24,4 +24,11 @@ export class UserDropdownComponent {
     { link: 'my-orders', placeholder: 'Mis pedidos' },
     { link: 'purchase-history', placeholder: 'Historial de compras' },
   ];
+
+  public logout(): void {
+    this._authService.logout().subscribe({
+      next: (_) => console.log('Sesión cerrada correctamente'),
+      error: (error) => console.log(`Ha ocurrido un error: ${error}`)
+    })
+  }
 }
