@@ -11,13 +11,15 @@ import {
   updateProfile,
   user,
 } from '@angular/fire/auth';
-import { Observable, from, map, of, switchMap } from 'rxjs';
+import { Observable, from, map, of, switchMap, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private _auth: Auth = inject(Auth);
+  private _router: Router = inject(Router);
 
   private _currentSession = signal<ISession>({
     id: '1',
@@ -61,6 +63,9 @@ export class AuthService {
   }
 
   public logout(): Observable<void> {
-    return from(signOut(this._auth));
+    return from(signOut(this._auth))
+      .pipe(
+        tap((_) => this._router.navigate(['']))
+      );
   }
 }
