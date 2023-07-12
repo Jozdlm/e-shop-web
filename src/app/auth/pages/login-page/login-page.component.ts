@@ -20,6 +20,8 @@ export class LoginPageComponent {
   });
 
   public handleSubmitForm(): void {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value);
+    }
   }
 }

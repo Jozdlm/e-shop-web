@@ -33,7 +33,7 @@
         class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
       />
     </div>
-    <app-button [fullWidth]="true" class="mb-6">
+    <app-button [fullWidth]="true" [disabled]="!loginForm.valid" class="mb-6">
       Iniciar Sesión
     </app-button>
     <p class="text-center">
