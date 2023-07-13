@@ -9,6 +9,7 @@ import {
 } from '../../auth.validators';
 import { AuthService } from '../../services/auth.service';
 import { ICreateUser } from '../../auth';
+import { tap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -38,15 +39,13 @@ export class SignupPageComponent {
       const newUser: ICreateUser = {
         fullname: `${first_name} ${last_name}`,
         email: email!,
-        password: password!
-      }
+        password: password!,
+      };
 
       this._authService
         .signup(newUser)
+        .pipe(tap((_) => this.signupForm.reset()))
         .subscribe((_) => console.log('registrado correctamente'));
-
-      this.signupForm.reset();
-      this._router.navigate(['/']);
     }
   }
 }

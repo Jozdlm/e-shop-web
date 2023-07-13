@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { customEmailValidator } from '../../auth.validators';
 import { AuthService } from '../../services/auth.service';
 import { ILoginUser } from '../../auth';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -26,13 +27,19 @@ export class LoginPageComponent {
     if (this.loginForm.valid) {
       const credentials: ILoginUser = {
         email: this.loginForm.value.email!,
-        password: this.loginForm.value.password!
-      }
+        password: this.loginForm.value.password!,
+      };
 
-      this._authService.login(credentials).subscribe({
-        next: (_) => console.log('Sesión iniciada correctamente'),
-        error: (error) => console.log(`Ha ocurrido un error: ${error.code}, ${error.message}`)
-      });
+      this._authService
+        .login(credentials)
+        .pipe(tap((_) => this.loginForm.reset()))
+        .subscribe({
+          next: (_) => console.log('Sesión iniciada correctamente'),
+          error: (error) =>
+            console.log(
+              `Ha ocurrido un error: ${error.code}, ${error.message}`
+            ),
+        });
     }
   }
 }
