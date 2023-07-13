@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './store/pages/home-page/home-page.component';
-import { authGuard } from './auth/auth.guard';
+import { authGuard, isLoggedGuard } from './auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -27,6 +27,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [isLoggedGuard],
     loadChildren: () => import('./auth/auth.routes')
   },
   { path: '**', redirectTo: '' },
