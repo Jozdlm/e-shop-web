@@ -56,7 +56,11 @@
         </div>
       </ng-container>
     </div>
-    <app-button [fullWidth]="true" [disabled]="!loginForm.valid" class="mb-6">
+    <app-button
+      [fullWidth]="true"
+      [disabled]="loginForm.invalid && loginForm.touched"
+      class="mb-6"
+    >
       Iniciar Sesión
     </app-button>
     <p class="text-center">
