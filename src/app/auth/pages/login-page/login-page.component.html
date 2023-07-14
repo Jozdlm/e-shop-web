@@ -19,19 +19,21 @@
         class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
       />
 
-      <ng-container *ngIf="emailControl.invalid && emailControl.touched ">
+      <ng-container *ngIf="emailControl.invalid && emailControl.touched">
         <div *ngIf="emailControl?.hasError('required')">
-          <p class="text-sm mt-2 text-red-700">El correo electronico es obligatorio</p>
+          <p class="mt-2 text-sm text-red-700">
+            El correo electronico es obligatorio
+          </p>
         </div>
         <div *ngIf="emailControl?.hasError('email')">
-          <p class="text-sm mt-2 text-red-700">El correo electronico debe ser valido</p>
+          <p class="mt-2 text-sm text-red-700">
+            El correo electronico debe ser valido
+          </p>
         </div>
       </ng-container>
     </div>
     <div class="flex flex-col">
-      <label
-        for="password"
-        class="mb-1.5 text-sm font-medium text-neutral-800"
+      <label for="password" class="mb-1.5 text-sm font-medium text-neutral-800"
         >Contraseña</label
       >
       <input
@@ -41,6 +43,18 @@
         formControlName="password"
         class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
       />
+
+      <ng-container *ngIf="passwordControl.invalid && passwordControl.touched">
+        <div *ngIf="passwordControl?.hasError('required')">
+          <p class="mt-2 text-sm text-red-700">La contraseña es obligatoria</p>
+        </div>
+        <div *ngIf="passwordControl?.hasError('minlength')">
+          <p class="mt-2 text-sm text-red-700">
+            La contraseña debe tener al menos
+            {{ passwordControl.getError("minlength").requiredLength }}
+          </p>
+        </div>
+      </ng-container>
     </div>
     <app-button [fullWidth]="true" [disabled]="!loginForm.valid" class="mb-6">
       Iniciar Sesión
