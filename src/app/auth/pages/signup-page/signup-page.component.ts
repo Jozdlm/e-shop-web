@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import {
@@ -18,7 +18,6 @@ import { tap } from 'rxjs';
 })
 export class SignupPageComponent {
   private _authService: AuthService = inject(AuthService);
-  private _router: Router = inject(Router);
   private _fb: FormBuilder = inject(FormBuilder);
 
   public signupForm = this._fb.nonNullable.group(

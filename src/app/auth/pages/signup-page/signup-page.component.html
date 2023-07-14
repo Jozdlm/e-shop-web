@@ -98,6 +98,19 @@
           formControlName="password"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
+
+        <ng-container *ngIf="getFormControl('password').invalid && getFormControl('password').touched">
+          <div *ngIf="getFormControl('password')?.hasError('required')">
+            <p class="mt-2 text-sm text-red-700">La contraseña es requerida</p>
+          </div>
+          <div *ngIf="getFormControl('password')?.hasError('minlength')">
+            <p class="mt-2 text-sm text-red-700">
+              La contraseña debe tener al menos
+              {{ getFormControl('password').getError("minlength").requiredLength }}
+              caracteres
+            </p>
+          </div>
+        </ng-container>
       </div>
       <div class="flex flex-col">
         <label
@@ -112,6 +125,22 @@
           formControlName="repeated_password"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
+
+        <ng-container *ngIf="getFormControl('repeated_password').invalid && getFormControl('repeated_password').touched">
+          <div *ngIf="getFormControl('repeated_password')?.hasError('required')">
+            <p class="mt-2 text-sm text-red-700">La contraseña es requerida</p>
+          </div>
+          <div *ngIf="getFormControl('repeated_password')?.hasError('minlength')">
+            <p class="mt-2 text-sm text-red-700">
+              La contraseña debe tener al menos
+              {{ getFormControl('repeated_password').getError("minlength").requiredLength }}
+              caracteres
+            </p>
+          </div>
+          <div *ngIf="getFormControl('repeated_password')?.hasError('passwordMismatch')">
+            <p class="mt-2 text-sm text-red-700">Las contraseñas no coinciden</p>
+          </div>
+        </ng-container>
       </div>
     </div>
     <app-button [fullWidth]="true" [disabled]="!signupForm.valid" class="mb-6">
