@@ -18,6 +18,15 @@
         formControlName="email"
         class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
       />
+
+      <ng-container *ngIf="emailControl.invalid && emailControl.touched ">
+        <div *ngIf="emailControl?.hasError('required')">
+          <p class="text-sm mt-2 text-red-700">El correo electronico es obligatorio</p>
+        </div>
+        <div *ngIf="emailControl?.hasError('email')">
+          <p class="text-sm mt-2 text-red-700">El correo electronico debe ser valido</p>
+        </div>
+      </ng-container>
     </div>
     <div class="flex flex-col">
       <label
