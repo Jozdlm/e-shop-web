@@ -27,6 +27,10 @@ export class LoginPageComponent {
     return this.loginForm.get('email')!;
   }
 
+  public get passwordControl(): AbstractControl {
+    return this.loginForm.get('password')!;
+  }
+
   public handleSubmitForm(): void {
     if (this.loginForm.valid) {
       const credentials: ILoginUser = {
