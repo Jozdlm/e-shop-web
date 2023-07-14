@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import {
   customEmailValidator,
@@ -31,6 +31,10 @@ export class SignupPageComponent {
     },
     { validators: passwordMatchValidator }
   );
+
+  public getFormControl(controlName: string): AbstractControl {
+    return this.signupForm.get(controlName)!;
+  }
 
   public handleSubmit(): void {
     if (this.signupForm.valid) {
