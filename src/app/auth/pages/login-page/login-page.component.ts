@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
@@ -23,6 +23,8 @@ export class LoginPageComponent {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  public loginError = signal<boolean>(false);
+
   public get emailControl(): AbstractControl {
     return this.loginForm.get('email')!;
   }
@@ -44,11 +46,8 @@ export class LoginPageComponent {
         .login(credentials)
         .pipe(tap((_) => this.loginForm.reset()))
         .subscribe({
-          next: (_) => console.log('Sesión iniciada correctamente'),
-          error: (error) =>
-            console.log(
-              `Ha ocurrido un error: ${error.code}, ${error.message}`
-            ),
+          next: (_) => this.loginError.set(false),
+          error: (_) => this.loginError.set(true)
         });
     }
   }

@@ -59,15 +59,25 @@
     <app-button
       [fullWidth]="true"
       [disabled]="loginForm.invalid && loginForm.touched"
-      class="mb-6"
+      class="mb-2"
     >
       Iniciar Sesión
     </app-button>
-    <p class="text-center">
-      ¿No tienes cuenta?
-      <a routerLink="/auth/signup" class="text-green-800 underline"
-        >Crear una cuenta</a
-      >
-    </p>
+
+    <ng-container *ngIf="loginError()">
+      <div class="rounded bg-red-100 p-4">
+        <p class="text-center text-red-800">
+          Correo y/o Contraseña incorrectos, por favor verifica la información.
+        </p>
+      </div>
+    </ng-container>
+
   </form>
+
+  <p class="text-center">
+    ¿No tienes cuenta?
+    <a routerLink="/auth/signup" class="text-green-800 underline"
+      >Crear una cuenta</a
+    >
+  </p>
 </div>
