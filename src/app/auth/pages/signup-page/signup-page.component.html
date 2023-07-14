@@ -48,6 +48,19 @@
           formControlName="last_name"
           class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
         />
+
+        <ng-container *ngIf="getFormControl('last_name').invalid && getFormControl('last_name').touched">
+          <div *ngIf="getFormControl('last_name')?.hasError('required')">
+            <p class="mt-2 text-sm text-red-700">El apellido es requerido</p>
+          </div>
+          <div *ngIf="getFormControl('last_name')?.hasError('minlength')">
+            <p class="mt-2 text-sm text-red-700">
+              El apellido debe tener al menos
+              {{ getFormControl('last_name').getError("minlength").requiredLength }}
+              caracteres
+            </p>
+          </div>
+        </ng-container>
       </div>
     </div>
     <div class="flex flex-col">
