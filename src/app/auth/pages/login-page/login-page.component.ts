@@ -32,6 +32,8 @@ export class LoginPageComponent {
   }
 
   public handleSubmitForm(): void {
+    this.loginForm.markAllAsTouched();
+
     if (this.loginForm.valid) {
       const credentials: ILoginUser = {
         email: this.loginForm.value.email!,
