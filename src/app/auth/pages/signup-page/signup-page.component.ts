@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -10,6 +10,7 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { ICreateUser } from '../../auth';
 import { tap } from 'rxjs';
+import { AuthError } from '@angular/fire/auth';
 
 @Component({
   standalone: true,
@@ -31,6 +32,8 @@ export class SignupPageComponent {
     { validators: passwordMatchValidator }
   );
 
+  public signupError = signal<boolean>(false);
+
   public getFormControl(controlName: string): AbstractControl {
     return this.signupForm.get(controlName)!;
   }
@@ -48,7 +51,16 @@ export class SignupPageComponent {
       this._authService
         .signup(newUser)
         .pipe(tap((_) => this.signupForm.reset()))
-        .subscribe((_) => console.log('registrado correctamente'));
+        .subscribe({
+          next: (_) => this.signupError.set(false),
+          error: (error: AuthError) => this.handleErrorSignup(error) 
+        });
+    }
+  }
+
+  public handleErrorSignup(error: AuthError) {
+    if(error.code == 'auth/email-already-exists') {
+      this.signupError.set(true);
     }
   }
 }

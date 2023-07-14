@@ -146,11 +146,21 @@
     <app-button [fullWidth]="true" [disabled]="!signupForm.valid" class="mb-6">
       Crear Cuenta
     </app-button>
-    <p class="text-center">
-      ¿Ya tienes cuenta?
-      <a routerLink="/auth/login" class="text-green-800 underline"
-        >Iniciar Sesión</a
-      >
-    </p>
+
+    <ng-container *ngIf="signupError()">
+      <div class="rounded bg-red-100 p-4">
+        <p class="text-center text-red-800 text-sm">
+          El correo electronico que proveíste ya está asociado a una cuenta.
+        </p>
+      </div>
+    </ng-container>
+
   </form>
+
+  <p class="text-center">
+    ¿Ya tienes cuenta?
+    <a routerLink="/auth/login" class="text-green-800 underline"
+      >Iniciar Sesión</a
+    >
+  </p>
 </div>
