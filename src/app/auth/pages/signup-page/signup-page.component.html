@@ -74,6 +74,15 @@
         formControlName="email"
         class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
       />
+
+      <ng-container *ngIf="getFormControl('email').invalid && getFormControl('email').touched">
+        <div *ngIf="getFormControl('email')?.hasError('required')">
+          <p class="mt-2 text-sm text-red-700">El correo electronico es requerido</p>
+        </div>
+        <div *ngIf="getFormControl('email')?.hasError('email')">
+          <p class="mt-2 text-sm text-red-700">El correo debe ser valido</p>
+        </div>
+      </ng-container>
     </div>
     <div class="flex gap-x-4">
       <div class="flex flex-col">
