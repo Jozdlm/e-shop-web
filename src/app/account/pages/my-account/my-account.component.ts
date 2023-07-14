@@ -10,10 +10,11 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { User } from '@angular/fire/auth';
+import { UserPhotoDirective } from 'src/app/common/directives/user-photo.directive';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, UserPhotoDirective],
   templateUrl: './my-account.component.html',
 })
 export class MyAccountComponent {
