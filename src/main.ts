@@ -12,6 +12,7 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 // Firebase
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { APP_ROUTES } from './app/app.routes';
 
@@ -24,7 +25,8 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       BrowserModule,
       provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-      provideAuth(() => getAuth())
+      provideAuth(() => getAuth()),
+      provideFirestore(() => getFirestore())
     ),
     provideRouter(APP_ROUTES, withComponentInputBinding()),
     provideHttpClient(withInterceptorsFromDi())
