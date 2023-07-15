@@ -1,0 +1,83 @@
+<div class="mx-auto grid w-96 grid-cols-1">
+  <h1 class="mb-8 justify-self-center text-2xl">Iniciar Sesión</h1>
+
+  <form
+    autocomplete="off"
+    class="mb-8 flex flex-col gap-y-4"
+    [formGroup]="loginForm"
+    (ngSubmit)="handleSubmitForm()"
+  >
+    <div class="flex flex-col">
+      <label for="email" class="mb-1.5 text-sm font-medium text-neutral-800"
+        >Correo</label
+      >
+      <input
+        type="text"
+        name="email"
+        id="email"
+        formControlName="email"
+        class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+      />
+
+      <ng-container *ngIf="emailControl.invalid && emailControl.touched">
+        <div *ngIf="emailControl?.hasError('required')">
+          <p class="mt-2 text-sm text-red-700">
+            El correo electronico es obligatorio
+          </p>
+        </div>
+        <div *ngIf="emailControl?.hasError('email')">
+          <p class="mt-2 text-sm text-red-700">
+            El correo electronico debe ser valido
+          </p>
+        </div>
+      </ng-container>
+    </div>
+    <div class="flex flex-col">
+      <label for="password" class="mb-1.5 text-sm font-medium text-neutral-800"
+        >Contraseña</label
+      >
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        class="rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:outline-green-700"
+      />
+
+      <ng-container *ngIf="passwordControl.invalid && passwordControl.touched">
+        <div *ngIf="passwordControl?.hasError('required')">
+          <p class="mt-2 text-sm text-red-700">La contraseña es obligatoria</p>
+        </div>
+        <div *ngIf="passwordControl?.hasError('minlength')">
+          <p class="mt-2 text-sm text-red-700">
+            La contraseña debe tener al menos
+            {{ passwordControl.getError("minlength").requiredLength }}
+          </p>
+        </div>
+      </ng-container>
+    </div>
+    <app-button
+      [fullWidth]="true"
+      [disabled]="loginForm.invalid && loginForm.touched"
+      class="mb-2"
+    >
+      Iniciar Sesión
+    </app-button>
+
+    <ng-container *ngIf="loginError()">
+      <div class="rounded bg-red-100 p-4">
+        <p class="text-center text-red-800 text-sm">
+          Correo y/o Contraseña incorrectos, por favor verifica la información.
+        </p>
+      </div>
+    </ng-container>
+
+  </form>
+
+  <p class="text-center">
+    ¿No tienes cuenta?
+    <a routerLink="/auth/signup" class="text-green-800 underline"
+      >Crear una cuenta</a
+    >
+  </p>
+</div>

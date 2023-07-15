@@ -1,30 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { IUser } from '../user';
-import { map, Observable } from 'rxjs';
+import { IUpdateAccount } from '../user';
+import { updateEmail, updateProfile } from '@angular/fire/auth';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private _http: HttpClient = inject(HttpClient);
-  private _apiUrl: string = 'http://localhost:3000';
+  private _auth: AuthService = inject(AuthService);
 
   constructor() {}
 
-  public getUserById(id: string): Observable<IUser> {
-    return this._http.get<IUser>(`${this._apiUrl}/users/${id}`);
-  }
+  public updateUser(newValues: IUpdateAccount): void {
+    const user = this._auth.user();
 
-  public updateUser(id: string, userValues: IUser): Observable<IUser> {
-    return this._http.put<IUser>(`${this._apiUrl}/users/${id}`, userValues);
-  }
+    if (!user) return;
 
-  public getUserByEmail(email: string): Observable<IUser> {
-    return this._http
-      .get<IUser[]>(`${this._apiUrl}/users`, {
-        params: { email },
-      })
-      .pipe(map((users) => users[0]));
+    updateEmail(user, newValues.email)
+    updateProfile(user, { displayName: newValues.full_name })
   }
 }

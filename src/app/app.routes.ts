@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './store/pages/home-page/home-page.component';
+import { authGuard, isLoggedGuard } from './auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -20,11 +21,14 @@ export const APP_ROUTES: Routes = [
       ),
   },
   {
-    path: 'my-account',
-    loadComponent: () =>
-      import('./account/pages/my-account/my-account.component').then(
-        (c) => c.MyAccountComponent
-      ),
+    path: 'account',
+    canActivate: [authGuard],
+    loadChildren: () => import('./account/account.routes')
+  },
+  {
+    path: 'auth',
+    canActivate: [isLoggedGuard],
+    loadChildren: () => import('./auth/auth.routes')
   },
   { path: '**', redirectTo: '' },
 ];

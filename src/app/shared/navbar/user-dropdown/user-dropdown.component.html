@@ -1,4 +1,4 @@
-<app-dropdown pageUrl="my-account" [isMenu]="true">
+<app-dropdown pageUrl="account/profile" [isMenu]="true">
   <div id="toggle-content">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,20 +23,20 @@
         class="h-10 w-10 rounded-full"
       />
       <div class="overflow-hidden">
-        <p class="text-sm text-neutral-800 font-semibold">{{user()?.first_name}} {{user()?.last_name}}</p>
+        <p class="text-sm text-neutral-800 font-semibold">{{user()?.displayName}}</p>
         <p class="text-sm text-neutral-600 truncate">{{user()?.email}}</p>
       </div>
     </div>
     <div>
       <a
         *ngFor="let item of menuItems"
-        [routerLink]="item.link"
+        [routerLink]="[baseLink, item.link]"
         class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
       >
         <span class="text-sm">{{ item.placeholder }}</span>
       </a>
     </div>
-    <a class="block cursor-pointer px-4 py-2 hover:bg-gray-100">
+    <a class="block cursor-pointer px-4 py-2 hover:bg-gray-100" (click)="logout()">
       <span class="text-sm">Cerrar Sesión</span>
     </a>
   </div>

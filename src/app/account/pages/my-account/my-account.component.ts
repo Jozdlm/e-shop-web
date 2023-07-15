@@ -1,4 +1,3 @@
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -10,11 +9,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
-import { IUser } from '../../user';
+import { User } from '@angular/fire/auth';
+import { UserPhotoDirective } from 'src/app/common/directives/user-photo.directive';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, UserPhotoDirective],
   templateUrl: './my-account.component.html',
 })
 export class MyAccountComponent {
@@ -22,47 +22,30 @@ export class MyAccountComponent {
   private _userService: UserService = inject(UserService);
   private _fb: FormBuilder = inject(FormBuilder);
 
-  public userId = this._authService.currentSession().id;
-  public user = toSignal(this._userService.getUserById(this.userId));
+  public user = this._authService.user;
 
   public profileForm!: FormGroup;
 
   constructor() {
     effect(() => {
-      if (this.user()?.id) {
+      if (this.user()) {
         this.createFormGroup(this.user()!);
       }
     });
   }
 
-  public createFormGroup(user: IUser): void {
-    const { first_name, last_name, email } = user;
-    const { code, number } = user.phone;
-    const { country, state, city, exact_address } = user.address;
+  public createFormGroup(user: User): void {
+    const { displayName, email } = user;
 
     this.profileForm = this._fb.nonNullable.group({
-      first_name: [first_name, Validators.required],
-      last_name: [last_name, Validators.required],
+      full_name: [displayName, [Validators.required, Validators.minLength(6)]],
       email: [email, [Validators.required, Validators.email]],
-      phone: this._fb.nonNullable.group({
-        code: [code, Validators.required],
-        number: [number, [Validators.required, Validators.min(0)]],
-      }),
-      address: this._fb.nonNullable.group({
-        country: [country, Validators.required],
-        state: [state, Validators.required],
-        city: [city, Validators.required],
-        exact_address: [exact_address, Validators.required],
-      }),
     });
   }
 
   public updateUserValues(): void {
     if(!this.profileForm.valid) return;
 
-    this._userService.updateUser(this.userId, this.profileForm.value)
-      .subscribe({
-        next: (_) => console.log('usuario modificado correctamente')
-      });
+    this._userService.updateUser(this.profileForm.value);
   }
 }

@@ -245,70 +245,29 @@
   "my_wishlist": [
     {
       "id": "1",
-      "items": [
-        {
-          "id": "e1e1e837-68e9-466b-8c6a-bf0c1a653b27",
-          "product_id": 4,
-          "name": "Pera Amarilla Caja 20u",
-          "description": "Peras amarillas de alta calidad, dulces y jugosas, en una caja de 20 unidades. Estas peras tienen una textura suave y un sabor deliciosamente fragante. Son ideales para disfrutar solas o como ingrediente en postres y ensaladas.",
-          "type": "Caja",
-          "price": 19.99,
-          "img_url": ""
-        }
-      ],
-      "count": 1
+      "items": [],
+      "count": 0
     }
   ],
   "my_cart": [
     {
-      "items": [
-        {
-          "id": "d632fd27-64f8-4a74-a308-fbed53b682e4",
-          "product_id": 1,
-          "name": "Manzana Verde Caja 100u",
-          "img_url": "https://previews.123rf.com/images/photoauris/photoauris1004/photoauris100400035/6817172-cassa-di-legno-pieno-di-mele-isolato-3d-rendering-.jpg",
-          "type": "Caja",
-          "unit_price": 89.76,
-          "quantity": 1,
-          "ammount": 179.52
-        },
-        {
-          "id": "04bfdb7a-42df-4f80-b51f-6fdaf7795e7a",
-          "product_id": 2,
-          "name": "Manzana Roja Caja 50u",
-          "img_url": "",
-          "type": "Caja",
-          "unit_price": 45.99,
-          "quantity": 1,
-          "ammount": 45.99
-        },
-        {
-          "id": "c36f0897-cdd5-4dbd-8de2-4d0174f2aeed",
-          "product_id": 4,
-          "name": "Pera Amarilla Caja 20u",
-          "img_url": "",
-          "type": "Caja",
-          "unit_price": 19.99,
-          "quantity": 1,
-          "ammount": 19.99
-        }
-      ],
-      "units_count": 3,
-      "subtotal": 155.74,
+      "items": [],
+      "units_count": 0,
+      "subtotal": 0,
       "shipping": 50,
-      "tax": 18.6888,
-      "total": 174.42880000000002,
+      "tax": 0,
+      "total": 0,
       "id": "1"
     }
   ],
   "business": {
-    "name": "El Huerto Verde"
+    "name": "Librería La Joya"
   },
-  "users": [
+  "shipping_addresses": [
     {
       "first_name": "Jozuan",
       "last_name": "Martínez",
-      "email": "jmprueba@example.com",
+      "user_id": "98765",
       "phone": {
         "code": 502,
         "number": "99999998"
@@ -323,11 +282,9 @@
     },
     {
       "id": 2,
+      "user_id": "12345",
       "first_name": "Vannia",
       "last_name": "Lara",
-      "email": "vannlara@example.com",
-      "email_verified": false,
-      "img_url": "https://randomuser.me/api/portraits/women/90.jpg",
       "phone": {
         "code": 502,
         "number": "11111111"
