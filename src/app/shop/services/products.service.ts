@@ -10,9 +10,12 @@ import { IProduct } from 'src/app/store/interfaces/product';
 export class ProductsService {
   private _firestore: Firestore = inject(Firestore);
   private _productsCollection = collection(this._firestore, 'products');
+  private _products$ = collectionData(this._productsCollection, {
+    idField: 'id',
+  });
 
   public products: Signal<IProduct[]> = toSignal(
-    collectionData(this._productsCollection) as Observable<IProduct[]>,
+    this._products$ as Observable<IProduct[]>,
     {
       initialValue: [] as IProduct[],
     }
