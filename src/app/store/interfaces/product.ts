@@ -4,6 +4,7 @@ export interface IProduct {
   description: string;
   price: number;
   img_url: string;
+  in_stock: boolean;
   options: ProductOption[]
 }
 
