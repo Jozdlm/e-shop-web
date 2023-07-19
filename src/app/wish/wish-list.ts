@@ -9,7 +9,6 @@ export interface IWishItem {
   product_id: number;
   name: string;
   description: string;
-  type: string;
   price: number;
   img_url: string;
 }
