@@ -63,7 +63,7 @@ export class ShoppingCartService {
 
   public addToCart(addItemCart: IAddItemCart): void {
     const carItem = this.cartItems().find(
-      (item) => item.product_id == addItemCart.product_id && item.type == addItemCart.type
+      (item) => item.product_id == addItemCart.product_id
     );
 
     const newItem: ICartItem = {
