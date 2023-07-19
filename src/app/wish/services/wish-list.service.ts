@@ -58,9 +58,9 @@ export class WishListService {
     return this._http.put<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`, wishList);
   }
 
-  public addToWish(product: IProduct, option: ProductOption): void {
+  public addToWish(product: IProduct): void {
     const currItem = this._wishItems().find(
-      (i) => i.product_id == product.id && i.type == option.type
+      (i) => i.product_id == product.id
     );
 
     if (currItem) return;
@@ -70,8 +70,7 @@ export class WishListService {
       product_id: product.id,
       name: product.name,
       description: product.description,
-      type: option?.type || product.options[0].type,
-      price: option?.price || product.options[0].price,
+      price: product.price,
       img_url: product.img_url,
     };
 

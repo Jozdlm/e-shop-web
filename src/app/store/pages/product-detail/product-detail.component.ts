@@ -31,26 +31,20 @@ export class ProductDetailComponent {
       });
   }
 
-  public chooseOption(option: ProductOption): void {
-    if (this.selectedOption()?.type == option.type) return;
-
-    this.selectedOption.set(option);
-  }
-
   public addToCart(): void {
-    if (this.product && this.selectedOption()) {
+    if (this.product) {
       this._cartService.addToCart({
         product_id: this.product.id,
         name: this.product.name,
         img_url: this.product.img_url,
-        unit_price: this.selectedOption()!.price
+        unit_price: this.product.price
       });
     }
   }
 
   public addToWish(): void {
-    if(this.product && this.selectedOption()) {
-      this._wishService.addToWish(this.product, this.selectedOption()!);
+    if(this.product) {
+      this._wishService.addToWish(this.product);
     }
   }
 }
