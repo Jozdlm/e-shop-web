@@ -12,8 +12,6 @@ export class ShoppingCartService {
   private _cartService: CartService = inject(CartService);
   private _authService: AuthService = inject(AuthService);
 
-  private _userId: string = this._authService.currentSession().id;
-
   public shoppingCart = computed<IShoppingCart>(() => ({
     items: this.cartItems(),
     units_count: this.cartUnits(),
@@ -49,16 +47,28 @@ export class ShoppingCartService {
   });
 
   constructor() {
-    this._cartService.getCartById(this._userId).subscribe({
-      next: (cart) => this.cartItems.set(cart.items),
-      error: (_) => this.cartItems.set([]),
-    });
+    effect(() => {
+      const userId = this._authService.user()?.uid;
+      this.getCartFromDB(userId);
+    })
 
     effect(() => {
       const cart = this.shoppingCart();
-
-      this._cartService.saveShoppingCart(cart, this._userId).subscribe();
+      this._cartService.saveShoppingCart(cart).subscribe();
     });
+  }
+
+  public getCartFromDB(userId: string | undefined): void {
+    if(!userId) {
+      JSON.stringify(localStorage.getItem('cart') || []);
+
+      this.cartItems.set([]);
+    } else {
+      this._cartService.getCartById(userId).subscribe({
+        next: (cart) => this.cartItems.set(cart.items),
+        error: (_) => this.cartItems.set([]),
+      });
+    }
   }
 
   public addToCart(addItemCart: IAddItemCart): void {
