@@ -83,7 +83,6 @@ export class WishListService {
       product_id: item.product_id,
       name: item.name,
       img_url: item.img_url,
-      type: item.type,
       unit_price: item.price,
     });
 
