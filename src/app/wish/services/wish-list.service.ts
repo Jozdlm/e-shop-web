@@ -69,7 +69,6 @@ export class WishListService {
       id: uuid(),
       product_id: product.id,
       name: product.name,
-      description: product.description,
       price: product.price,
       img_url: product.img_url,
     };
