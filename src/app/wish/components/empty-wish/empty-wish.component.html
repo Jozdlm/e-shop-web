@@ -1,9 +1,19 @@
 <div class="mb-10 flex h-[240px] w-full items-center justify-center">
   <div class="text-center">
     <p class="mb-2 text-xl">Tu lista de deseos está vacía</p>
-    <p class="mb-8 text-sm text-neutral-800">
-      Si gustas ve a la tienda y agrega algún producto para verlo aquí
-    </p>
-    <app-button routerLink="">Ir a la tienda</app-button>
+
+    <ng-container *ngIf="user(); else isNotLogged">
+      <p class="mb-8 text-sm text-neutral-800">
+        Si gustas ve a la tienda y agrega algún producto para verlo aquí
+      </p>
+      <app-button routerLink="">Ir a la tienda</app-button>
+    </ng-container>
+    
+    <ng-template #isNotLogged>
+      <p class="mb-8 text-sm text-neutral-800">
+        Si ya habías agregado anteriormente un producto a tu lista, por favor inicia sesión.
+      </p>
+      <app-button routerLink="/auth/login">Iniciar Sesión</app-button>
+    </ng-template>
   </div>
 </div>
