@@ -1,8 +1,8 @@
 import { Component, inject, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProduct } from 'src/app/store/interfaces/product';
-import { ProductCardComponent } from 'src/app/store/components/product-card/product-card.component';
 import { ProductsService } from "src/app/shop/services/products.service";
+import { ProductCardComponent } from 'src/app/shop/components/product-card/product-card.component';
 
 @Component({
   selector: 'app-home-page',
