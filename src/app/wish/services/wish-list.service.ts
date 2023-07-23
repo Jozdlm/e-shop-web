@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class WishListService {
   private _apiUrl: string = environment.apiUrl;
   private _cartService: ShoppingCartService = inject(ShoppingCartService);
   private _wishItems = signal<IWishItem[]>([]);
+  private _authService: AuthService = inject(AuthService);
 
   public wishList = computed<IWishList>(() => ({
     id: '1',
@@ -29,8 +31,17 @@ export class WishListService {
     });
 
     effect(() => {
-      this.saveWishList(this.wishList()).subscribe();
+      if (this._authService.user()) {
+        this.saveWishList(this.wishList()).subscribe();
+      } else {
+        this._wishItems.set(this.getLocalWishList());
+      }     
     });
+  }
+
+  public getLocalWishList(): IWishItem[] {
+    const localWish = localStorage.getItem('wish-list') || '[]';
+    return JSON.parse(localWish) as IWishItem[];
   }
 
   public saveWishList(wishList: IWishList): Observable<IWishList> {
