@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { CartDropdownComponent } from './cart-dropdown/cart-dropdown.component';
 import { CommonModule } from '@angular/common';
 import { WishlistDropdownComponent } from './wishlist-dropdown/wishlist-dropdown.component';
 import { RouterModule } from '@angular/router';
@@ -7,6 +6,7 @@ import { UserDropdownComponent } from './user-dropdown/user-dropdown.component';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AppService } from 'src/app/app.service';
 import { SearchInputComponent } from 'src/app/shop/components/search-input/search-input.component';
+import { CartDropdownComponent } from 'src/app/shop/components/cart-dropdown/cart-dropdown.component';
 
 @Component({
   selector: 'app-navbar',
