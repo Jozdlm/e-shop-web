@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 import { IWishItem, IWishList } from '../wish-list';
-import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
+import { IProduct } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
