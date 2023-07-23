@@ -9,9 +9,8 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./cart/cart.routes')
   },
   {
-    path: 'wish-list',
-    loadComponent: () => import('./wish/pages/wish-list-page/wish-list-page.component')
-      .then(c => c.WishListPageComponent)
+    path: 'wish',
+    loadChildren: () => import('./wish/wish.routes')
   },
   {
     path: 'product/:id',
