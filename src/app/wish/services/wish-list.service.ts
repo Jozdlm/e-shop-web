@@ -16,7 +16,6 @@ export class WishListService {
   private _http: HttpClient = inject(HttpClient);
   private _apiUrl: string = environment.apiUrl;
   private _cartService: ShoppingCartService = inject(ShoppingCartService);
-  private _wishItems = signal<IWishItem[]>([]);
   private _authService: AuthService = inject(AuthService);
   private _firestore: Firestore = inject(Firestore);
   private _wish = signal<IWishList>({
@@ -82,7 +81,7 @@ export class WishListService {
   }
 
   public addToWish(product: IProduct): void {
-    const currItem = this._wishItems().find(
+    const currItem = this._wish().items.find(
       (i) => i.product_id == product.id
     );
 
