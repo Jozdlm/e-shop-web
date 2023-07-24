@@ -19,12 +19,13 @@ export class WishListService {
   private _wishItems = signal<IWishItem[]>([]);
   private _authService: AuthService = inject(AuthService);
   private _firestore: Firestore = inject(Firestore);
+  private _wish = signal<IWishList>({
+    id: '',
+    items: [],
+    count: 0
+  })
 
-  public wishList = computed<IWishList>(() => ({
-    id: '1',
-    items: this._wishItems(),
-    count: this._wishItems().length,
-  }));
+  public wishList = computed<IWishList>(() => this._wish());
 
   constructor() {
     effect(() => {
@@ -45,11 +46,12 @@ export class WishListService {
     combineLatest([wish$, wishItems$])
       .pipe(
         map(([wishInfo, wishItems]) => {
-          return {...wishInfo, items: wishItems}
+          const wish = {...wishInfo, count: wishItems.length, items: wishItems};
+          return wish as IWishList;
         })
       )
     .subscribe({
-      next: (value) => console.log(value),
+      next: (value) => this._wish.set(value),
       error: (error) => console.log(error)
     });
   }
