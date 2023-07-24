@@ -114,9 +114,10 @@ export class WishListService {
   }
 
   public removeFromWish(itemId: string): void {
-    this._wishItems.update((items) => {
-      return items.filter((i) => i.id !== itemId);
-    });
+    this._wish.mutate((wish) => {
+      wish.items = wish.items.filter((i) => i.id !== itemId);
+      wish.count = wish.items.length;
+    })
   }
 
   public clearWishList(): void {
