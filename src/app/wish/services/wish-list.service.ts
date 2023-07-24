@@ -3,10 +3,11 @@ import { v4 as uuid } from 'uuid';
 import { IWishItem, IWishList } from '../wish-list';
 import { IProduct } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, combineLatest, map, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Firestore, collection, collectionData, doc, docData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class WishListService {
   private _cartService: ShoppingCartService = inject(ShoppingCartService);
   private _wishItems = signal<IWishItem[]>([]);
   private _authService: AuthService = inject(AuthService);
+  private _firestore: Firestore = inject(Firestore);
 
   public wishList = computed<IWishList>(() => ({
     id: '1',
@@ -25,23 +27,31 @@ export class WishListService {
   }));
 
   constructor() {
-    this.getWishById(this.wishList().id).subscribe({
-      next: (wishList) => this._wishItems.set(wishList.items),
-      error: (_) => this._wishItems.set([]),
-    });
-
     effect(() => {
       if (this._authService.user()) {
-        this.saveWishList(this.wishList()).subscribe();
-      } else {
-        this._wishItems.set(this.getLocalWishList());
-      }     
+        const userEmail = this._authService.user()?.email || '';
+        this.getUserWishList(userEmail);
+      }    
     });
   }
 
-  public getLocalWishList(): IWishItem[] {
-    const localWish = localStorage.getItem('wish-list') || '[]';
-    return JSON.parse(localWish) as IWishItem[];
+  public getUserWishList(userEmail: string): void {
+    const wishRef = doc(this._firestore, 'wish-list', userEmail);
+    const wishItemsRef = collection(wishRef, 'items');
+    
+    const wish$ = docData(wishRef, {idField: 'id'});
+    const wishItems$ = collectionData(wishItemsRef, {idField: 'id'});
+
+    combineLatest([wish$, wishItems$])
+      .pipe(
+        map(([wishInfo, wishItems]) => {
+          return {...wishInfo, items: wishItems}
+        })
+      )
+    .subscribe({
+      next: (value) => console.log(value),
+      error: (error) => console.log(error)
+    });
   }
 
   public saveWishList(wishList: IWishList): Observable<IWishList> {
