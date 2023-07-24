@@ -121,6 +121,9 @@ export class WishListService {
   }
 
   public clearWishList(): void {
-    this._wishItems.set([]);
+    this._wish.mutate((wish) => {
+      wish.items = [];
+      wish.count = 0;
+    })
   }
 }
