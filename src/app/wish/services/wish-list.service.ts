@@ -96,7 +96,10 @@ export class WishListService {
       img_url: product.img_url,
     };
 
-    this._wishItems.mutate((items) => items.push(wishItem));
+    this._wish.mutate((wish) => {
+      const length = wish.items.push(wishItem);
+      wish.count = length;
+    });
   }
 
   public moveToCart(item: IWishItem): void {
