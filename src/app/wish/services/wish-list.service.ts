@@ -1,13 +1,12 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { v4 as uuid } from 'uuid';
-import { IWishItem, IWishList, WishListDto } from '../wish-list';
+import { IWishItem, IWishList, WishItemDto, WishListDto } from '../wish-list';
 import { IProduct } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable, combineLatest, map, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Firestore, collection, collectionData, doc, docData, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, doc, docData, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -69,18 +68,18 @@ export class WishListService {
 
     if (currItem) return;
 
-    const wishItem: IWishItem = {
-      id: uuid(),
+    const wishItem: WishItemDto = {
       product_id: product.id,
       name: product.name,
       price: product.price,
       img_url: product.img_url,
     };
 
-    this._wish.mutate((wish) => {
-      const length = wish.items.push(wishItem);
-      wish.count = length;
-    });
+    const userEmail = this._authService.user()?.email || '';
+    const docRef = doc(this._firestore, 'wish-list', userEmail);
+    const itemsRef = collection(docRef, 'items');
+
+    addDoc(itemsRef, wishItem);
   }
 
   public moveToCart(item: IWishItem): void {
