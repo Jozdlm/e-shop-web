@@ -6,7 +6,7 @@ import { Observable, combineLatest, map, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Firestore, addDoc, collection, collectionData, doc, docData, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -94,10 +94,11 @@ export class WishListService {
   }
 
   public removeFromWish(itemId: string): void {
-    this._wish.mutate((wish) => {
-      wish.items = wish.items.filter((i) => i.id !== itemId);
-      wish.count = wish.items.length;
-    })
+    const userEmail = this._authService.user()?.email || '';
+    const docRef = doc(this._firestore, 'wish-list', userEmail);
+
+    const itemRef = doc(docRef, 'items', itemId);
+    deleteDoc(itemRef);
   }
 
   public clearWishList(): void {
