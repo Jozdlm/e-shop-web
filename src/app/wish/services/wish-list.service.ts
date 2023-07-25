@@ -91,9 +91,6 @@ export class WishListService {
   }
 
   public clearWishList(): void {
-    this._wish.mutate((wish) => {
-      wish.items = [];
-      wish.count = 0;
-    })
+    this._wish().items.forEach(item => this.removeFromWish(item.id));
   }
 }
