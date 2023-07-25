@@ -11,3 +11,5 @@ export interface IWishItem {
   price: number;
   img_url: string;
 }
+
+export type WishListDto = Omit<IWishList, 'id'>;
