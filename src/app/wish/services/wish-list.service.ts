@@ -1,12 +1,12 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { IWishItem, IWishList, WishItemDto, WishListDto } from '../wish-list';
+import { IWishItem, IWishList, WishItemDto } from '../wish-list';
 import { IProduct } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
-import { Observable, combineLatest, map, switchMap } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, setDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -52,13 +52,6 @@ export class WishListService {
       next: (value) => this._wish.set(value),
       error: (error) => console.log(error)
     });
-  }
-
-  public saveUserWishList(wishList: WishListDto): Promise<void> {
-    const userEmail = this._authService.user()?.email || '';
-    const docRef = doc(this._firestore, 'wish-list', userEmail);
-
-    return setDoc(docRef, wishList);
   }
 
   public addToWish(product: IProduct): void {
