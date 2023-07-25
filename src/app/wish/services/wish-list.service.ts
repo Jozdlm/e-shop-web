@@ -1,13 +1,13 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { v4 as uuid } from 'uuid';
-import { IWishItem, IWishList } from '../wish-list';
+import { IWishItem, IWishList, WishListDto } from '../wish-list';
 import { IProduct } from 'src/app/store/interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Observable, combineLatest, map, switchMap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Firestore, collection, collectionData, doc, docData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, docData, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -55,29 +55,11 @@ export class WishListService {
     });
   }
 
-  public saveWishList(wishList: IWishList): Observable<IWishList> {
-    const wishId: string = wishList.id;
-    return this.getWishById(wishId).pipe(
-      switchMap((list) => {
-        if (!list.id) {
-          return this.createWishList(wishList);
-        } else {
-          return this.updateWishList(list.id, wishList);
-        }
-      })
-    );
-  }
+  public saveUserWishList(wishList: WishListDto): Promise<void> {
+    const userEmail = this._authService.user()?.email || '';
+    const docRef = doc(this._firestore, 'wish-list', userEmail);
 
-  public getWishById(wishId: string): Observable<IWishList> {
-    return this._http.get<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`);
-  }
-
-  public createWishList(wishList: IWishList): Observable<IWishList> {
-    return this._http.post<IWishList>(`${this._apiUrl}/my_wishlist`, wishList);
-  }
-
-  public updateWishList(wishId: string, wishList: IWishList): Observable<IWishList> {
-    return this._http.put<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`, wishList);
+    return setDoc(docRef, wishList);
   }
 
   public addToWish(product: IProduct): void {
