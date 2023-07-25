@@ -13,3 +13,4 @@ export interface IWishItem {
 }
 
 export type WishListDto = Omit<IWishList, 'id'>;
+export type WishItemDto = Omit<IWishItem, 'id'>;
