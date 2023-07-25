@@ -5,9 +5,9 @@ import {
   collection,
   collectionData,
   doc,
-  getDoc,
+  docData,
 } from '@angular/fire/firestore';
-import { Observable, from, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IProduct } from 'src/app/store/interfaces/product';
 
 @Injectable({
@@ -29,12 +29,10 @@ export class ProductsService {
 
   constructor() {}
 
-  public getProductById(productId: string) {
+  public getProductById(productId: string): Observable<IProduct> {
     const productRef = doc(this._firestore, 'products', productId);
-    const product$ = from(getDoc(productRef)).pipe(
-      map((value) => value.data() as IProduct | undefined)
-    );
+    const product$ = docData(productRef, { idField: 'id' });
 
-    return product$;
+    return product$ as Observable<IProduct>;
   }
 }
