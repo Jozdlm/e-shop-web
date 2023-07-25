@@ -1,9 +1,7 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { IWishItem, IWishList, WishItemDto } from '../wish-list';
 import { IProduct } from 'src/app/store/interfaces/product';
-import { HttpClient } from '@angular/common/http';
 import { combineLatest, map } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData } from '@angular/fire/firestore';
@@ -12,8 +10,6 @@ import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData 
   providedIn: 'root',
 })
 export class WishListService {
-  private _http: HttpClient = inject(HttpClient);
-  private _apiUrl: string = environment.apiUrl;
   private _cartService: ShoppingCartService = inject(ShoppingCartService);
   private _authService: AuthService = inject(AuthService);
   private _firestore: Firestore = inject(Firestore);
