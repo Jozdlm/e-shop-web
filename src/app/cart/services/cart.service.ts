@@ -16,18 +16,6 @@ export class CartService {
 
   constructor() {}
 
-  public saveShoppingCart(cart: IShoppingCart, userId: string) {
-    return this.getCartById(userId).pipe(
-      switchMap(({id: cartId}) => {
-        if (cartId) {
-          return this.updateCart(cartId, cart);
-        } else {
-          return this.createCart(userId, cart);
-        }
-      })
-    );
-  }
-
   public getUserShoppingCart(userEmail: string): Observable<ICartItem[]> {
     const cartRef = doc(this._firestore, 'cart', userEmail);
     const cartItemsRef = collection(cartRef, 'items');
