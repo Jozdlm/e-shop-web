@@ -16,3 +16,5 @@ export interface IAddItemCart {
   img_url: string;
   unit_price: number;
 }
+
+export type ItemCartDto = Omit<ICartItem, 'id'>;
