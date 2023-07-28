@@ -48,27 +48,11 @@ export class ShoppingCartService {
 
   constructor() {
     effect(() => {
-      const userId = this._authService.user()?.uid;
-      this.getCartFromDB(userId);
+      if(this._authService.user()) {
+        const userEmail = this._authService.user()?.email || '';
+        this._cartService.getUserShoppingCart(userEmail);
+      }
     })
-
-    effect(() => {
-      const cart = this.shoppingCart();
-      this._cartService.saveShoppingCart(cart).subscribe();
-    });
-  }
-
-  public getCartFromDB(userId: string | undefined): void {
-    if(!userId) {
-      JSON.stringify(localStorage.getItem('cart') || []);
-
-      this.cartItems.set([]);
-    } else {
-      this._cartService.getCartById(userId).subscribe({
-        next: (cart) => this.cartItems.set(cart.items),
-        error: (_) => this.cartItems.set([]),
-      });
-    }
   }
 
   public addToCart(addItemCart: IAddItemCart): void {
