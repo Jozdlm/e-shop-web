@@ -77,6 +77,8 @@ export class WishListService {
       name: item.name,
       img_url: item.img_url,
       unit_price: item.price,
+      quantity: 1,
+      ammount: item.price
     });
 
     this.removeFromWish(item.id);

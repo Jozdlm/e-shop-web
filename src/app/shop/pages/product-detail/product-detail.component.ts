@@ -35,7 +35,9 @@ export class ProductDetailComponent {
         product_id: this.product.id,
         name: this.product.name,
         img_url: this.product.img_url,
-        unit_price: this.product.price
+        unit_price: this.product.price,
+        quantity: 1,
+        ammount: this.product.price
       });
     }
   }
