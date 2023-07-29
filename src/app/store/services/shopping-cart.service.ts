@@ -1,6 +1,6 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
-import { IAddItemCart, IShoppingCart } from '../../cart/cart';
+import { IAddItemCart, IShoppingCart, ItemCartDto } from '../../cart/cart';
 import { v4 as uuid } from 'uuid';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -50,29 +50,23 @@ export class ShoppingCartService {
     effect(() => {
       if(this._authService.user()) {
         const userEmail = this._authService.user()?.email || '';
-        this._cartService.getUserShoppingCart(userEmail);
+        this._cartService.getUserShoppingCart(userEmail)
+          .subscribe({
+            next: (value) => this.cartItems.set(value)
+          });
       }
     })
   }
 
-  public addToCart(addItemCart: IAddItemCart): void {
+  public addToCart(itemCart: ItemCartDto): void {
     const carItem = this.cartItems().find(
-      (item) => item.product_id == addItemCart.product_id
+      (item) => item.product_id == itemCart.product_id
     );
-
-    const newItem: ICartItem = {
-      id: uuid(),
-      ...addItemCart,
-      quantity: 1,
-      ammount: addItemCart.unit_price,
-    };
 
     if (carItem) {
       this.increaseQuantity(carItem.id);
     } else {
-      this.cartItems.mutate((value) => {
-        value.push(newItem);
-      });
+      this._cartService.addItemToCart(itemCart);
     }
   }
 
