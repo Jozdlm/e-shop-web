@@ -1,81 +1,74 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { v4 as uuid } from 'uuid';
-import { IWishItem, IWishList } from '../wish-list';
-import { IProduct, ProductOption } from 'src/app/store/interfaces/product';
-import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { IWishItem, IWishList, WishItemDto } from '../wish-list';
+import { IProduct } from 'src/app/store/interfaces/product';
+import { combineLatest, map } from 'rxjs';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WishListService {
-  private _http: HttpClient = inject(HttpClient);
-  private _apiUrl: string = environment.apiUrl;
   private _cartService: ShoppingCartService = inject(ShoppingCartService);
-  private _wishItems = signal<IWishItem[]>([]);
+  private _authService: AuthService = inject(AuthService);
+  private _firestore: Firestore = inject(Firestore);
+  private _wish = signal<IWishList>({
+    id: '',
+    items: [],
+    count: 0
+  })
 
-  public wishList = computed<IWishList>(() => ({
-    id: '1',
-    items: this._wishItems(),
-    count: this._wishItems().length,
-  }));
+  public wishList = computed<IWishList>(() => this._wish());
 
   constructor() {
-    this.getWishById(this.wishList().id).subscribe({
-      next: (wishList) => this._wishItems.set(wishList.items),
-      error: (_) => this._wishItems.set([]),
-    });
-
     effect(() => {
-      this.saveWishList(this.wishList()).subscribe();
+      if (this._authService.user()) {
+        const userEmail = this._authService.user()?.email || '';
+        this.getUserWishList(userEmail);
+      }    
     });
   }
 
-  public saveWishList(wishList: IWishList): Observable<IWishList> {
-    const wishId: string = wishList.id;
-    return this.getWishById(wishId).pipe(
-      switchMap((list) => {
-        if (!list.id) {
-          return this.createWishList(wishList);
-        } else {
-          return this.updateWishList(list.id, wishList);
-        }
-      })
-    );
+  public getUserWishList(userEmail: string): void {
+    const wishRef = doc(this._firestore, 'wish-list', userEmail);
+    const wishItemsRef = collection(wishRef, 'items');
+    
+    const wish$ = docData(wishRef, {idField: 'id'});
+    const wishItems$ = collectionData(wishItemsRef, {idField: 'id'});
+
+    combineLatest([wish$, wishItems$])
+      .pipe(
+        map(([wishInfo, wishItems]) => {
+          const wish = {...wishInfo, count: wishItems.length, items: wishItems};
+          return wish as IWishList;
+        })
+      )
+    .subscribe({
+      next: (value) => this._wish.set(value),
+      error: (error) => console.log(error)
+    });
   }
 
-  public getWishById(wishId: string): Observable<IWishList> {
-    return this._http.get<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`);
-  }
-
-  public createWishList(wishList: IWishList): Observable<IWishList> {
-    return this._http.post<IWishList>(`${this._apiUrl}/my_wishlist`, wishList);
-  }
-
-  public updateWishList(wishId: string, wishList: IWishList): Observable<IWishList> {
-    return this._http.put<IWishList>(`${this._apiUrl}/my_wishlist/${wishId}`, wishList);
-  }
-
-  public addToWish(product: IProduct, option: ProductOption): void {
-    const currItem = this._wishItems().find(
-      (i) => i.product_id == product.id && i.type == option.type
+  public addToWish(product: IProduct): void {
+    const currItem = this._wish().items.find(
+      (i) => i.product_id == product.id
     );
 
     if (currItem) return;
 
-    const wishItem: IWishItem = {
-      id: uuid(),
+    const wishItem: WishItemDto = {
       product_id: product.id,
       name: product.name,
-      description: product.description,
-      type: option?.type || product.options[0].type,
-      price: option?.price || product.options[0].price,
+      price: product.price,
       img_url: product.img_url,
     };
 
-    this._wishItems.mutate((items) => items.push(wishItem));
+    const userEmail = this._authService.user()?.email || '';
+    const docRef = doc(this._firestore, 'wish-list', userEmail);
+    const itemsRef = collection(docRef, 'items');
+
+    addDoc(itemsRef, wishItem);
   }
 
   public moveToCart(item: IWishItem): void {
@@ -83,20 +76,23 @@ export class WishListService {
       product_id: item.product_id,
       name: item.name,
       img_url: item.img_url,
-      type: item.type,
       unit_price: item.price,
+      quantity: 1,
+      ammount: item.price
     });
 
     this.removeFromWish(item.id);
   }
 
   public removeFromWish(itemId: string): void {
-    this._wishItems.update((items) => {
-      return items.filter((i) => i.id !== itemId);
-    });
+    const userEmail = this._authService.user()?.email || '';
+    const docRef = doc(this._firestore, 'wish-list', userEmail);
+
+    const itemRef = doc(docRef, 'items', itemId);
+    deleteDoc(itemRef);
   }
 
   public clearWishList(): void {
-    this._wishItems.set([]);
+    this._wish().items.forEach(item => this.removeFromWish(item.id));
   }
 }

@@ -1,42 +1,36 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IShoppingCart } from '../cart';
-import { switchMap } from 'rxjs/operators';
+import { Injectable, computed, inject } from '@angular/core';
+import { ItemCartDto } from '../cart';
+import { Firestore, addDoc, collection, collectionData, doc } from '@angular/fire/firestore';
+import { ICartItem } from 'src/app/store/interfaces/cart-item';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private _http: HttpClient = inject(HttpClient);
-  private _apiUrl: string = 'http://localhost:3000';
+  private _firestore: Firestore = inject(Firestore);
+  private _authService: AuthService = inject(AuthService);
+  private _user = computed<User | null | undefined>(() => this._authService.user());
 
   constructor() {}
 
-  public saveShoppingCart(cart: IShoppingCart, userId: string) {
-    return this.getCartById(userId).pipe(
-      switchMap(({id: cartId}) => {
-        if (cartId) {
-          return this.updateCart(cartId, cart);
-        } else {
-          return this.createCart(userId, cart);
-        }
-      })
-    );
+  public getUserShoppingCart(userEmail: string): Observable<ICartItem[]> {
+    const cartRef = doc(this._firestore, 'shop-cart', userEmail);
+    const cartItemsRef = collection(cartRef, 'items');
+
+    const cartItems$ = collectionData(cartItemsRef, {idField: 'id'})
+    return cartItems$ as Observable<ICartItem[]>;
   }
 
-  public getCartById(cartId: string) {
-    return this._http.get<IShoppingCart>(`${this._apiUrl}/my_cart/${cartId}`);
-  }
+  public addItemToCart(item: ItemCartDto): void {
+    if(!this._user()) return;
 
-  public createCart(userId: string, cart: IShoppingCart) {
-    cart = {...cart, id: userId};
-    return this._http.post<IShoppingCart>(`${this._apiUrl}/my_cart`, cart);
-  }
+    const userEmail = this._user()?.email || '';
+    const cartRef = doc(this._firestore, 'shop-cart', userEmail);
+    const cartItemsRef = collection(cartRef, 'items');
 
-  public updateCart(cartId: string, cart: IShoppingCart) {
-    return this._http.put<IShoppingCart>(
-      `${this._apiUrl}/my_cart/${cartId}`,
-      cart
-    );
+    addDoc(cartItemsRef, item);
   }
 }

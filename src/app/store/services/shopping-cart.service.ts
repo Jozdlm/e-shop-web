@@ -1,6 +1,6 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from '../interfaces/cart-item';
-import { IAddItemCart, IShoppingCart } from '../../cart/cart';
+import { IAddItemCart, IShoppingCart, ItemCartDto } from '../../cart/cart';
 import { v4 as uuid } from 'uuid';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -11,8 +11,6 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class ShoppingCartService {
   private _cartService: CartService = inject(CartService);
   private _authService: AuthService = inject(AuthService);
-
-  private _userId: string = this._authService.currentSession().id;
 
   public shoppingCart = computed<IShoppingCart>(() => ({
     items: this.cartItems(),
@@ -49,36 +47,26 @@ export class ShoppingCartService {
   });
 
   constructor() {
-    this._cartService.getCartById(this._userId).subscribe({
-      next: (cart) => this.cartItems.set(cart.items),
-      error: (_) => this.cartItems.set([]),
-    });
-
     effect(() => {
-      const cart = this.shoppingCart();
-
-      this._cartService.saveShoppingCart(cart, this._userId).subscribe();
-    });
+      if(this._authService.user()) {
+        const userEmail = this._authService.user()?.email || '';
+        this._cartService.getUserShoppingCart(userEmail)
+          .subscribe({
+            next: (value) => this.cartItems.set(value)
+          });
+      }
+    })
   }
 
-  public addToCart(addItemCart: IAddItemCart): void {
+  public addToCart(itemCart: ItemCartDto): void {
     const carItem = this.cartItems().find(
-      (item) => item.product_id == addItemCart.product_id && item.type == addItemCart.type
+      (item) => item.product_id == itemCart.product_id
     );
-
-    const newItem: ICartItem = {
-      id: uuid(),
-      ...addItemCart,
-      quantity: 1,
-      ammount: addItemCart.unit_price,
-    };
 
     if (carItem) {
       this.increaseQuantity(carItem.id);
     } else {
-      this.cartItems.mutate((value) => {
-        value.push(newItem);
-      });
+      this._cartService.addItemToCart(itemCart);
     }
   }
 

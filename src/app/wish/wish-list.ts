@@ -8,8 +8,9 @@ export interface IWishItem {
   id: string;
   product_id: number;
   name: string;
-  description: string;
-  type: string;
   price: number;
   img_url: string;
 }
+
+export type WishListDto = Omit<IWishList, 'id'>;
+export type WishItemDto = Omit<IWishItem, 'id'>;

@@ -8,7 +8,6 @@
   <div class="mb-4">
     <p class="text-xl mb-2">{{wishItem.price | currency:'GTQ'}}</p>
     <p>{{wishItem.name}}</p>
-    <p class="text-sm">{{wishItem.type}}</p>
   </div>
   <div class="flex justify-between">
     <app-button (click)="moveToCart(wishItem)">Añadir al carrito</app-button>

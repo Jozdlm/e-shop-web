@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './store/pages/home-page/home-page.component';
 import { authGuard, isLoggedGuard } from './auth/auth.guard';
+import { HomePageComponent } from './shop/pages/home-page/home-page.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
@@ -9,14 +9,13 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./cart/cart.routes')
   },
   {
-    path: 'wish-list',
-    loadComponent: () => import('./wish/pages/wish-list-page/wish-list-page.component')
-      .then(c => c.WishListPageComponent)
+    path: 'wish',
+    loadChildren: () => import('./wish/wish.routes')
   },
   {
     path: 'product/:id',
     loadComponent: () =>
-      import('./store/pages/product-detail/product-detail.component').then(
+      import('./shop/pages/product-detail/product-detail.component').then(
         (c) => c.ProductDetailComponent
       ),
   },

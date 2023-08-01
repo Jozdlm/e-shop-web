@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { HttpClient } from '@angular/common/http';
-import { FooterComponent } from './shared/footer/footer.component';
+import { FooterComponent } from './shop/components/footer/footer.component';
+import { NavbarComponent } from './shop/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -12,19 +11,5 @@ import { FooterComponent } from './shared/footer/footer.component';
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
 })
 export class AppComponent {
-  private _http = inject(HttpClient);
-
-  public businessName: string = '';
-
-  constructor() {
-    this._http
-      .get<IBusiness>('http://localhost:3000/business')
-      .subscribe((business) => {
-        this.businessName = business.name;
-      });
-  }
-}
-
-interface IBusiness {
-  name: string;
+  constructor() {}
 }
