@@ -27,13 +27,6 @@ export class ProductsService {
     environment.supabaseKey
   );
 
-  public products: Signal<IProduct[]> = toSignal(
-    this._products$ as Observable<IProduct[]>,
-    {
-      initialValue: [] as IProduct[],
-    }
-  );
-
   constructor() {}
 
   public async getProducts(): Promise<IProduct[]> {
