@@ -22,7 +22,10 @@ export class ProductsService {
     idField: 'id',
   });
 
-  private supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+  private supabase = createClient(
+    environment.supabaseUrl,
+    environment.supabaseKey
+  );
 
   public products: Signal<IProduct[]> = toSignal(
     this._products$ as Observable<IProduct[]>,
@@ -31,18 +34,18 @@ export class ProductsService {
     }
   );
 
-  constructor() {
-    this.getProducts().then(value => console.log(value));
-  }
+  constructor() {}
 
-  public async getProducts() {
-    const {data, error} = await this.supabase.from('products').select();
+  public async getProducts(): Promise<IProduct[]> {
+    const { data, error } = await this.supabase.from('products').select();
 
-    if(error) {
-      throw new Error("Ha ocurrido un error: " + error);
+    if (error) {
+      throw new Error('Ha ocurrido un error: ' + error);
     }
 
-    return data;
+    return data.map((item) => {
+      return { ...item, name: item.title, price: item.selling_price };
+    }) as IProduct[];
   }
 
   public getProductById(productId: string): Observable<IProduct> {
