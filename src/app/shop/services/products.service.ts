@@ -41,10 +41,16 @@ export class ProductsService {
     }) as IProduct[];
   }
 
-  public getProductById(productId: string): Observable<IProduct> {
-    const productRef = doc(this._firestore, 'products', productId);
-    const product$ = docData(productRef, { idField: 'id' });
+  public async getProductById(productId: string): Promise<IProduct> {
+    const { data, error } = await this.supabase
+      .from('products')
+      .select()
+      .eq('id', productId);
 
-    return product$ as Observable<IProduct>;
+    if (error) throw new Error('Ha ocurrido un error: ' + error);
+
+    return data.map((item) => {
+      return { ...item, name: item.title, price: item.selling_price };
+    })[0] as IProduct;
   }
 }

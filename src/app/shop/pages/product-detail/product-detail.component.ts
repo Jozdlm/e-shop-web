@@ -24,7 +24,7 @@ export class ProductDetailComponent {
   public set id(productId: string) {
     this._productService
       .getProductById(productId)
-      .subscribe((product) => {
+      .then((product) => {
         this.product = product;
       });
   }
