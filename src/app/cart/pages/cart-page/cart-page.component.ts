@@ -1,6 +1,6 @@
 import { OrderSummaryComponent } from './../../components/order-summary/order-summary.component';
 import { Component, inject } from '@angular/core';
-import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/cart/services/shopping-cart.service';
 import { CommonModule } from '@angular/common';
 import { ItemCartComponent } from '../../components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';

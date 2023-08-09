@@ -2,7 +2,7 @@ import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { IWishItem, IWishList, WishItemDto } from '../wish-list';
 import { IProduct } from 'src/app/shop/product';
 import { combineLatest, map } from 'rxjs';
-import { ShoppingCartService } from '../../store/services/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/cart/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData } from '@angular/fire/firestore';
 

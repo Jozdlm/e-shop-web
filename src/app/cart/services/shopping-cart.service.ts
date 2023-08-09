@@ -1,6 +1,6 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from 'src/app/cart/cart';
-import { IShoppingCart, ItemCartDto } from '../../cart/cart';
+import { IShoppingCart, ItemCartDto } from '../cart';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 

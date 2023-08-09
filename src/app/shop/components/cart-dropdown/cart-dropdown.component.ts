@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/cart/services/shopping-cart.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
