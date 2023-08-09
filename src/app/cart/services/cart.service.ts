@@ -1,7 +1,7 @@
 import { Injectable, computed, inject } from '@angular/core';
 import { ItemCartDto } from '../cart';
 import { Firestore, addDoc, collection, collectionData, doc } from '@angular/fire/firestore';
-import { ICartItem } from 'src/app/store/interfaces/cart-item';
+import { ICartItem } from 'src/app/cart/cart';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from '@angular/fire/auth';

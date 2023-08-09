@@ -1,7 +1,6 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { ICartItem } from '../interfaces/cart-item';
-import { IAddItemCart, IShoppingCart, ItemCartDto } from '../../cart/cart';
-import { v4 as uuid } from 'uuid';
+import { ICartItem } from 'src/app/cart/cart';
+import { IShoppingCart, ItemCartDto } from '../../cart/cart';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
