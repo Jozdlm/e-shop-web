@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
-import { IProduct } from 'src/app/store/interfaces/product';
+import { IProduct } from 'src/app/shop/product';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

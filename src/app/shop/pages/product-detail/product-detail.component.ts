@@ -5,7 +5,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 import { WishListService } from 'src/app/wish/services/wish-list.service';
 import { ProductsService } from 'src/app/shop/services/products.service';
 import { ShoppingCartService } from 'src/app/store/services/shopping-cart.service';
-import { IProduct } from 'src/app/store/interfaces/product';
+import { IProduct } from 'src/app/shop/product';
 
 @Component({
   selector: 'app-product-detail',

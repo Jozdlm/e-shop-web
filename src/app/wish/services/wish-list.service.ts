@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, inject, effect } from '@angular/core';
 import { IWishItem, IWishList, WishItemDto } from '../wish-list';
-import { IProduct } from 'src/app/store/interfaces/product';
+import { IProduct } from 'src/app/shop/product';
 import { combineLatest, map } from 'rxjs';
 import { ShoppingCartService } from '../../store/services/shopping-cart.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -26,14 +26,14 @@ export class WishListService {
       if (this._authService.user()) {
         const userEmail = this._authService.user()?.email || '';
         this.getUserWishList(userEmail);
-      }    
+      }
     });
   }
 
   public getUserWishList(userEmail: string): void {
     const wishRef = doc(this._firestore, 'wish-list', userEmail);
     const wishItemsRef = collection(wishRef, 'items');
-    
+
     const wish$ = docData(wishRef, {idField: 'id'});
     const wishItems$ = collectionData(wishItemsRef, {idField: 'id'});
 
