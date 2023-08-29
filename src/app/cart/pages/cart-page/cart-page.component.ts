@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common';
 import { ItemCartComponent } from '../../components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
-import { WishListService } from '../../../wish/services/wish-list.service';
-import { WishCartComponent } from '../../components/wish-cart/wish-cart.component';
 import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.component';
 
 @Component({
@@ -18,17 +16,14 @@ import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.compo
     ItemCartComponent,
     ButtonComponent,
     RouterModule,
-    WishCartComponent,
     OrderSummaryComponent,
     EmptyCartComponent
   ],
 })
 export class CartPageComponent {
   private _cartService: ShoppingCartService = inject(ShoppingCartService);
-  private _wishService: WishListService = inject(WishListService);
 
   public cart = this._cartService.shoppingCart;
-  public wish = this._wishService.wishList;
 
   constructor() {}
 

@@ -9,10 +9,6 @@ export const APP_ROUTES: Routes = [
     loadChildren: () => import('./cart/cart.routes')
   },
   {
-    path: 'wish',
-    loadChildren: () => import('./wish/wish.routes')
-  },
-  {
     path: 'product/:id',
     loadComponent: () =>
       import('./shop/pages/product-detail/product-detail.component').then(
