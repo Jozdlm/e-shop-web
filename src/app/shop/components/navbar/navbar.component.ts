@@ -29,7 +29,6 @@ export class NavbarComponent {
   public user = this._authService.user;
 
   constructor() {
-    this._appService.getBusinessInfo()
-      .then(value => this.businessName = value?.name || '');
+    this.businessName = this._appService.getBusinessName();
   }
 }
