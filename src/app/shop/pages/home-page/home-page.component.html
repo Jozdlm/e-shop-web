@@ -1,6 +1,14 @@
+<div>
+  <img
+    src="assets/images/banner.png"
+    alt="banner"
+    class="block h-80 w-full rounded-[18px] object-cover object-center"
+  />
+</div>
+
 <div class="grid grid-cols-5 gap-4">
   <app-product-card
-    *ngFor="let product of products |async"
+    *ngFor="let product of products | async"
     [product]="product"
   />
 </div>
