@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ProductsService } from 'src/app/shop/services/products.service';
 import { ProductCardComponent } from 'src/app/shop/components/product-card/product-card.component';
 import { from } from 'rxjs';
+import { SearchInputComponent } from '../../components/search-input/search-input.component';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, SearchInputComponent],
 })
 export class HomePageComponent {
   private _productsService: ProductsService = inject(ProductsService);
