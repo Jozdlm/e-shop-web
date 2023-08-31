@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
         <ng-content select="#toggle-content"></ng-content>
       </button>
       <div
-        class="right-0 top-10 rounded border border-neutral-300 bg-white drop-shadow-lg"
+        class="right-0 top-10 rounded border border-neutral-300 bg-white drop-shadow-lg z-20"
         [ngClass]="{
           absolute: showDropdown,
           hidden: !showDropdown,
