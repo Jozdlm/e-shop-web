@@ -16,12 +16,14 @@
 </div>
 
 <div>
-  <h2>Categorías</h2>
-</div>
-
-<div class="grid grid-cols-5 gap-4">
-  <app-product-card
-    *ngFor="let product of products | async"
-    [product]="product"
-  />
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-medium">Productos</h2>
+    <a routerLink="products" class="text-sm text-neutral-700 hover:text-black">Ver todos los productos</a>
+  </div>
+  <div class="grid grid-cols-5 gap-4">
+    <app-product-card
+      *ngFor="let product of products | async"
+      [product]="product"
+    />
+  </div>
 </div>
