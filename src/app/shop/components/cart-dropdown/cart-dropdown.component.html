@@ -19,7 +19,7 @@
     </div>
   </div>
   <div id="dropdown-content">
-    <ng-container *ngIf="cart().items.length > 0;else emptyCart">
+    <ng-container *ngIf="cart().items.length > 0; else emptyCart">
       <ul class="list-none">
         <li
           class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
@@ -43,19 +43,26 @@
             {{ cart().subtotal | currency : "GTQ" }}
           </p>
         </div>
-        <div class="flex flex-col gap-y-2 items-center">
+        <div class="flex flex-col items-center gap-y-2">
           <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
             Ir a la cesta
           </app-button>
-          <p class="text-sm text-neutral-600 text-center">*Dirigete a la cesta para ver todos los articulos*</p>
+          <p class="text-center text-sm text-neutral-600">
+            *Dirigete a la cesta para ver todos los articulos*
+          </p>
         </div>
       </div>
     </ng-container>
     <ng-template #emptyCart>
       <div class="grid items-center justify-center text-center">
-        <p class="text-lg mb-1">Tu carrito está vacío</p>
-        <p class="mb-6 text-sm">Añade un producto al carrito para verlo aquí</p>
-        <app-button class="justify-self-center" routerLink="">Ir a la tienda</app-button>
+        <p class="text-base">Tu carrito está vacío</p>
+        <p class="mb-4 text-sm">Añade un producto al carrito para verlo aquí</p>
+        <button
+          class="rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
+          routerLink=""
+        >
+          Ir a la tienda
+        </button>
       </div>
     </ng-template>
   </div>
