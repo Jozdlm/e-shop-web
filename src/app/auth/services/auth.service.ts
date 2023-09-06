@@ -1,18 +1,17 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { ICreateUser, ILoginUser, ISession } from '../auth';
+import { Injectable, inject, effect } from '@angular/core';
+import { ICreateUser, ILoginUser } from '../auth';
 import {
   Auth,
   User,
-  UserCredential,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile,
   user,
 } from '@angular/fire/auth';
-import { Observable, from, map, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, from, map, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { createClient } from '@supabase/supabase-js';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,28 +19,35 @@ import { Router } from '@angular/router';
 export class AuthService {
   private _auth: Auth = inject(Auth);
   private _router: Router = inject(Router);
+  private _supabase = createClient(
+    environment.supabaseUrl,
+    environment.supabaseKey
+  );
 
   public user$ = user(this._auth);
   public user = toSignal<User | null>(this.user$);
+
+  private _sessionSub$ = new BehaviorSubject(null);
+  private session$ = new Observable();
 
   constructor() {
     effect(() => console.log(this.user()));
   }
 
-  public signup(newUser: ICreateUser): Observable<User> {
+  public async signup(newUser: ICreateUser) {
     const { fullname, email, password } = newUser;
 
-    return from(
-      createUserWithEmailAndPassword(this._auth, email, password)
-    ).pipe(
-      tap((_) => this._router.navigateByUrl('')),
-      switchMap((userCredentials: UserCredential) => {
-        updateProfile(this._auth.currentUser!, { displayName: fullname });
+    const { data, error } = await this._supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { fullname } },
+    });
 
-        const user = userCredentials.user;
-        return of(user);
-      })
-    );
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
   }
 
   public login(credentials: ILoginUser): Observable<User> {
@@ -54,9 +60,8 @@ export class AuthService {
   }
 
   public logout(): Observable<void> {
-    return from(signOut(this._auth))
-      .pipe(
-        tap((_) => this._router.navigateByUrl('/auth'))
-      );
+    return from(signOut(this._auth)).pipe(
+      tap((_) => this._router.navigateByUrl('/auth'))
+    );
   }
 }
