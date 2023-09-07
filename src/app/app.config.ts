@@ -14,6 +14,12 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { environment } from 'src/environments/environment';
 import { APP_ROUTES } from './app.routes';
+import { createClient } from '@supabase/supabase-js';
+
+export const supaClient = createClient(
+  environment.supabaseUrl,
+  environment.supabaseKey
+);
 
 export const appConfig: ApplicationConfig = {
   providers: [
