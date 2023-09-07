@@ -10,8 +10,7 @@ import {
 } from '@angular/fire/auth';
 import { BehaviorSubject, Observable, from, map, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { createClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
+import { supaClient } from 'src/app/app.config';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +18,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private _auth: Auth = inject(Auth);
   private _router: Router = inject(Router);
-  private _supabase = createClient(
-    environment.supabaseUrl,
-    environment.supabaseKey
-  );
+  private _supabase = supaClient;
 
   public user$ = user(this._auth);
   public user = toSignal<User | null>(this.user$);
