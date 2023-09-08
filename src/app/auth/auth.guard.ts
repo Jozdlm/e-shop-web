@@ -14,7 +14,7 @@ export const authGuard: CanActivateFn = (_, __) => {
   return false;
 };
 
-export const isLoggedGuard: CanActivateFn = (_, __) => {
+export const isAnonGuard: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
