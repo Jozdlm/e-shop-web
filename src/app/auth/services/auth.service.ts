@@ -1,5 +1,5 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Injectable, inject, effect } from '@angular/core';
+import { Injectable, inject, effect, signal } from '@angular/core';
 import { ICreateUser, ILoginUser } from '../auth';
 import {
   Auth,
@@ -23,11 +23,13 @@ export class AuthService {
   public user$ = user(this._auth);
   public user = toSignal<User | null>(this.user$);
 
-  private _sessionSub$ = new BehaviorSubject(null);
-  private session$ = new Observable();
+  public isLogged = signal<boolean>(false);
 
   constructor() {
-    effect(() => console.log(this.user()));
+    supabase.auth.onAuthStateChange((event, session) => {
+      if(event == 'SIGNED_IN') this.isLogged.set(true);
+      if(event == 'SIGNED_OUT') this.isLogged.set(false);
+    })
   }
 
   public async signup(newUser: ICreateUser) {
