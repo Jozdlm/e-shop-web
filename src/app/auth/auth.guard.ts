@@ -6,7 +6,7 @@ export const isLoggedAuth: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if (authService.user()) {
+  if (authService.isLogged()) {
     return true;
   }
 
@@ -18,7 +18,7 @@ export const isAnonGuard: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if(authService.user()) {
+  if(authService.isLogged()) {
     router.navigate(['']);
     return false;
   }
