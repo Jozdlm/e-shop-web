@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard, isAnonGuard } from './auth/auth.guard';
+import { isLoggedAuth, isAnonGuard } from './auth/auth.guard';
 import { HomePageComponent } from './shop/pages/home-page/home-page.component';
 
 export const APP_ROUTES: Routes = [
@@ -17,7 +17,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'account',
-    canActivate: [authGuard],
+    canActivate: [isLoggedAuth],
     loadChildren: () => import('./account/account.routes')
   },
   {
