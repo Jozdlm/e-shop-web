@@ -27,7 +27,7 @@
         <span class="text-sm">Buscar</span>
       </button>
       <app-cart-dropdown></app-cart-dropdown>
-      <ng-container *ngIf="user(); else authButtons">
+      <ng-container *ngIf="isLogged(); else authButtons">
         <app-user-dropdown></app-user-dropdown>
       </ng-container>
       <ng-template #authButtons>

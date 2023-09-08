@@ -24,7 +24,7 @@ export class NavbarComponent {
   private _appService: AppService = inject(AppService);
 
   public businessName: string  = '';
-  public user = this._authService.user;
+  public isLogged = this._authService.isLogged;
 
   constructor() {
     this.businessName = this._appService.getBusinessName();
