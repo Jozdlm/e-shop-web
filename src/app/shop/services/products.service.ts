@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { supaClient } from 'src/app/app.config';
+import { supabase } from 'src/app/app.config';
 import { IProduct } from 'src/app/shop/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  private supabase = supaClient;
+  private supabase = supabase;
 
   constructor() {}
 

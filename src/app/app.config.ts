@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 import { APP_ROUTES } from './app.routes';
 import { createClient } from '@supabase/supabase-js';
 
-export const supaClient = createClient(
+export const supabase = createClient(
   environment.supabaseUrl,
   environment.supabaseKey
 );
