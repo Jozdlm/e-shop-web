@@ -1,14 +1,13 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Injectable, inject, effect, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { ICreateUser, ILoginUser } from '../auth';
 import {
   Auth,
   User,
   signInWithEmailAndPassword,
-  signOut,
   user,
 } from '@angular/fire/auth';
-import { BehaviorSubject, Observable, from, map, tap } from 'rxjs';
+import { Observable, from, map, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { supabase } from 'src/app/app.config';
 
@@ -27,9 +26,9 @@ export class AuthService {
 
   constructor() {
     supabase.auth.onAuthStateChange((event, session) => {
-      if(event == 'SIGNED_IN') this.isLogged.set(true);
-      if(event == 'SIGNED_OUT') this.isLogged.set(false);
-    })
+      if (event == 'SIGNED_IN') this.isLogged.set(true);
+      if (event == 'SIGNED_OUT') this.isLogged.set(false);
+    });
   }
 
   public async signup(newUser: ICreateUser) {
@@ -45,6 +44,8 @@ export class AuthService {
       throw new Error(error.message);
     }
 
+    // Navigate to email verification message
+
     return data;
   }
 
@@ -57,9 +58,13 @@ export class AuthService {
     );
   }
 
-  public logout(): Observable<void> {
-    return from(signOut(this._auth)).pipe(
-      tap((_) => this._router.navigateByUrl('/auth'))
-    );
+  public async logout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    this._router.navigateByUrl('auth/login');
   }
 }
