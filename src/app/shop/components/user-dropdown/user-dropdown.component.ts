@@ -26,9 +26,6 @@ export class UserDropdownComponent {
   ];
 
   public logout(): void {
-    this._authService.logout().subscribe({
-      next: (_) => console.log('Sesión cerrada correctamente'),
-      error: (error) => console.log(`Ha ocurrido un error: ${error}`)
-    })
+    this._authService.logout().catch(console.log);
   }
 }
