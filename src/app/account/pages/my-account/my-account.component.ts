@@ -9,12 +9,17 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
-import { User } from '@angular/fire/auth';
 import { UserPhotoDirective } from 'src/app/common/directives/user-photo.directive';
+import { User } from '@supabase/supabase-js';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, UserPhotoDirective],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+    UserPhotoDirective,
+  ],
   templateUrl: './my-account.component.html',
 })
 export class MyAccountComponent {
@@ -22,20 +27,20 @@ export class MyAccountComponent {
   private _userService: UserService = inject(UserService);
   private _fb: FormBuilder = inject(FormBuilder);
 
-  public user = this._authService.user;
-
+  public isLogged = this._authService.isLogged;
   public profileForm!: FormGroup;
 
   constructor() {
     effect(() => {
-      if (this.user()) {
-        this.createFormGroup(this.user()!);
+      if (this.isLogged()) {
+        this.createFormGroup(this._authService.session!.user);
       }
     });
   }
 
   public createFormGroup(user: User): void {
-    const { displayName, email } = user;
+    const { user_metadata, email } = user;
+    const displayName = user_metadata['fullname'];
 
     this.profileForm = this._fb.nonNullable.group({
       full_name: [displayName, [Validators.required, Validators.minLength(6)]],
@@ -44,7 +49,7 @@ export class MyAccountComponent {
   }
 
   public updateUserValues(): void {
-    if(!this.profileForm.valid) return;
+    if (!this.profileForm.valid) return;
 
     this._userService.updateUser(this.profileForm.value);
   }
