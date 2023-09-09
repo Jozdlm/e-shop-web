@@ -1,12 +1,16 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { customEmailValidator } from '../../auth.validators';
 import { AuthService } from '../../services/auth.service';
 import { ILoginUser } from '../../auth';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -44,10 +48,12 @@ export class LoginPageComponent {
 
       this._authService
         .login(credentials)
-        .pipe(tap((_) => this.loginForm.reset()))
-        .subscribe({
-          next: (_) => this.loginError.set(false),
-          error: (_) => this.loginError.set(true)
+        .then((data) => {
+          this.loginForm.reset();
+          this.loginError.set(false);
+        })
+        .catch((error) => {
+          this.loginError.set(true);
         });
     }
   }
