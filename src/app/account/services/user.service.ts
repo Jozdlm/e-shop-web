@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { IUpdateAccount } from '../user';
-import { updateEmail, updateProfile } from '@angular/fire/auth';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { supabase } from 'src/app/app.config';
 
 @Injectable({
   providedIn: 'root',
@@ -11,12 +11,20 @@ export class UserService {
 
   constructor() {}
 
-  public updateUser(newValues: IUpdateAccount): void {
-    const user = this._auth.user();
+  public async updateUser(newValues: IUpdateAccount) {
+    if (!this._auth.isLogged()) return;
 
-    if (!user) return;
+    const { data, error } = await supabase.auth.updateUser({
+      email: newValues.email,
+      data: {
+        fullname: newValues.full_name,
+      },
+    });
 
-    updateEmail(user, newValues.email)
-    updateProfile(user, { displayName: newValues.full_name })
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
   }
 }
