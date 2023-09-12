@@ -9,8 +9,12 @@ export class CartService {
 
   constructor() {}
 
+  public get cartItems(): ICartItem[] {
+    return [...this._cartItems];
+  }
+
   public addItemToCart(item: ItemCartDto): void {
-    const newItem: ICartItem = { ...item, id: item.product_id.toString()};
+    const newItem: ICartItem = { ...item, id: item.product_id.toString() };
     this._cartItems.push(newItem);
   }
 }
