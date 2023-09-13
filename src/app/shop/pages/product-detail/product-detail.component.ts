@@ -1,10 +1,10 @@
-import { Component, Input, inject, signal } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 import { ProductsService } from 'src/app/shop/services/products.service';
-import { ShoppingCartService } from 'src/app/cart/services/shopping-cart.service';
 import { IProduct } from 'src/app/shop/product';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +14,7 @@ import { IProduct } from 'src/app/shop/product';
 })
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);
-  private readonly _cartService = inject(ShoppingCartService);
+  private readonly _cartService = inject(CartService);
 
   public product: IProduct | undefined = undefined;
 
@@ -29,7 +29,7 @@ export class ProductDetailComponent {
 
   public addToCart(): void {
     if (this.product) {
-      this._cartService.addToCart({
+      this._cartService.addItemToCart({
         product_id: this.product.id,
         name: this.product.name,
         img_url: this.product.img_url,
