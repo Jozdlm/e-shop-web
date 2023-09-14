@@ -6,8 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  private _cartItems: ICartItem[] = [];
-  private _cartItems$ = new BehaviorSubject<ICartItem[]>(this._cartItems);
+  private items: ICartItem[] = [];
+  private _cartItems$ = new BehaviorSubject<ICartItem[]>(this.items);
 
   constructor() {}
 
@@ -17,6 +17,7 @@ export class CartService {
 
   public addItemToCart(item: ItemCartDto): void {
     const newItem: ICartItem = { ...item, id: item.product_id.toString() };
-    this._cartItems.push(newItem);
+    this.items.push(newItem);
+    this._cartItems$.next(this.items);
   }
 }
