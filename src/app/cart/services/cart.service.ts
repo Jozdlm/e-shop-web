@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICartItem, ItemCartDto } from '../cart';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, scan } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,14 @@ export class CartService {
     return this.cartItems$.pipe(
       map((items) => items.length)
     );
+  }
+
+  public get subtotal$(): Observable<number> {
+    return this.cartItems$.pipe(
+      mergeMap(items => items),
+      map((item) => item.quantity * item.unit_price),
+      scan((acc, val) => acc + val, 0)
+    )
   }
 
   public addItemToCart(item: ItemCartDto): void {
