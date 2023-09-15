@@ -1,11 +1,12 @@
 import { OrderSummaryComponent } from './../../components/order-summary/order-summary.component';
 import { Component, inject } from '@angular/core';
-import { ShoppingCartService } from 'src/app/cart/services/shopping-cart.service';
 import { CommonModule } from '@angular/common';
 import { ItemCartComponent } from '../../components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.component';
+import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart-page',
@@ -17,17 +18,26 @@ import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.compo
     ButtonComponent,
     RouterModule,
     OrderSummaryComponent,
-    EmptyCartComponent
+    EmptyCartComponent,
   ],
 })
 export class CartPageComponent {
-  private _cartService: ShoppingCartService = inject(ShoppingCartService);
+  private _cartService: CartService = inject(CartService);
+  private _subscription = new Subscription();
+  public items = this._cartService.cartItems$;
+  public itemsCount: number = 0;
 
-  public cart = this._cartService.shoppingCart;
+  constructor() {
+    this.subscribeToObservables();
+  }
 
-  constructor() {}
+  public subscribeToObservables(): void {
+    this._subscription.add(
+      this._cartService.cartCount$.subscribe((value) => (this.itemsCount = value))
+    );
+  }
 
   public clearShoppingCart(): void {
-    this._cartService.clearShoppingCart();
+    // this._cartService.clearShoppingCart();
   }
 }

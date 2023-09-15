@@ -1,8 +1,8 @@
 <div class="mb-10">
   <h1 class="mb-1 text-2xl">Carrito de compras</h1>
   <button
-    *ngIf="cart().items.length > 0"
-    class="text-neutral-600 hover:text-black"
+    *ngIf="itemsCount > 0"
+    class="text-neutral-600 hover:text-black text-sm"
     (click)="clearShoppingCart()"
   >
     Vaciar Carrito
@@ -12,8 +12,8 @@
 <div class="flex gap-x-20">
   <div class="grow divide-y">
     <div class="pb-4" >
-      <ng-container *ngIf="cart().items.length > 0; else empty">
-        <app-item-cart *ngFor="let item of cart().items" [cartItem]="item" />
+      <ng-container *ngIf="itemsCount > 0; else empty">
+        <app-item-cart *ngFor="let item of items |async" [cartItem]="item" />
       </ng-container>
 
       <ng-template #empty>
@@ -21,7 +21,7 @@
       </ng-template>
     </div>
   </div>
-  <div class="w-72" *ngIf="cart().items.length > 0">
-    <app-order-summary [cart]="cart" />
+  <div class="w-72" *ngIf="itemsCount > 0">
+    <!-- <app-order-summary [cart]="cart" /> -->
   </div>
 </div>
