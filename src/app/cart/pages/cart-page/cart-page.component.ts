@@ -1,5 +1,5 @@
 import { OrderSummaryComponent } from './../../components/order-summary/order-summary.component';
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemCartComponent } from '../../components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
@@ -29,6 +29,10 @@ export class CartPageComponent {
 
   constructor() {
     this.subscribeToObservables();
+
+    inject(DestroyRef).onDestroy(() => {
+      this._subscription.unsubscribe();
+    });
   }
 
   public subscribeToObservables(): void {
