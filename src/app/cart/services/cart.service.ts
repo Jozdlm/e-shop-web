@@ -34,4 +34,9 @@ export class CartService {
     this._items = [...this._items, newItem];
     this._cartItems$.next(this._items);
   }
+
+  public clearCart(): void {
+    this._items = [];
+    this._cartItems$.next(this._items);
+  }
 }

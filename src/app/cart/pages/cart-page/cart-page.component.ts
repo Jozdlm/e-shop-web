@@ -38,6 +38,6 @@ export class CartPageComponent {
   }
 
   public clearShoppingCart(): void {
-    // this._cartService.clearShoppingCart();
+    this._cartService.clearCart();
   }
 }
