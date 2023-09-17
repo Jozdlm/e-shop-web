@@ -2,7 +2,7 @@
   <h1 class="mb-1 text-2xl">Carrito de compras</h1>
   <button
     *ngIf="itemsCount > 0"
-    class="text-neutral-600 hover:text-black text-sm"
+    class="text-sm text-neutral-600 hover:text-black"
     (click)="clearShoppingCart()"
   >
     Vaciar Carrito
@@ -11,9 +11,13 @@
 
 <div class="flex gap-x-20">
   <div class="grow divide-y">
-    <div class="pb-4" >
+    <div class="pb-4">
       <ng-container *ngIf="itemsCount > 0; else empty">
-        <app-item-cart *ngFor="let item of items |async" [cartItem]="item" />
+        <app-item-cart
+          *ngFor="let item of items | async"
+          [cartItem]="item"
+          (onDeleteItem)="handleDeleteItem($event)"
+        />
       </ng-container>
 
       <ng-template #empty>

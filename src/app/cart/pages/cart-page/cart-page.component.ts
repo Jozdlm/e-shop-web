@@ -44,4 +44,8 @@ export class CartPageComponent {
   public clearShoppingCart(): void {
     this._cartService.clearCart();
   }
+
+  public handleDeleteItem(itemId: string): void {
+    this._cartService.removeItem(itemId);
+  }
 }
