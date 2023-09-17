@@ -45,6 +45,10 @@ export class CartPageComponent {
     this._cartService.clearCart();
   }
 
+  public handleIncrease(itemId: string): void {
+    this._cartService.increaseQuantity(itemId);
+  }
+
   public handleDeleteItem(itemId: string): void {
     this._cartService.removeItem(itemId);
   }

@@ -16,6 +16,7 @@
         <app-item-cart
           *ngFor="let item of items | async"
           [cartItem]="item"
+          (onIncreaseQty)="handleIncrease($event)"
           (onDeleteItem)="handleDeleteItem($event)"
         />
       </ng-container>
