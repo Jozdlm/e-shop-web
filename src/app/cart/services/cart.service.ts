@@ -28,8 +28,17 @@ export class CartService {
   }
 
   public addItemToCart(item: ItemCartDto): void {
-    const newItem: ICartItem = { ...item, id: item.product_id.toString() };
-    this._items = [...this._items, newItem];
+    const index = this._items.findIndex(
+      (item) => item.id == item.product_id.toString()
+    );
+
+    if (index >= 0) {
+      this.increaseQuantity(item.product_id.toString());
+    } else {
+      const newItem: ICartItem = { ...item, id: item.product_id.toString() };
+      this._items = [...this._items, newItem];
+    }
+
     this._cartItems$.next(this._items);
   }
 
@@ -50,7 +59,7 @@ export class CartService {
     const quantity = item.quantity - 1;
     const ammount = quantity * item.unit_price;
 
-    this._items[index] = {...item, quantity, ammount};
+    this._items[index] = { ...item, quantity, ammount };
   }
 
   public removeItem(itemId: string): void {
