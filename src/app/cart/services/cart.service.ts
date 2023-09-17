@@ -16,22 +16,25 @@ export class CartService {
   }
 
   public get cartCount$(): Observable<number> {
-    return this.cartItems$.pipe(
-      map((items) => items.length)
-    );
+    return this.cartItems$.pipe(map((items) => items.length));
   }
 
   public get subtotal$(): Observable<number> {
     return this.cartItems$.pipe(
-      mergeMap(items => items),
+      mergeMap((items) => items),
       map((item) => item.quantity * item.unit_price),
       scan((acc, val) => acc + val, 0)
-    )
+    );
   }
 
   public addItemToCart(item: ItemCartDto): void {
     const newItem: ICartItem = { ...item, id: item.product_id.toString() };
     this._items = [...this._items, newItem];
+    this._cartItems$.next(this._items);
+  }
+
+  public removeItem(itemId: string): void {
+    this._items = this._items.filter((item) => item.id != itemId);
     this._cartItems$.next(this._items);
   }
 
