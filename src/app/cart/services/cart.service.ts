@@ -43,6 +43,16 @@ export class CartService {
     this._items[index] = { ...item, quantity, ammount };
   }
 
+  public decreaseQuantity(itemId: string): void {
+    const index = this._items.findIndex((item) => item.id == itemId);
+    const item = this._items[index];
+
+    const quantity = item.quantity - 1;
+    const ammount = quantity * item.unit_price;
+
+    this._items[index] = {...item, quantity, ammount};
+  }
+
   public removeItem(itemId: string): void {
     this._items = this._items.filter((item) => item.id != itemId);
     this._cartItems$.next(this._items);
