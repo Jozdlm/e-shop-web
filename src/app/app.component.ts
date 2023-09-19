@@ -6,7 +6,15 @@ import { NavbarComponent } from './shop/components/navbar/navbar.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [],
+  styles: [
+    `
+      .view-wrapper {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+      }
+    `,
+  ],
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
 })
