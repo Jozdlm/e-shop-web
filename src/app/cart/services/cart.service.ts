@@ -8,15 +8,23 @@ import { BehaviorSubject, Observable, map, mergeMap, scan } from 'rxjs';
 export class CartService {
   private _items: ICartItem[] = [];
   private _cartItems$ = new BehaviorSubject<ICartItem[]>(this._items);
+  private _totalQuantity$ = new BehaviorSubject<number>(0);
 
   constructor() {}
+
+  private _updateCart(): void {
+    const totalQuantity = this._items.reduce((acc, val) => acc + val.quantity, 0);
+    this._totalQuantity$.next(totalQuantity);
+
+    this._cartItems$.next(this._items);
+  }
 
   public get cartItems$(): Observable<ICartItem[]> {
     return this._cartItems$.asObservable();
   }
 
   public get cartCount$(): Observable<number> {
-    return this.cartItems$.pipe(map((items) => items.length));
+    return this._totalQuantity$.asObservable();
   }
 
   public get subtotal$(): Observable<number> {
@@ -39,7 +47,7 @@ export class CartService {
       this._items = [...this._items, newItem];
     }
 
-    this._cartItems$.next(this._items);
+    this._updateCart();
   }
 
   public increaseQuantity(itemId: string): void {
@@ -64,11 +72,11 @@ export class CartService {
 
   public removeItem(itemId: string): void {
     this._items = this._items.filter((item) => item.id != itemId);
-    this._cartItems$.next(this._items);
+    this._updateCart();
   }
 
   public clearCart(): void {
     this._items = [];
-    this._cartItems$.next(this._items);
+    this._updateCart();
   }
 }
