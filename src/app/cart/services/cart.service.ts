@@ -45,9 +45,8 @@ export class CartService {
     } else {
       const newItem: ICartItem = { ...item, id: item.product_id.toString() };
       this._items = [...this._items, newItem];
+      this._updateCart();
     }
-
-    this._updateCart();
   }
 
   public increaseQuantity(itemId: string): void {
@@ -58,6 +57,7 @@ export class CartService {
     const ammount = quantity * item.unit_price;
 
     this._items[index] = { ...item, quantity, ammount };
+    this._updateCart();
   }
 
   public decreaseQuantity(itemId: string): void {
@@ -68,6 +68,7 @@ export class CartService {
     const ammount = quantity * item.unit_price;
 
     this._items[index] = { ...item, quantity, ammount };
+    this._updateCart();
   }
 
   public removeItem(itemId: string): void {
