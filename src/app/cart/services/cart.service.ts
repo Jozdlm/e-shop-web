@@ -13,7 +13,10 @@ export class CartService {
   constructor() {}
 
   private _updateCart(): void {
-    const totalQuantity = this._items.reduce((acc, val) => acc + val.quantity, 0);
+    const totalQuantity = this._items.reduce(
+      (acc, val) => acc + val.quantity,
+      0
+    );
     this._totalQuantity$.next(totalQuantity);
 
     this._cartItems$.next(this._items);
@@ -25,6 +28,10 @@ export class CartService {
 
   public get cartCount$(): Observable<number> {
     return this._totalQuantity$.asObservable();
+  }
+
+  public get tax$(): Observable<number> {
+    return this.subtotal$.pipe(map((subtotal) => subtotal * 0.12));
   }
 
   public get subtotal$(): Observable<number> {
