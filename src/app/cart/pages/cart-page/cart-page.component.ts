@@ -26,6 +26,8 @@ export class CartPageComponent {
   private _subscription = new Subscription();
   public items = this._cartService.cartItems$;
   public itemsCount: number = 0;
+  public subtotal: number = 0;
+  public tax: number = 0;
 
   constructor() {
     this.subscribeToObservables();
@@ -37,7 +39,15 @@ export class CartPageComponent {
 
   public subscribeToObservables(): void {
     this._subscription.add(
-      this._cartService.cartCount$.subscribe((value) => (this.itemsCount = value))
+      this._cartService.cartCount$.subscribe(
+        (value) => (this.itemsCount = value)
+      )
+    );
+    this._subscription.add(
+      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value))
+    );
+    this._subscription.add(
+      this._cartService.tax$.subscribe((value) => (this.tax = value))
     );
   }
 
