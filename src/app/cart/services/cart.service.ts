@@ -43,11 +43,11 @@ export class CartService {
   }
 
   public addItemToCart(item: ItemCartDto): void {
-    const index = this._items.findIndex(
-      (item) => item.id == item.product_id.toString()
+    const inArray = this._items.some(
+      (itemCart) => itemCart.id == item.product_id.toString()
     );
 
-    if (index >= 0) {
+    if (inArray) {
       this.increaseQuantity(item.product_id.toString());
     } else {
       const newItem: ICartItem = { ...item, id: item.product_id.toString() };
