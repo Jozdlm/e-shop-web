@@ -9,6 +9,7 @@ export class CartService {
   private _items: ICartItem[] = [];
   private _cartItems$ = new BehaviorSubject<ICartItem[]>(this._items);
   private _totalQuantity$ = new BehaviorSubject<number>(0);
+  private _subtotal$ = new BehaviorSubject<number>(0);
 
   constructor() {}
 
@@ -17,8 +18,11 @@ export class CartService {
       (acc, val) => acc + val.quantity,
       0
     );
-    this._totalQuantity$.next(totalQuantity);
 
+    const totalAmmount = this._items.reduce((acc, val) => acc + val.ammount, 0);
+
+    this._subtotal$.next(totalAmmount);
+    this._totalQuantity$.next(totalQuantity);
     this._cartItems$.next(this._items);
   }
 
@@ -35,10 +39,7 @@ export class CartService {
   }
 
   public get subtotal$(): Observable<number> {
-    return this.cartItems$.pipe(
-      mergeMap((items) => items),
-      scan((acc, val) => acc + val.ammount, 0)
-    );
+    return this._subtotal$.asObservable();
   }
 
   public addItemToCart(item: ItemCartDto): void {
@@ -70,16 +71,15 @@ export class CartService {
     const index = this._items.findIndex((item) => item.id == itemId);
     const item = this._items[index];
 
-    if(item.quantity > 1) {
+    if (item.quantity > 1) {
       const quantity = item.quantity - 1;
       const ammount = quantity * item.unit_price;
 
       this._items[index] = { ...item, quantity, ammount };
+      this._updateCart();
     } else {
       this.removeItem(item.id);
     }
-
-    this._updateCart();
   }
 
   public removeItem(itemId: string): void {
