@@ -37,8 +37,7 @@ export class CartService {
   public get subtotal$(): Observable<number> {
     return this.cartItems$.pipe(
       mergeMap((items) => items),
-      map((item) => item.quantity * item.unit_price),
-      scan((acc, val) => acc + val, 0)
+      scan((acc, val) => acc + val.ammount, 0)
     );
   }
 
@@ -71,10 +70,15 @@ export class CartService {
     const index = this._items.findIndex((item) => item.id == itemId);
     const item = this._items[index];
 
-    const quantity = item.quantity - 1;
-    const ammount = quantity * item.unit_price;
+    if(item.quantity > 1) {
+      const quantity = item.quantity - 1;
+      const ammount = quantity * item.unit_price;
 
-    this._items[index] = { ...item, quantity, ammount };
+      this._items[index] = { ...item, quantity, ammount };
+    } else {
+      this.removeItem(item.id);
+    }
+
     this._updateCart();
   }
 
