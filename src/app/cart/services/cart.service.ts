@@ -11,7 +11,21 @@ export class CartService {
   private _totalQuantity$ = new BehaviorSubject<number>(0);
   private _subtotal$ = new BehaviorSubject<number>(0);
 
-  constructor() {}
+  constructor() {
+    this._getLocalItems();
+  }
+
+  private _getLocalItems(): void {
+    const strItems = localStorage.getItem('cart-items');
+
+    if (strItems) {
+      this._items = JSON.parse(strItems);
+    } else {
+      this._items = [];
+    }
+
+    this._updateCart();
+  }
 
   private _updateCart(): void {
     const totalQuantity = this._items.reduce(
@@ -24,6 +38,7 @@ export class CartService {
     this._subtotal$.next(totalAmmount);
     this._totalQuantity$.next(totalQuantity);
     this._cartItems$.next(this._items);
+    localStorage.setItem('cart-items', JSON.stringify(this._items));
   }
 
   public get cartItems$(): Observable<ICartItem[]> {
