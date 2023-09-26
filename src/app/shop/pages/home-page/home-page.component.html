@@ -1,6 +1,29 @@
-<div class="grid grid-cols-5 gap-4">
-  <app-product-card
-    *ngFor="let product of products()"
-    [product]="product"
-  />
+<div
+  class="relative z-10 mb-10 flex h-80 w-full items-center overflow-hidden rounded-[18px] bg-[url('assets/images/banner.png')] from-black bg-cover bg-center bg-no-repeat px-10 before:absolute before:inset-0 before:z-[-5] before:block before:bg-gradient-to-r before:from-slate-950 before:to-transparent before:opacity-80 before:content-['']"
+>
+  <div>
+    <div class="mb-6">
+      <h1 class="mb-2 text-2xl font-medium text-gray-50">
+        Bienvenido a nuestra tienda!
+      </h1>
+      <p class="w-96 text-sm text-gray-50">
+        Te invitamos a ver nuestro catalogo de productos o puedes buscar uno en
+        específico.
+      </p>
+    </div>
+    <app-search-input />
+  </div>
+</div>
+
+<div>
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-lg font-medium">Productos</h2>
+    <a routerLink="products" class="text-sm text-neutral-700 hover:text-black">Ver todos los productos</a>
+  </div>
+  <div class="grid grid-cols-5 gap-4">
+    <app-product-card
+      *ngFor="let product of products | async"
+      [product]="product"
+    />
+  </div>
 </div>

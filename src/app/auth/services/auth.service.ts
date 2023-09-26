@@ -1,62 +1,76 @@
-import { toSignal } from '@angular/core/rxjs-interop';
-import { Injectable, signal, computed, inject, effect } from '@angular/core';
-import { ICreateUser, ILoginUser, ISession } from '../auth';
-import {
-  Auth,
-  User,
-  UserCredential,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
-  user,
-} from '@angular/fire/auth';
-import { Observable, from, map, of, switchMap, tap } from 'rxjs';
+import { Injectable, inject, signal } from '@angular/core';
+import { ICreateUser, ILoginUser } from '../auth';
 import { Router } from '@angular/router';
+import { supabase } from 'src/app/app.config';
+import { Session, User } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _auth: Auth = inject(Auth);
   private _router: Router = inject(Router);
 
-  public user$ = user(this._auth);
-  public user = toSignal<User | null>(this.user$);
+  public user = signal<User | null>(null);
+
+  public isLogged = signal<boolean>(false);
+  public session: Session | null = null;
 
   constructor() {
-    effect(() => console.log(this.user()));
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (event == 'SIGNED_IN') {
+        this.isLogged.set(true);
+        this.session = session;
+      }
+      if (event == 'SIGNED_OUT') {
+        this.isLogged.set(false);
+        this.session = null;
+      }
+    });
   }
 
-  public signup(newUser: ICreateUser): Observable<User> {
+  public async signup(newUser: ICreateUser) {
     const { fullname, email, password } = newUser;
 
-    return from(
-      createUserWithEmailAndPassword(this._auth, email, password)
-    ).pipe(
-      tap((_) => this._router.navigateByUrl('')),
-      switchMap((userCredentials: UserCredential) => {
-        updateProfile(this._auth.currentUser!, { displayName: fullname });
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { fullname } },
+    });
 
-        const user = userCredentials.user;
-        return of(user);
-      })
-    );
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    // Navigate to email verification message
+
+    return data;
   }
 
-  public login(credentials: ILoginUser): Observable<User> {
+  public async login(credentials: ILoginUser) {
     const { email, password } = credentials;
 
-    return from(signInWithEmailAndPassword(this._auth, email, password)).pipe(
-      tap((_) => this._router.navigateByUrl('')),
-      map((value) => value.user)
-    );
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    this.user.set(data.user);
+    this._router.navigateByUrl('');
+    return data;
   }
 
-  public logout(): Observable<void> {
-    return from(signOut(this._auth))
-      .pipe(
-        tap((_) => this._router.navigateByUrl('/auth'))
-      );
+  public async logout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    this.user.set(null);
+    this._router.navigateByUrl('auth/login');
   }
 }

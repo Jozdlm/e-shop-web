@@ -6,7 +6,7 @@
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="h-6 w-6 text-neutral-500 hover:text-neutral-700"
+      class="h-5 w-5 text-neutral-500 hover:text-neutral-700"
     >
       <path
         stroke-linecap="round"
@@ -15,15 +15,15 @@
       />
     </svg>
     <div>
-      {{ cart().units_count > 9 ? "+9" : cart().units_count }}
+      {{ cartCount > 9 ? "+9" : cartCount }}
     </div>
   </div>
   <div id="dropdown-content">
-    <ng-container *ngIf="cart().items.length > 0;else emptyCart">
+    <ng-container *ngIf="cartCount > 0; else emptyCart">
       <ul class="list-none">
         <li
           class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
-          *ngFor="let item of cart().items.slice(0, 4)"
+          *ngFor="let item of (cartItems$ | async)?.slice(0, 4)"
         >
           <img
             [productImage]="item.img_url"
@@ -40,22 +40,29 @@
         <div class="my-6 flex items-center justify-between">
           <p>Subtotal</p>
           <p class="text-base font-medium">
-            {{ cart().subtotal | currency : "GTQ" }}
+            {{ subtotal | currency : "GTQ" }}
           </p>
         </div>
-        <div class="flex flex-col gap-y-2 items-center">
+        <div class="flex flex-col items-center gap-y-2">
           <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
             Ir a la cesta
           </app-button>
-          <p class="text-sm text-neutral-600 text-center">*Dirigete a la cesta para ver todos los articulos*</p>
+          <p class="text-center text-sm text-neutral-600">
+            *Dirigete a la cesta para ver todos los articulos*
+          </p>
         </div>
       </div>
     </ng-container>
     <ng-template #emptyCart>
       <div class="grid items-center justify-center text-center">
-        <p class="text-lg mb-1">Tu carrito está vacío</p>
-        <p class="mb-6 text-sm">Añade un producto al carrito para verlo aquí</p>
-        <app-button class="justify-self-center" routerLink="">Ir a la tienda</app-button>
+        <p class="text-base font-medium">Tu carrito está vacío</p>
+        <p class="mb-4 text-sm">Añade un producto al carrito para verlo aquí</p>
+        <button
+          class="rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
+          routerLink=""
+        >
+          Ir a la tienda
+        </button>
       </div>
     </ng-template>
   </div>

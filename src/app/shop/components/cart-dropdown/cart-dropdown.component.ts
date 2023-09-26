@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
-import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
+import { CartService } from 'src/app/cart/services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart-dropdown',
@@ -19,8 +20,29 @@ import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.c
   ],
 })
 export class CartDropdownComponent {
-  private _cartService: ShoppingCartService = inject(ShoppingCartService);
-  public cart = this._cartService.shoppingCart;
+  private _cartService: CartService = inject(CartService);
+  private _subscription = new Subscription();
+  public cartItems$ = this._cartService.cartItems$;
+  public cartCount: number = 0;
+  public subtotal: number = 0;
 
-  constructor() {}
+  constructor() {
+    this.subscribeToObservables();
+
+    inject(DestroyRef).onDestroy(() => {
+      this._subscription.unsubscribe();
+    });
+  }
+
+  public subscribeToObservables(): void {
+    this._subscription.add(
+      this._cartService.cartCount$.subscribe(
+        (value) => (this.cartCount = value)
+      )
+    );
+
+    this._subscription.add(
+      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value))
+    );
+  }
 }

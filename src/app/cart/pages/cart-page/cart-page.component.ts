@@ -1,13 +1,12 @@
 import { OrderSummaryComponent } from './../../components/order-summary/order-summary.component';
-import { Component, inject } from '@angular/core';
-import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemCartComponent } from '../../components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
-import { WishListService } from '../../../wish/services/wish-list.service';
-import { WishCartComponent } from '../../components/wish-cart/wish-cart.component';
 import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.component';
+import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart-page',
@@ -18,21 +17,53 @@ import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.compo
     ItemCartComponent,
     ButtonComponent,
     RouterModule,
-    WishCartComponent,
     OrderSummaryComponent,
-    EmptyCartComponent
+    EmptyCartComponent,
   ],
 })
 export class CartPageComponent {
-  private _cartService: ShoppingCartService = inject(ShoppingCartService);
-  private _wishService: WishListService = inject(WishListService);
+  private _cartService: CartService = inject(CartService);
+  private _subscription = new Subscription();
+  public items = this._cartService.cartItems$;
+  public itemsCount: number = 0;
+  public subtotal: number = 0;
+  public tax: number = 0;
 
-  public cart = this._cartService.shoppingCart;
-  public wish = this._wishService.wishList;
+  constructor() {
+    this.subscribeToObservables();
 
-  constructor() {}
+    inject(DestroyRef).onDestroy(() => {
+      this._subscription.unsubscribe();
+    });
+  }
+
+  public subscribeToObservables(): void {
+    this._subscription.add(
+      this._cartService.cartCount$.subscribe(
+        (value) => (this.itemsCount = value)
+      )
+    );
+    this._subscription.add(
+      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value))
+    );
+    this._subscription.add(
+      this._cartService.tax$.subscribe((value) => (this.tax = value))
+    );
+  }
 
   public clearShoppingCart(): void {
-    this._cartService.clearShoppingCart();
+    this._cartService.clearCart();
+  }
+
+  public handleIncrease(itemId: string): void {
+    this._cartService.increaseQuantity(itemId);
+  }
+
+  public handleDecrease(itemId: string): void {
+    this._cartService.decreaseQuantity(itemId);
+  }
+
+  public handleDeleteItem(itemId: string): void {
+    this._cartService.removeItem(itemId);
   }
 }

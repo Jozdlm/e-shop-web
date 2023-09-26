@@ -1,32 +1,54 @@
-<nav
-  class="mb-6 flex items-center justify-between border-b border-neutral-300 px-6 py-2"
->
-  <a class="block text-lg font-semibold" routerLink="">{{ businessName }}</a>
-  <app-search-input></app-search-input>
-  <div class="flex items-center gap-x-3">
-    <app-wishlist-dropdown></app-wishlist-dropdown>
-    <app-cart-dropdown></app-cart-dropdown>
-    <ng-container *ngIf="user(); else authButtons">
-      <app-user-dropdown></app-user-dropdown>
-    </ng-container>
-    <ng-template #authButtons>
-      <button class="rounded p-2 flex gap-x-2 items-center" routerLink="auth">
+<nav class="mb-6 w-full">
+  <div
+    class="mx-auto flex w-[90%] max-w-[1200px] items-center justify-between border-b border-neutral-300 px-4 py-2"
+  >
+    <div class="flex items-center gap-x-12">
+      <a class="block text-lg font-semibold" routerLink="">
+        {{ businessName }}
+      </a>
+    </div>
+    <!-- <app-search-input></app-search-input> -->
+    <div class="flex items-center gap-x-3">
+      <button class="flex items-center gap-x-2 rounded p-2" routerLink="search">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="h-6 w-6 text-neutral-500 hover:text-neutral-700"
+          class="h-5 w-5 text-neutral-500 hover:text-neutral-700"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
           />
         </svg>
-        <span class="text-sm">Identificarse</span>
+        <span class="text-sm">Buscar</span>
       </button>
-    </ng-template>
+      <app-cart-dropdown></app-cart-dropdown>
+      <ng-container *ngIf="isLogged(); else authButtons">
+        <app-user-dropdown></app-user-dropdown>
+      </ng-container>
+      <ng-template #authButtons>
+        <button class="flex items-center gap-x-2 rounded p-2" routerLink="auth">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-5 w-5 text-neutral-500 hover:text-neutral-700"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+            />
+          </svg>
+          <span class="text-sm">Cuenta</span>
+        </button>
+      </ng-template>
+    </div>
   </div>
 </nav>

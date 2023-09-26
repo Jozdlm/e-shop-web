@@ -1,10 +1,9 @@
-import { Component, Signal, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
 import { RouterModule } from '@angular/router';
 import { IMenuItem } from 'src/app/common/interfaces/menu-item';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-user-dropdown',
@@ -15,8 +14,6 @@ import { User } from '@angular/fire/auth';
 export class UserDropdownComponent {
   private _authService: AuthService = inject(AuthService);
 
-  public user: Signal<User | null | undefined> = this._authService.user;
-
   public baseLink: string = 'account';
   public menuItems: IMenuItem[] = [
     { link: 'profile', placeholder: 'Mi información' },
@@ -25,10 +22,15 @@ export class UserDropdownComponent {
     { link: 'purchase-history', placeholder: 'Historial de compras' },
   ];
 
+  public get userInfo() {
+    const user = this._authService.session?.user;
+    return {
+      email: user?.email,
+      fullname: user?.user_metadata['fullname'],
+    };
+  }
+
   public logout(): void {
-    this._authService.logout().subscribe({
-      next: (_) => console.log('Sesión cerrada correctamente'),
-      error: (error) => console.log(`Ha ocurrido un error: ${error}`)
-    })
+    this._authService.logout().catch(console.log);
   }
 }

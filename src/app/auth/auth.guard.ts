@@ -2,11 +2,11 @@ import { inject } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { CanActivateFn, Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = (_, __) => {
+export const isLoggedAuth: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if (authService.user()) {
+  if (authService.isLogged()) {
     return true;
   }
 
@@ -14,11 +14,11 @@ export const authGuard: CanActivateFn = (_, __) => {
   return false;
 };
 
-export const isLoggedGuard: CanActivateFn = (_, __) => {
+export const isAnonGuard: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if(authService.user()) {
+  if(authService.isLogged()) {
     router.navigate(['']);
     return false;
   }

@@ -1,6 +1,5 @@
 import { Component, Input, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IShoppingCart } from '../../cart';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 
@@ -11,6 +10,13 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
   templateUrl: './order-summary.component.html',
 })
 export class OrderSummaryComponent {
-  @Input({ required: true }) 
-  public cart!: Signal<IShoppingCart>;
+  @Input({ required: true })
+  public subtotal: number = 0;
+
+  @Input({ required: true })
+  public tax: number = 0;
+
+  public get total(): number {
+    return this.subtotal + this.tax;
+  }
 }

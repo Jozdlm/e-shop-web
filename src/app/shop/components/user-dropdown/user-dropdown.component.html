@@ -17,14 +17,9 @@
   </div>
   <div id="dropdown-content" class="divide-y">
     <div class="flex items-center gap-x-3 px-4 py-3">
-      <img
-        src="https://randomuser.me/api/portraits/men/44.jpg"
-        alt="Imagen del perfil del usuario"
-        class="h-10 w-10 rounded-full"
-      />
       <div class="overflow-hidden">
-        <p class="text-sm text-neutral-800 font-semibold">{{user()?.displayName}}</p>
-        <p class="text-sm text-neutral-600 truncate">{{user()?.email}}</p>
+        <p class="text-sm text-neutral-800 font-semibold">{{userInfo.fullname}}</p>
+        <p class="text-sm text-neutral-600 truncate">{{userInfo.email}}</p>
       </div>
     </div>
     <div>

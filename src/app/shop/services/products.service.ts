@@ -1,38 +1,35 @@
-import { Injectable, inject, Signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import {
-  Firestore,
-  collection,
-  collectionData,
-  doc,
-  docData,
-} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/store/interfaces/product';
+import { Injectable } from '@angular/core';
+import { supabase } from 'src/app/app.config';
+import { IProduct } from 'src/app/shop/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  private _firestore: Firestore = inject(Firestore);
-  private _productsCollection = collection(this._firestore, 'products');
-  private _products$ = collectionData(this._productsCollection, {
-    idField: 'id',
-  });
-
-  public products: Signal<IProduct[]> = toSignal(
-    this._products$ as Observable<IProduct[]>,
-    {
-      initialValue: [] as IProduct[],
-    }
-  );
+  private supabase = supabase;
 
   constructor() {}
 
-  public getProductById(productId: string): Observable<IProduct> {
-    const productRef = doc(this._firestore, 'products', productId);
-    const product$ = docData(productRef, { idField: 'id' });
+  public async getProducts(): Promise<IProduct[]> {
+    const { data, error } = await this.supabase.from('products').select();
 
-    return product$ as Observable<IProduct>;
+    if (error) throw new Error('Ha ocurrido un error: ' + error);
+
+    return data.map((item) => {
+      return { ...item, name: item.title, price: item.selling_price };
+    }) as IProduct[];
+  }
+
+  public async getProductById(productId: string): Promise<IProduct> {
+    const { data, error } = await this.supabase
+      .from('products')
+      .select()
+      .eq('id', productId);
+
+    if (error) throw new Error('Ha ocurrido un error: ' + error);
+
+    return data.map((item) => {
+      return { ...item, name: item.title, price: item.selling_price };
+    })[0] as IProduct;
   }
 }

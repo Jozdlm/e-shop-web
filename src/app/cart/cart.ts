@@ -1,5 +1,3 @@
-import { ICartItem } from '../store/interfaces/cart-item';
-
 export interface IShoppingCart {
   id?: string;
   items: ICartItem[];
@@ -8,6 +6,16 @@ export interface IShoppingCart {
   shipping: number;
   tax: number;
   total: number;
+}
+
+export interface ICartItem {
+  id: string;
+  product_id: number,
+  name: string,
+  img_url: string,
+  unit_price: number;
+  quantity: number;
+  ammount: number;
 }
 
 export interface IAddItemCart {

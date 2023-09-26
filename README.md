@@ -11,7 +11,7 @@ Tienda en linea para la venta de distintos productos de un negocio local, permit
 7. Modificar los valores de cada articulo del carrito de compras.
 8. Formulario de "checkout".
 
-Se utilizaron las tecnologias de Angular, TypeScript, RxJS, Tailwind CSS, Firebase y JSON-Server.
+Se utilizaron las tecnologias de Angular, TypeScript, RxJS, Tailwind CSS, y Supabase.
 
 ### Screenshots
 Working on this...

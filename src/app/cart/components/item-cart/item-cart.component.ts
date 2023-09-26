@@ -1,8 +1,7 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ICartItem } from '../../../store/interfaces/cart-item';
-import { ShoppingCartService } from '../../../store/services/shopping-cart.service';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
+import { ICartItem } from 'src/app/cart/cart';
 
 @Component({
   selector: 'app-item-cart',
@@ -11,20 +10,28 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
   templateUrl: './item-cart.component.html',
 })
 export class ItemCartComponent {
-  private _cartService: ShoppingCartService = inject(ShoppingCartService);
-
-  @Input({ alias: 'cartItem', required: true })
+  @Input({
+    alias: 'cartItem',
+    required: true,
+  })
   public item!: ICartItem;
 
+  @Output()
+  public onDeleteItem = new EventEmitter<string>();
+  @Output()
+  public onIncreaseQty = new EventEmitter<string>();
+  @Output()
+  public onDecreaseQty = new EventEmitter<string>();
+
   public increaseQty(itemId: string): void {
-    this._cartService.increaseQuantity(itemId);
+    this.onIncreaseQty.emit(itemId);
   }
 
   public decreaseQty(itemId: string): void {
-    this._cartService.decreaseQuantity(itemId);
+    this.onDecreaseQty.emit(itemId);
   }
 
   public removeItem(itemId: string): void {
-    this._cartService.removeFromCart(itemId);
+    this.onDeleteItem.emit(itemId);
   }
 }
