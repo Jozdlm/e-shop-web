@@ -1,15 +1,13 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { ICartItem } from 'src/app/cart/cart';
 import { IShoppingCart, ItemCartDto } from '../cart';
 import { CartService } from 'src/app/cart/services/cart.service';
-import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
   private _cartService: CartService = inject(CartService);
-  private _authService: AuthService = inject(AuthService);
 
   public shoppingCart = computed<IShoppingCart>(() => ({
     items: this.cartItems(),
@@ -45,17 +43,7 @@ export class ShoppingCartService {
     return this.subtotal() + this.tax();
   });
 
-  constructor() {
-    effect(() => {
-      if(this._authService.user()) {
-        const userEmail = this._authService.user()?.email || '';
-        this._cartService.getUserShoppingCart(userEmail)
-          .subscribe({
-            next: (value) => this.cartItems.set(value)
-          });
-      }
-    })
-  }
+  constructor() {}
 
   public addToCart(itemCart: ItemCartDto): void {
     const carItem = this.cartItems().find(
@@ -90,17 +78,7 @@ export class ShoppingCartService {
         items[index] = { ...items[index], quantity: items[index].quantity - 1 };
       });
     } else {
-      this.removeFromCart(cartItem!.id);
+      // this.removeFromCart(cartItem!.id);
     }
-  }
-
-  public removeFromCart(itemId: string): void {
-    this.cartItems.update((value) => {
-      return value.filter((item) => item.id != itemId);
-    });
-  }
-
-  public clearShoppingCart(): void {
-    this.cartItems.set([]);
   }
 }
