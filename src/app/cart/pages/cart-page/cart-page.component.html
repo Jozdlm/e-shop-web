@@ -28,6 +28,10 @@
     </div>
   </div>
   <div class="w-72" *ngIf="itemsCount > 0">
-    <app-order-summary [subtotal]="subtotal" [tax]="tax" />
+    <app-order-summary
+      [subtotal]="subtotal"
+      [tax]="tax"
+      [session]="isSession"
+    />
   </div>
 </div>

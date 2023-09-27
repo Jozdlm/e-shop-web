@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.component';
 import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-cart-page',
@@ -23,6 +24,7 @@ import { Subscription } from 'rxjs';
 })
 export class CartPageComponent {
   private _cartService: CartService = inject(CartService);
+  private _authService: AuthService = inject(AuthService);
   private _subscription = new Subscription();
   public items = this._cartService.cartItems$;
   public itemsCount: number = 0;
@@ -35,6 +37,10 @@ export class CartPageComponent {
     inject(DestroyRef).onDestroy(() => {
       this._subscription.unsubscribe();
     });
+  }
+
+  public get isSession(): boolean {
+    return this._authService.session ? true : false;
   }
 
   public subscribeToObservables(): void {

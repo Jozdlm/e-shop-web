@@ -26,6 +26,7 @@
 <button
   routerLink="./checkout"
   class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
+  *ngIf="session; else noSession"
 >
   <p>Hacer pedido</p>
   <svg
@@ -43,9 +44,10 @@
     />
   </svg>
 </button>
+
 <ng-template #noSession>
   <button
-    routerLink="./checkout"
+    routerLink="/auth"
     class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
   >
     <p>Hacer pedido</p>

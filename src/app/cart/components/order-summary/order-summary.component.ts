@@ -16,6 +16,9 @@ export class OrderSummaryComponent {
   @Input({ required: true })
   public tax: number = 0;
 
+  @Input({ required: true })
+  public session: boolean = false;
+
   public get total(): number {
     return this.subtotal + this.tax;
   }
