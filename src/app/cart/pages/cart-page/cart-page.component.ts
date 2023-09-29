@@ -72,4 +72,8 @@ export class CartPageComponent {
   public handleDeleteItem(itemId: string): void {
     this._cartService.removeItem(itemId);
   }
+
+  public handleNoSessionClick(): void {
+    this._authService.previousRoute = '/cart';
+  }
 }

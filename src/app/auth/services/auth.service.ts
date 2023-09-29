@@ -9,9 +9,8 @@ import { Session, User } from '@supabase/supabase-js';
 })
 export class AuthService {
   private _router: Router = inject(Router);
-
+  private _previousRoute: string | null = null;
   public user = signal<User | null>(null);
-
   public isLogged = signal<boolean>(false);
   public session: Session | null = null;
 
@@ -24,8 +23,13 @@ export class AuthService {
       if (event == 'SIGNED_OUT') {
         this.isLogged.set(false);
         this.session = null;
+        this._previousRoute = null;
       }
     });
+  }
+
+  public set previousRoute(route: string) {
+    this._previousRoute = route;
   }
 
   public async signup(newUser: ICreateUser) {
@@ -59,7 +63,13 @@ export class AuthService {
     }
 
     this.user.set(data.user);
-    this._router.navigateByUrl('');
+
+    if(this._previousRoute) {
+      this._router.navigateByUrl('cart/checkout');
+    } else {
+      this._router.navigateByUrl('');
+    }
+
     return data;
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, Signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
@@ -18,6 +18,13 @@ export class OrderSummaryComponent {
 
   @Input({ required: true })
   public session: boolean = false;
+
+  @Output()
+  public onNoSessionClick = new EventEmitter<boolean>(false);
+
+  public handleNoSessionClick(): void {
+    this.onNoSessionClick.emit(true);
+  }
 
   public get total(): number {
     return this.subtotal + this.tax;
