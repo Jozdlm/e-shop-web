@@ -11,5 +11,8 @@ import { IProduct } from 'src/app/shop/product';
   imports: [CommonModule, RouterModule, ProductImageDirective],
 })
 export class ProductCardComponent {
-  @Input() public product!: IProduct;
+  @Input({
+    required: true,
+  })
+  public product!: IProduct;
 }
