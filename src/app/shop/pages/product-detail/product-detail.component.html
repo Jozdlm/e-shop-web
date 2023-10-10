@@ -92,5 +92,11 @@
 </div>
 
 <div>
-  <p class="text-lg">Productos Relacionados</p>
+  <p class="mb-6 border-b border-gray-200 pb-4 text-lg">
+    Productos Relacionados
+  </p>
+
+  <div class="grid grid-cols-5 gap-x-5">
+    <app-product-card *ngFor="let item of relatedProducts" [product]="item" />
+  </div>
 </div>
