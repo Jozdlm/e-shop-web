@@ -16,31 +16,24 @@
     />
   </div>
   <div class="p-4">
-    <div class="mb-8">
-      <h1 class="mb-3 text-2xl font-semibold text-neutral-800">
+    <div class="mb-6">
+      <h1 class="mb-1 text-xl font-semibold text-neutral-800">
         {{ product.name | titlecase }}
       </h1>
+      <div class="flex gap-x-4 mb-4 text-sm">
+        <p>Marca: marca</p>
+        <p>Categoría: categoría</p>
+      </div>
       <p>{{ product.description }}</p>
     </div>
     <div class="mb-8">
       <p class="mb-2 text-xl font-semibold">
         {{ product.price | currency : "GTQ" }}
       </p>
-      <p
-        class="text-xl font-medium"
-        [ngClass]="{
-          'text-green-600': product.in_stock,
-          'text-orange-600': !product.in_stock
-        }"
-      >
-        {{
-          product.in_stock ? "¡Sí está disponible!" : "¡No está disponible! :/"
-        }}
-      </p>
     </div>
     <div class="mb-8">
       <div class="flex gap-x-4">
-        <div class="w-[220px] rounded border border-slate-200 p-3 text-sm">
+        <div class="w-[220px] rounded-lg border border-slate-200 p-3 text-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -62,7 +55,7 @@
             tiendas.
           </p>
         </div>
-        <div class="w-[220px] rounded border border-slate-200 p-3 text-sm">
+        <div class="w-[220px] rounded-lg border border-slate-200 p-3 text-sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -92,8 +85,8 @@
 </div>
 
 <div>
-  <p class="mb-6 border-b border-gray-200 pb-4 text-lg">
-    Productos Relacionados
+  <p class="mb-6 border-b border-gray-200 pb-4 text-lg font-medium">
+    Te podría interesar
   </p>
 
   <div class="grid grid-cols-5 gap-x-5">
