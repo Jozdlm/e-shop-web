@@ -12,6 +12,7 @@
     </div>
     <div>
       <p class="text-xl">{{ item.ammount | currency : "GTQ" }}</p>
+      <p *ngIf="item.ammount > item.unit_price" class="text-sm mt-1 text-gray-700">{{item.unit_price | currency: "GTQ"}} c/u</p>
     </div>
     <div class="flex items-center gap-x-2">
       <button
