@@ -21,6 +21,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
     OrderSummaryComponent,
     EmptyCartComponent,
   ],
+  styles: [`
+    .view-wrapper {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      column-gap: 80px;
+    }
+  `]
 })
 export class CartPageComponent {
   private _cartService: CartService = inject(CartService);
