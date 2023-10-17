@@ -21,16 +21,11 @@ export class ProductsService {
     return this.getProducts().pipe(map((arr) => arr.slice(0, 15)));
   }
 
-  public async getProductById(productId: string): Promise<IProduct> {
-    const { data, error } = await this.supabase
-      .from('products')
-      .select()
-      .eq('id', productId);
-
-    if (error) throw new Error('Ha ocurrido un error: ' + error);
-
-    return data.map((item) => {
-      return { ...item, name: item.title, price: item.selling_price };
-    })[0] as IProduct;
+  public getProductById(productId: string): Observable<IProduct> {
+    return this._http.get<IProduct>('http://localhost:3000/api/products', {
+      params: {
+        id: productId,
+      },
+    });
   }
 }

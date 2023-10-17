@@ -28,6 +28,12 @@ export class ProductDetailComponent {
   public relatedProducts: IProduct[] = [];
 
   public constructor() {
+    this.subscriptions.add(
+      this._productService.getRelatedProducts().subscribe((arr) => {
+        this.relatedProducts = arr;
+      })
+    );
+
     inject(DestroyRef).onDestroy(() => {
       this.subscriptions.unsubscribe();
     });
@@ -35,13 +41,9 @@ export class ProductDetailComponent {
 
   @Input()
   public set id(productId: string) {
-    this._productService.getProductById(productId).then((product) => {
-      this.product = product;
-    });
-
     this.subscriptions.add(
-      this._productService.getRelatedProducts().subscribe((arr) => {
-        this.relatedProducts = arr;
+      this._productService.getProductById(productId).subscribe((product) => {
+        this.product = product;
       })
     );
   }
