@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable, map, pipe, tap } from 'rxjs';
 import { supabase } from 'src/app/app.config';
 import { IProduct } from 'src/app/shop/product';
 
@@ -6,18 +8,13 @@ import { IProduct } from 'src/app/shop/product';
   providedIn: 'root',
 })
 export class ProductsService {
+  private _http: HttpClient = inject(HttpClient);
   private supabase = supabase;
 
   constructor() {}
 
-  public async getProducts(): Promise<IProduct[]> {
-    const { data, error } = await this.supabase.from('products').select();
-
-    if (error) throw new Error('Ha ocurrido un error: ' + error);
-
-    return data.map((item) => {
-      return { ...item, name: item.title, price: item.selling_price };
-    }) as IProduct[];
+  public getProducts(): Observable<IProduct[]> {
+    return this._http.get<IProduct[]>('http://localhost:3000/api/products');
   }
 
   public async getProductById(productId: string): Promise<IProduct> {
