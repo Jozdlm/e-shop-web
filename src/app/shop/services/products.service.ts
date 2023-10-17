@@ -17,6 +17,10 @@ export class ProductsService {
     return this._http.get<IProduct[]>('http://localhost:3000/api/products');
   }
 
+  public getRelatedProducts(): Observable<IProduct[]> {
+    return this.getProducts().pipe(map((arr) => arr.slice(0, 15)));
+  }
+
   public async getProductById(productId: string): Promise<IProduct> {
     const { data, error } = await this.supabase
       .from('products')
