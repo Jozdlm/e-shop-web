@@ -14,9 +14,6 @@ export class OrderSummaryComponent {
   public subtotal: number = 0;
 
   @Input({ required: true })
-  public tax: number = 0;
-
-  @Input({ required: true })
   public session: boolean = false;
 
   @Output()
@@ -24,9 +21,5 @@ export class OrderSummaryComponent {
 
   public handleNoSessionClick(): void {
     this.onNoSessionClick.emit(true);
-  }
-
-  public get total(): number {
-    return this.subtotal + this.tax;
   }
 }

@@ -27,7 +27,6 @@
   <div *ngIf="itemsCount > 0">
     <app-order-summary
       [subtotal]="subtotal"
-      [tax]="tax"
       [session]="isSession"
       (onNoSessionClick)="handleNoSessionClick()"
     />
