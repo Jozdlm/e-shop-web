@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, pipe, tap } from 'rxjs';
-import { supabase } from 'src/app/app.config';
+import { Observable, map } from 'rxjs';
 import { IProduct } from 'src/app/shop/product';
 
 @Injectable({
@@ -9,9 +8,6 @@ import { IProduct } from 'src/app/shop/product';
 })
 export class ProductsService {
   private _http: HttpClient = inject(HttpClient);
-  private supabase = supabase;
-
-  constructor() {}
 
   public getProducts(): Observable<IProduct[]> {
     return this._http.get<IProduct[]>('http://localhost:3000/api/products');
@@ -21,11 +17,9 @@ export class ProductsService {
     return this.getProducts().pipe(map((arr) => arr.slice(0, 15)));
   }
 
-  public getProductById(productId: string): Observable<IProduct> {
-    return this._http.get<IProduct>('http://localhost:3000/api/products', {
-      params: {
-        id: productId,
-      },
-    });
+  public getProductById(productId: number): Observable<IProduct> {
+    return this._http.get<IProduct>(
+      `http://localhost:3000/api/products/${productId}`
+    );
   }
 }

@@ -40,7 +40,7 @@ export class ProductDetailComponent {
   }
 
   @Input()
-  public set id(productId: string) {
+  public set id(productId: number) {
     this.subscriptions.add(
       this._productService.getProductById(productId).subscribe((product) => {
         this.product = product;
