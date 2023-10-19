@@ -49,10 +49,6 @@ export class CartService {
     return this._totalQuantity$.asObservable();
   }
 
-  public get tax$(): Observable<number> {
-    return this.subtotal$.pipe(map((subtotal) => subtotal * 0.12));
-  }
-
   public get subtotal$(): Observable<number> {
     return this._subtotal$.asObservable();
   }
