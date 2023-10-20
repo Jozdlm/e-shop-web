@@ -5,6 +5,7 @@ import { ProductCardComponent } from 'src/app/shop/components/product-card/produ
 import { from } from 'rxjs';
 import { SearchInputComponent } from '../../components/search-input/search-input.component';
 import { RouterModule } from '@angular/router';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-home-page',
@@ -19,7 +20,9 @@ import { RouterModule } from '@angular/router';
 })
 export class HomePageComponent {
   private _productsService: ProductsService = inject(ProductsService);
-  public products = from(this._productsService.getProducts());
+  private _categoriesService: CategoriesService = inject(CategoriesService);
+  public products = this._productsService.getProducts();
+  public categories$ = this._categoriesService.getCategories();
 
   constructor() {}
 }

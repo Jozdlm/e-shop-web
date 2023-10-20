@@ -16,6 +16,10 @@
 </div>
 
 <div>
+  <div>
+    <h2 class="text-lg font-medium">Categorías</h2>
+    <p *ngFor="let category of categories$ | async">{{category.name}}</p>
+  </div>
   <div class="flex items-center justify-between mb-4">
     <h2 class="text-lg font-medium">Productos</h2>
     <a routerLink="products" class="text-sm text-neutral-700 hover:text-black">Ver todos los productos</a>
