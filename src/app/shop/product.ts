@@ -10,6 +10,7 @@ export interface IProduct {
 
 export type Category = {
   id: number;
+  slug: string;
   name: string;
   description: string;
 }
