@@ -6,7 +6,7 @@ export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   {
     path: 'cart',
-    loadChildren: () => import('./cart/cart.routes')
+    loadChildren: () => import('./cart/cart.routes'),
   },
   {
     path: 'product/:id',
@@ -16,14 +16,21 @@ export const APP_ROUTES: Routes = [
       ),
   },
   {
+    path: 'shop/:category',
+    loadComponent: () =>
+      import('./shop/pages/item-list/item-list.component').then(
+        (c) => c.ItemListComponent
+      ),
+  },
+  {
     path: 'account',
     canActivate: [isLoggedAuth],
-    loadChildren: () => import('./account/account.routes')
+    loadChildren: () => import('./account/account.routes'),
   },
   {
     path: 'auth',
     canActivate: [isAnonGuard],
-    loadChildren: () => import('./auth/auth.routes')
+    loadChildren: () => import('./auth/auth.routes'),
   },
   { path: '**', redirectTo: '' },
 ];
