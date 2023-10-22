@@ -7,12 +7,14 @@ import { IProduct } from 'src/app/shop/product';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { Subscription } from 'rxjs';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     ButtonComponent,
     ProductImageDirective,
     ProductCardComponent,

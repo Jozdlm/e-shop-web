@@ -20,9 +20,14 @@
       <h1 class="mb-1 text-xl font-semibold text-neutral-800">
         {{ product.name | titlecase }}
       </h1>
-      <div class="flex gap-x-4 mb-4 text-sm">
+      <div class="mb-4 flex gap-x-4 text-sm">
         <p>Marca: marca</p>
-        <p>Categoría: {{product.category?.name}}</p>
+        <a [routerLink]="['/shop', product.category?.slug]">
+          Categoría:
+          <span class="text-sm font-medium text-sky-600">
+            {{ product.category?.name }}
+          </span>
+        </a>
       </div>
       <p>{{ product.description }}</p>
     </div>
