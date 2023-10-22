@@ -20,26 +20,31 @@
   </div>
   <div id="dropdown-content">
     <ng-container *ngIf="cartCount > 0; else emptyCart">
-      <ul class="list-none">
-        <li
-          class="flex items-center justify-start gap-x-4 border-b border-neutral-300 py-4 first:pt-0"
-          *ngFor="let item of (cartItems$ | async)?.slice(0, 4)"
-        >
-          <img
-            [productImage]="item.img_url"
-            alt=""
-            class="block h-16 w-16 object-contain"
-          />
-          <div>
-            <p class="text-sm mb-2 font-medium">{{ item.name }}</p>
-            <p class="text-sm">Cantidad: {{ item.quantity }}</p>
-          </div>
-        </li>
-      </ul>
+      <div class="border-b border-neutral-300">
+        <ul class="list-none">
+          <li
+            class="flex items-center justify-start gap-x-4 py-4 first:pt-0"
+            *ngFor="let item of (cartItems$ | async)?.slice(0, 4)"
+          >
+            <img
+              [productImage]="item.img_url"
+              alt=""
+              class="block h-16 w-16 object-contain"
+            />
+            <div>
+              <p class="mb-1 text-sm">{{ item.name }}</p>
+              <p class="text-sm text-gray-600">Cantidad: {{ item.quantity }}</p>
+            </div>
+          </li>
+        </ul>
+        <p class="pb-4 text-center text-sm text-neutral-600">
+          *Dirigete a la cesta para ver todos los articulos*
+        </p>
+      </div>
       <div>
         <div class="my-6 flex items-center justify-between">
-          <p>Subtotal</p>
-          <p class="text-base font-medium">
+          <p>Subtotal:</p>
+          <p class="font-medium">
             {{ subtotal | currency : "GTQ" }}
           </p>
         </div>
@@ -47,9 +52,6 @@
           <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
             Ir a la cesta
           </app-button>
-          <p class="text-center text-sm text-neutral-600">
-            *Dirigete a la cesta para ver todos los articulos*
-          </p>
         </div>
       </div>
     </ng-container>
