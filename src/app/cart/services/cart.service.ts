@@ -33,7 +33,10 @@ export class CartService {
       0
     );
 
-    const totalAmmount = this._items.reduce((acc, val) => acc + val.ammount, 0);
+    const totalAmmount = this._items.reduce(
+      (acc, val) => acc * 1 + val.ammount,
+      0.0
+    );
 
     this._subtotal$.next(totalAmmount);
     this._totalQuantity$.next(totalQuantity);
