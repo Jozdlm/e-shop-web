@@ -1,28 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ICartItem, ItemCartDto } from '../cart';
-import { BehaviorSubject, Observable, map, mergeMap, scan } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { LocalCartService } from './local-cart.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private _localCartService: LocalCartService = inject(LocalCartService);
   private _items: ICartItem[] = [];
   private _cartItems$ = new BehaviorSubject<ICartItem[]>(this._items);
   private _totalQuantity$ = new BehaviorSubject<number>(0);
   private _subtotal$ = new BehaviorSubject<number>(0);
 
   constructor() {
-    this._getLocalItems();
+    this.getCartItems();
   }
 
-  private _getLocalItems(): void {
-    const strItems = localStorage.getItem('cart-items');
-
-    if (strItems) {
-      this._items = JSON.parse(strItems);
-    } else {
-      this._items = [];
-    }
+  private getCartItems(): void {
+    const localItems = this._localCartService.getLocalItems();
+    this._items = localItems ?? [];
 
     this._updateCart();
   }
@@ -41,7 +38,7 @@ export class CartService {
     this._subtotal$.next(totalAmmount);
     this._totalQuantity$.next(totalQuantity);
     this._cartItems$.next(this._items);
-    localStorage.setItem('cart-items', JSON.stringify(this._items));
+    this._localCartService.setLocalItems(this._items);
   }
 
   public get cartItems$(): Observable<ICartItem[]> {
