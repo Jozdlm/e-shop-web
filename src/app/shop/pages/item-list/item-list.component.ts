@@ -12,9 +12,8 @@ import { ProductCardComponent } from '../../components/product-card/product-card
   styles: [`
     .list-wrapper {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 260px 1fr;
       column-gap: 32px;
-      row-gap: 24px;
     }
   `],
 })
