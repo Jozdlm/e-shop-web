@@ -1,3 +1,4 @@
 
-
-<p *ngFor="let item of products">{{item.name}}</p>
+<div class="list-wrapper">
+  <app-product-card *ngFor="let item of products" [product]="item" />
+</div>
