@@ -21,7 +21,7 @@ import { CategoriesService } from '../../services/categories.service';
 export class HomePageComponent {
   private _productsService: ProductsService = inject(ProductsService);
   private _categoriesService: CategoriesService = inject(CategoriesService);
-  public products = this._productsService.getProducts();
+  public products = this._productsService.getStarredProducts();
   public categories$ = this._categoriesService.getCategories();
 
   constructor() {}

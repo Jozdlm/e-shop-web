@@ -24,6 +24,10 @@ export class ProductsService {
     return this.getProducts().pipe(map((arr) => arr.slice(0, 15)));
   }
 
+  public getStarredProducts(): Observable<IProduct[]> {
+    return this.getProducts().pipe(map((arr) => arr.slice(0, 15)));
+  }
+
   public getProductById(productId: number): Observable<IProduct> {
     return this._http.get<IProduct>(
       `http://localhost:3000/api/products/${productId}`
