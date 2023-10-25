@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from 'src/app/shop/services/products.service';
 import { ProductCardComponent } from 'src/app/shop/components/product-card/product-card.component';
-import { from } from 'rxjs';
 import { SearchInputComponent } from '../../components/search-input/search-input.component';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from '../../services/categories.service';
