@@ -23,6 +23,10 @@ export const APP_ROUTES: Routes = [
       ),
   },
   {
+    path: 'cms',
+    loadChildren: () => import('./cms/cms.routes'),
+  },
+  {
     path: 'account',
     canActivate: [isLoggedAuth],
     loadChildren: () => import('./account/account.routes'),
