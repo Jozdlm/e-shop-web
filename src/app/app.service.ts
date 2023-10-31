@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BusinessInfo } from './app';
+import { Business } from './common/interfaces/business.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
-  private _business: BusinessInfo = {
+  private _business: Business = {
     name: 'Librería La Joya',
   };
 
