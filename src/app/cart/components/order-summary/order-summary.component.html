@@ -1,12 +1,12 @@
-<div class="mb-6 pb-4 border-b border-gray-300">
-  <p class="text-lg mb-2">Subtotal:</p>
-  <p class="text-2xl font-medium">{{ subtotal | currency: "GTQ"}}</p>
+<div class="mb-6 border-b border-gray-300 pb-4">
+  <p class="mb-2 text-lg">Subtotal:</p>
+  <p class="text-2xl font-medium">{{ subtotal | currency : "GTQ" }}</p>
 </div>
 
+@if (session) {
 <button
   routerLink="./checkout"
   class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
-  *ngIf="session; else noSession"
 >
   <p>Hacer pedido</p>
   <svg
@@ -24,27 +24,26 @@
     />
   </svg>
 </button>
-
-<ng-template #noSession>
-  <button
-    routerLink="/auth"
-    class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
-    (click)="handleNoSessionClick()"
+} @else {
+<button
+  routerLink="/auth"
+  class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
+  (click)="handleNoSessionClick()"
+>
+  <p>Hacer pedido</p>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="h-5 w-5"
   >
-    <p>Hacer pedido</p>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="h-5 w-5"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
-      />
-    </svg>
-  </button>
-</ng-template>
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+    />
+  </svg>
+</button>
+}

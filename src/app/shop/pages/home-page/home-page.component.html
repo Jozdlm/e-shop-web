@@ -17,15 +17,16 @@
 
 <div>
   <div class="mb-8">
-    <h2 class="text-lg font-medium mb-2">Categorías</h2>
-    <div class="flex gap-4 flex-wrap">
+    <h2 class="mb-2 text-lg font-medium">Categorías</h2>
+    <div class="flex flex-wrap gap-4">
+      @for (category of categories$ | async; track category.id) {
       <a
         class="rounded-lg border border-gray-300 px-3 py-2"
-        *ngFor="let category of categories$ | async"
         [routerLink]="['shop', category.slug]"
       >
         <p>{{ category.name }}</p>
       </a>
+      }
     </div>
   </div>
   <div class="mb-4 flex items-center justify-between">
@@ -35,9 +36,8 @@
     >
   </div>
   <div class="grid grid-cols-5 gap-4">
-    <app-product-card
-      *ngFor="let product of products | async"
-      [product]="product"
-    />
+    @for (product of products | async; track product.id) {
+    <app-product-card [product]="product" />
+    }
   </div>
 </div>

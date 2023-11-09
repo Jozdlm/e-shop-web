@@ -19,53 +19,49 @@
     </div>
   </div>
   <div id="dropdown-content">
-    <ng-container *ngIf="cartCount > 0; else emptyCart">
-      <div class="border-b border-neutral-300">
-        <ul class="list-none">
-          <li
-            class="flex items-center justify-start gap-x-4 py-4 first:pt-0"
-            *ngFor="let item of (cartItems$ | async)?.slice(0, 4)"
-          >
-            <img
-              [productImage]="item.img_url"
-              alt=""
-              class="block h-16 w-16 object-contain"
-            />
-            <div>
-              <p class="mb-1 text-sm">{{ item.name }}</p>
-              <p class="text-sm text-gray-600">Cantidad: {{ item.quantity }}</p>
-            </div>
-          </li>
-        </ul>
-        <p class="pb-4 text-center text-sm text-neutral-600">
-          *Dirigete a la cesta para ver todos los articulos*
+    @if (cartCount) {
+    <div class="border-b border-neutral-300">
+      @for (item of (cartItems$ | async)?.slice(0,4); track item.id) {
+      <div class="flex items-center justify-start gap-x-4 py-4 first:pt-0">
+        <img
+          [productImage]="item.img_url"
+          alt=""
+          class="block h-16 w-16 object-contain"
+        />
+        <div>
+          <p class="mb-1 text-sm">{{ item.name }}</p>
+          <p class="text-sm text-gray-600">Cantidad: {{ item.quantity }}</p>
+        </div>
+      </div>
+      }
+      <p class="pb-4 text-center text-sm text-neutral-600">
+        *Dirigete a la cesta para ver todos los articulos*
+      </p>
+    </div>
+    <div>
+      <div class="my-6 flex items-center justify-between">
+        <p>Subtotal:</p>
+        <p class="font-medium">
+          {{ subtotal | currency : "GTQ" }}
         </p>
       </div>
-      <div>
-        <div class="my-6 flex items-center justify-between">
-          <p>Subtotal:</p>
-          <p class="font-medium">
-            {{ subtotal | currency : "GTQ" }}
-          </p>
-        </div>
-        <div class="flex flex-col items-center gap-y-2">
-          <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
-            Ir a la cesta
-          </app-button>
-        </div>
+      <div class="flex flex-col items-center gap-y-2">
+        <app-button [fullWidth]="true" routerLink="/cart" class="w-full">
+          Ir a la cesta
+        </app-button>
       </div>
-    </ng-container>
-    <ng-template #emptyCart>
-      <div class="grid items-center justify-center text-center">
-        <p class="text-base font-medium">Tu carrito está vacío</p>
-        <p class="mb-4 text-sm">Añade un producto al carrito para verlo aquí</p>
-        <button
-          class="rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
-          routerLink=""
-        >
-          Ir a la tienda
-        </button>
-      </div>
-    </ng-template>
+    </div>
+    } @else {
+    <div class="grid items-center justify-center text-center">
+      <p class="text-base font-medium">Tu carrito está vacío</p>
+      <p class="mb-4 text-sm">Añade un producto al carrito para verlo aquí</p>
+      <button
+        class="rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
+        routerLink=""
+      >
+        Ir a la tienda
+      </button>
+    </div>
+    }
   </div>
 </app-dropdown>

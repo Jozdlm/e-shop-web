@@ -95,6 +95,8 @@
   </p>
 
   <div class="grid grid-cols-5 gap-x-5">
-    <app-product-card *ngFor="let item of relatedProducts" [product]="item" />
+    @for (item of relatedProducts; track item.id) {
+    <app-product-card [product]="item" />
+    }
   </div>
 </div>

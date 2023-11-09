@@ -1,34 +1,29 @@
+@if (itemsCount) {
 <div class="mb-10">
   <h1 class="mb-1 text-xl font-medium">Mi carrito</h1>
   <a
     class="cursor-pointer text-sm text-gray-700 underline"
     (click)="clearShoppingCart()"
-    *ngIf="itemsCount > 0"
     >Limpiar carrito</a
   >
 </div>
-
 <div class="view-wrapper">
   <div class="pb-4">
-    <ng-container *ngIf="itemsCount > 0; else empty">
-      <app-item-cart
-        *ngFor="let item of items | async"
-        [cartItem]="item"
-        (onIncreaseQty)="handleIncrease($event)"
-        (onDecreaseQty)="handleDecrease($event)"
-        (onDeleteItem)="handleDeleteItem($event)"
-      />
-    </ng-container>
-
-    <ng-template #empty>
-      <app-empty-cart />
-    </ng-template>
-  </div>
-  <div *ngIf="itemsCount > 0">
-    <app-order-summary
-      [subtotal]="subtotal"
-      [session]="isSession"
-      (onNoSessionClick)="handleNoSessionClick()"
+    @for (item of items |async; track item.id) {
+    <app-item-cart
+      [cartItem]="item"
+      (onIncreaseQty)="handleIncrease($event)"
+      (onDecreaseQty)="handleDecrease($event)"
+      (onDeleteItem)="handleDeleteItem($event)"
     />
+    }
   </div>
+  <app-order-summary
+    [subtotal]="subtotal"
+    [session]="isSession"
+    (onNoSessionClick)="handleNoSessionClick()"
+  />
 </div>
+} @else {
+<app-empty-cart />
+}

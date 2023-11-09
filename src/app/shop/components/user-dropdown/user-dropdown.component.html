@@ -18,20 +18,26 @@
   <div id="dropdown-content" class="divide-y">
     <div class="flex items-center gap-x-3 px-4 py-3">
       <div class="overflow-hidden">
-        <p class="text-sm text-neutral-800 font-semibold">{{userInfo.fullname}}</p>
-        <p class="text-sm text-neutral-600 truncate">{{userInfo.email}}</p>
+        <p class="text-sm font-semibold text-neutral-800">
+          {{ userInfo.fullname }}
+        </p>
+        <p class="truncate text-sm text-neutral-600">{{ userInfo.email }}</p>
       </div>
     </div>
     <div>
+      @for (item of menuItems; track item) {
       <a
-        *ngFor="let item of menuItems"
         [routerLink]="[baseLink, item.link]"
         class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
       >
         <span class="text-sm">{{ item.placeholder }}</span>
       </a>
+      }
     </div>
-    <a class="block cursor-pointer px-4 py-2 hover:bg-gray-100" (click)="logout()">
+    <a
+      class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
+      (click)="logout()"
+    >
       <span class="text-sm">Cerrar Sesión</span>
     </a>
   </div>

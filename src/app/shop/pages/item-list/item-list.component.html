@@ -1,5 +1,5 @@
 <div>
-  <p>Resultados: {{products.length}}</p>
+  <p>Resultados: {{ products.length }}</p>
 </div>
 
 <div class="list-wrapper">
@@ -7,6 +7,8 @@
     <p>Filters</p>
   </div>
   <div class="grid grid-cols-4 gap-x-6 gap-y-6">
-    <app-product-card *ngFor="let item of products" [product]="item" />
+    @for (product of products; track product.id) {
+    <app-product-card [product]="product" />
+    }
   </div>
 </div>
