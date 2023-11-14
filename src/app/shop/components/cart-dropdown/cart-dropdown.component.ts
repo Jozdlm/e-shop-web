@@ -6,6 +6,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Subscription } from 'rxjs';
+import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon/shopping-bag-icon.component';
 
 @Component({
   selector: 'app-cart-dropdown',
@@ -17,6 +18,7 @@ import { Subscription } from 'rxjs';
     ButtonComponent,
     ProductImageDirective,
     DropdownComponent,
+    ShoppingBagIconComponent,
   ],
 })
 export class CartDropdownComponent {

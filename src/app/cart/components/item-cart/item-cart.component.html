@@ -18,7 +18,7 @@
       <p class="text-xl">{{ item.ammount | currency : "GTQ" }}</p>
 
       @if (item.ammount > item.unit_price) {
-      <p class="mt-1 text-sm text-gray-700">
+      <p class="text-gray-70FF0 mt-1 text-sm">
         {{ item.unit_price | currency : "GTQ" }} c/u
       </p>
       }
@@ -29,14 +29,7 @@
         class="rounded border border-slate-300 p-1.5"
         (click)="decreaseQty(item.id)"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          class="h-4 w-4"
-        >
-          <path d="M6.75 9.25a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" />
-        </svg>
+        <ui-minus-icon />
       </button>
       <p>{{ item.quantity }}</p>
       <button
@@ -44,16 +37,7 @@
         class="rounded border border-slate-300 p-1.5"
         (click)="increaseQty(item.id)"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          class="h-4 w-4"
-        >
-          <path
-            d="M10.75 6.75a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z"
-          />
-        </svg>
+        <ui-plus-icon />
       </button>
     </div>
   </div>
