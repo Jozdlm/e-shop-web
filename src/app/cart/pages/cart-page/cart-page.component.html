@@ -1,29 +1,29 @@
 @if (itemsCount) {
-<div class="mb-10">
-  <h1 class="mb-1 text-xl font-medium">Mi carrito</h1>
-  <a
-    class="cursor-pointer text-sm text-gray-700 underline"
-    (click)="clearShoppingCart()"
-    >Limpiar carrito</a
-  >
-</div>
-<div class="view-wrapper">
-  <div class="pb-4">
-    @for (item of items |async; track item.id) {
-    <app-item-cart
-      [cartItem]="item"
-      (onIncreaseQty)="handleIncrease($event)"
-      (onDecreaseQty)="handleDecrease($event)"
-      (onDeleteItem)="handleDeleteItem($event)"
-    />
-    }
+  <div class="mb-10">
+    <h1 class="mb-1 text-xl font-medium">Mi carrito</h1>
+    <a
+      class="cursor-pointer text-sm text-gray-700 underline"
+      (click)="clearShoppingCart()"
+      >Limpiar carrito</a
+    >
   </div>
-  <app-order-summary
-    [subtotal]="subtotal"
-    [session]="isSession"
-    (onNoSessionClick)="handleNoSessionClick()"
-  />
-</div>
+  <div class="view-wrapper">
+    <div class="pb-4">
+      @for (item of items | async; track item.id) {
+        <app-item-cart
+          [cartItem]="item"
+          (onIncreaseQty)="handleIncrease($event)"
+          (onDecreaseQty)="handleDecrease($event)"
+          (onDeleteItem)="handleDeleteItem($event)"
+        />
+      }
+    </div>
+    <app-order-summary
+      [subtotal]="subtotal"
+      [session]="isSession"
+      (onNoSessionClick)="handleNoSessionClick()"
+    />
+  </div>
 } @else {
-<app-empty-cart />
+  <app-empty-cart />
 }

@@ -33,7 +33,7 @@
     </div>
     <div class="mb-8">
       <p class="mb-2 text-xl font-semibold">
-        {{ product.selling_price | currency : "GTQ" }}
+        {{ product.selling_price | currency: "GTQ" }}
       </p>
     </div>
     <div class="mb-8">
@@ -96,7 +96,7 @@
 
   <div class="grid grid-cols-5 gap-x-5">
     @for (item of relatedProducts; track item.id) {
-    <app-product-card [product]="item" />
+      <app-product-card [product]="item" />
     }
   </div>
 </div>

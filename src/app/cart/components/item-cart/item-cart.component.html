@@ -15,12 +15,12 @@
       >
     </div>
     <div>
-      <p class="text-xl">{{ item.ammount | currency : "GTQ" }}</p>
+      <p class="text-xl">{{ item.ammount | currency: "GTQ" }}</p>
 
       @if (item.ammount > item.unit_price) {
-      <p class="text-gray-70FF0 mt-1 text-sm">
-        {{ item.unit_price | currency : "GTQ" }} c/u
-      </p>
+        <p class="text-gray-70FF0 mt-1 text-sm">
+          {{ item.unit_price | currency: "GTQ" }} c/u
+        </p>
       }
     </div>
     <div class="flex items-center gap-x-2">

@@ -20,12 +20,12 @@
     <h2 class="mb-2 text-lg font-medium">Categorías</h2>
     <div class="flex flex-wrap gap-4">
       @for (category of categories$ | async; track category.id) {
-      <a
-        class="rounded-lg border border-gray-300 px-3 py-2"
-        [routerLink]="['shop', category.slug]"
-      >
-        <p>{{ category.name }}</p>
-      </a>
+        <a
+          class="rounded-lg border border-gray-300 px-3 py-2"
+          [routerLink]="['shop', category.slug]"
+        >
+          <p>{{ category.name }}</p>
+        </a>
       }
     </div>
   </div>
@@ -37,7 +37,7 @@
   </div>
   <div class="grid grid-cols-5 gap-4">
     @for (product of products | async; track product.id) {
-    <app-product-card [product]="product" />
+      <app-product-card [product]="product" />
     }
   </div>
 </div>
