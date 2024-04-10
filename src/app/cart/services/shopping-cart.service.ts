@@ -47,7 +47,7 @@ export class ShoppingCartService {
 
   public addToCart(itemCart: ItemCartDto): void {
     const carItem = this.cartItems().find(
-      (item) => item.product_id == itemCart.product_id
+      (item) => item.product_id == itemCart.product_id,
     );
 
     if (carItem) {
@@ -60,11 +60,13 @@ export class ShoppingCartService {
   public increaseQuantity(itemId: string): void {
     const index = this.cartItems().findIndex((item) => item.id == itemId);
 
-    this.cartItems.mutate((items) => {
+    this.cartItems.update((items) => {
       const quantity = items[index].quantity + 1;
       const ammount = quantity * items[index].unit_price;
 
-      items[index] = { ...items[index], quantity, ammount };
+      const newCart = [...items];
+      newCart[index] = { ...items[index], quantity, ammount };
+      return newCart;
     });
   }
 
@@ -74,8 +76,13 @@ export class ShoppingCartService {
     if (cartItem!.quantity > 1) {
       const index = this.cartItems().findIndex((item) => item.id == itemId);
 
-      this.cartItems.mutate((items) => {
-        items[index] = { ...items[index], quantity: items[index].quantity - 1 };
+      this.cartItems.update((items) => {
+        const newCart = [...items];
+        newCart[index] = {
+          ...items[index],
+          quantity: items[index].quantity - 1,
+        };
+        return newCart;
       });
     } else {
       // this.removeFromCart(cartItem!.id);
