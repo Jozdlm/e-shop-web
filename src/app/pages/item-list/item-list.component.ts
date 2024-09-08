@@ -1,7 +1,7 @@
 import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProduct } from '../../shop/product';
-import { ProductsService } from '../../shop/services/products.service';
+import { ProductsService } from '../../shop/products.service';
 import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
 import { Subscription } from 'rxjs';
 

@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
-import { CartService } from 'src/app/cart/services/cart.service';
 import { Subscription } from 'rxjs';
 import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon/shopping-bag-icon.component';
+import { CartService } from '@app/cart/cart.service';
 
 @Component({
   selector: 'app-cart-dropdown',

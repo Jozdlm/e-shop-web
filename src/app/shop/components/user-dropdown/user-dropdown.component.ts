@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
 import { RouterModule } from '@angular/router';
 import { IMenuItem } from 'src/app/common/interfaces/menu-item';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthService } from '@app/auth/auth.service';
 
 @Component({
   selector: 'app-user-dropdown',

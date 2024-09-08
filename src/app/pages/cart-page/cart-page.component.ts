@@ -5,9 +5,9 @@ import { ItemCartComponent } from '../../cart/components/item-cart/item-cart.com
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../../cart/components/empty-cart/empty-cart.component';
-import { CartService } from '../../cart/services/cart.service';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { CartService } from '@app/cart/cart.service';
+import { AuthService } from '@app/auth/auth.service';
 
 @Component({
   selector: 'app-cart-page',

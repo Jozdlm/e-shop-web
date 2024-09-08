@@ -2,12 +2,12 @@ import { Component, DestroyRef, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
-import { ProductsService } from 'src/app/shop/services/products.service';
+import { ProductsService } from '@app/shop/products.service';
 import { IProduct } from 'src/app/shop/product';
-import { CartService } from 'src/app/cart/services/cart.service';
 import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
 import { Subscription } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { CartService } from '@app/cart/cart.service';
 
 @Component({
   selector: 'app-product-detail',

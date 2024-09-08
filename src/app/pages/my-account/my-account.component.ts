@@ -1,7 +1,6 @@
 import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { UserService } from '../../account/services/user.service';
+import { UserService } from '../../account/user.service';
 import {
   FormBuilder,
   FormGroup,
@@ -11,6 +10,7 @@ import {
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { UserPhotoDirective } from 'src/app/common/directives/user-photo.directive';
 import { User } from '@supabase/supabase-js';
+import { AuthService } from '@app/auth/auth.service';
 
 @Component({
   standalone: true,

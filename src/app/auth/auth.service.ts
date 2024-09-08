@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { ICreateUser, ILoginUser } from '../auth';
+import { ICreateUser, ILoginUser } from './auth';
 import { Router } from '@angular/router';
 import { supabase } from 'src/app/app.config';
 import { Session, User } from '@supabase/supabase-js';

@@ -12,7 +12,7 @@ import {
   customEmailValidator,
   passwordMatchValidator,
 } from '../../auth/auth.validators';
-import { AuthService } from '../../auth/services/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { ICreateUser } from '../../auth/auth';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsService } from 'src/app/shop/services/products.service';
+import { ProductsService } from '@app/shop/products.service';
 import { ProductCardComponent } from 'src/app/shop/components/product-card/product-card.component';
 import { SearchInputComponent } from '@app/shop/components/search-input/search-input.component';
 import { RouterModule } from '@angular/router';
-import { CategoriesService } from '@app/shop/services/categories.service';
+import { CategoriesService } from '@app/shop/categories.service';
 
 @Component({
   selector: 'app-home-page',

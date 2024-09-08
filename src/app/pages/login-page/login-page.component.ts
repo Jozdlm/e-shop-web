@@ -9,7 +9,7 @@ import {
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { customEmailValidator } from '../../auth/auth.validators';
-import { AuthService } from '../../auth/services/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { ILoginUser } from '../../auth/auth';
 
 @Component({
