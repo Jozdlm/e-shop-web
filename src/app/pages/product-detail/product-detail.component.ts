@@ -6,7 +6,7 @@ import { ProductsService } from '@app/shop/products.service';
 import { IProduct } from 'src/app/shop/product';
 import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
 import { Subscription } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CartService } from '@app/cart/cart.service';
 
 @Component({
@@ -24,6 +24,7 @@ import { CartService } from '@app/cart/cart.service';
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);
   private readonly _cartService = inject(CartService);
+  private readonly _router = inject(Router);
 
   public subscriptions: Subscription = new Subscription();
   public product: IProduct | undefined = undefined;
@@ -33,7 +34,7 @@ export class ProductDetailComponent {
     this.subscriptions.add(
       this._productService.getRelatedProducts().subscribe((arr) => {
         this.relatedProducts = arr;
-      })
+      }),
     );
 
     inject(DestroyRef).onDestroy(() => {
@@ -45,8 +46,12 @@ export class ProductDetailComponent {
   public set id(productId: number) {
     this.subscriptions.add(
       this._productService.getProductById(productId).subscribe((product) => {
-        this.product = product;
-      })
+        if (product) {
+          this.product = product;
+          return;
+        }
+        return this._router.navigateByUrl('/');
+      }),
     );
   }
 
