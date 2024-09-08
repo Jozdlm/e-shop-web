@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../account/services/user.service';
 import {
   FormBuilder,
   FormGroup,

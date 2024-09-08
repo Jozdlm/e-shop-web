@@ -1,40 +1,40 @@
 import { Routes } from '@angular/router';
-import { isLoggedAuth, isAnonGuard } from './auth/auth.guard';
-import { HomePageComponent } from './shop/pages/home-page/home-page.component';
+import { isLoggedAuth, isAnonGuard } from '../auth/auth.guard';
+import { HomePageComponent } from '@app/pages/home-page/home-page.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: HomePageComponent, pathMatch: 'full' },
   {
     path: 'cart',
-    loadChildren: () => import('./cart/cart.routes'),
+    loadChildren: () => import('./cart.routes'),
   },
   {
     path: 'product/:id',
     loadComponent: () =>
-      import('./shop/pages/product-detail/product-detail.component').then(
+      import('../pages/product-detail/product-detail.component').then(
         (c) => c.ProductDetailComponent
       ),
   },
   {
     path: 'shop/:category',
     loadComponent: () =>
-      import('./shop/pages/item-list/item-list.component').then(
+      import('../pages/item-list/item-list.component').then(
         (c) => c.ItemListComponent
       ),
   },
   {
     path: 'cms',
-    loadChildren: () => import('./cms/cms.routes'),
+    loadChildren: () => import('./cms.routes'),
   },
   {
     path: 'account',
     canActivate: [isLoggedAuth],
-    loadChildren: () => import('./account/account.routes'),
+    loadChildren: () => import('./account.routes'),
   },
   {
     path: 'auth',
     canActivate: [isAnonGuard],
-    loadChildren: () => import('./auth/auth.routes'),
+    loadChildren: () => import('./auth.routes'),
   },
   { path: '**', redirectTo: '' },
 ];

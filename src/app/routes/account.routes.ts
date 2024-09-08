@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { MyAccountComponent } from '../pages/my-account/my-account.component';
 
 const ACCOUNT_ROUTES: Routes = [
   {

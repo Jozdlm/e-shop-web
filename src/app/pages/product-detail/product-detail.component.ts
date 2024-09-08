@@ -5,7 +5,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 import { ProductsService } from 'src/app/shop/services/products.service';
 import { IProduct } from 'src/app/shop/product';
 import { CartService } from 'src/app/cart/services/cart.service';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
 import { Subscription } from 'rxjs';
 import { RouterModule } from '@angular/router';
 

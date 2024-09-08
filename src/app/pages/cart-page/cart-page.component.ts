@@ -1,11 +1,11 @@
-import { OrderSummaryComponent } from './../../components/order-summary/order-summary.component';
+import { OrderSummaryComponent } from '../../cart/components/order-summary/order-summary.component';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemCartComponent } from '../../components/item-cart/item-cart.component';
+import { ItemCartComponent } from '../../cart/components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
-import { EmptyCartComponent } from '../../components/empty-cart/empty-cart.component';
-import { CartService } from '../../services/cart.service';
+import { EmptyCartComponent } from '../../cart/components/empty-cart/empty-cart.component';
+import { CartService } from '../../cart/services/cart.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 

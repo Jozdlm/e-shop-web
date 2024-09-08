@@ -11,9 +11,9 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 import {
   customEmailValidator,
   passwordMatchValidator,
-} from '../../auth.validators';
-import { AuthService } from '../../services/auth.service';
-import { ICreateUser } from '../../auth';
+} from '../../auth/auth.validators';
+import { AuthService } from '../../auth/services/auth.service';
+import { ICreateUser } from '../../auth/auth';
 
 @Component({
   standalone: true,
