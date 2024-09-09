@@ -1,5 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { supabase } from '@app/app.config';
 import { Observable, from, map } from 'rxjs';
 import { IProduct } from 'src/app/shop/product';
@@ -8,19 +7,16 @@ import { IProduct } from 'src/app/shop/product';
   providedIn: 'root',
 })
 export class ProductsService {
-  private _http: HttpClient = inject(HttpClient);
-
   public getProducts(): Observable<IProduct[]> {
     return from(supabase.from('products').select('*')).pipe(
       map((value) => value.data as IProduct[]),
     );
   }
 
-  public getProductsByCategory(categorySlug: string): Observable<IProduct[]> {
-    const httpParams = new HttpParams().set('category', categorySlug);
-    return this._http.get<IProduct[]>('http://localhost:3000/api/products', {
-      params: httpParams,
-    });
+  public getProductsByCategory(categoryId: number): Observable<IProduct[]> {
+    return from(
+      supabase.from('products').select('*').eq('category_id', categoryId),
+    ).pipe(map((value) => value.data as IProduct[]));
   }
 
   public getRelatedProducts(): Observable<IProduct[]> {
@@ -37,7 +33,12 @@ export class ProductsService {
 
   public getProductById(productId: number): Observable<IProduct | null> {
     return from(supabase.from('products').select('*').eq('id', productId)).pipe(
-      map((value) => value.data as IProduct | null),
+      map((value) => {
+        if (value.data && value.data[0]) {
+          return value.data[0] as IProduct;
+        }
+        return null;
+      }),
     );
   }
 }

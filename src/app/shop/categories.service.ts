@@ -1,18 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Category } from './product';
-import { Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
+import { supabase } from '@app/app.config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoriesService {
-  private _apiUrl: string = 'http://localhost:3000/api';
-  private _http: HttpClient = inject(HttpClient);
-
-  constructor() {}
-
   public getCategories(): Observable<Category[]> {
-    return this._http.get<Category[]>(`${this._apiUrl}/categories`);
+    return from(supabase.from('categories').select('*')).pipe(
+      map((value) => value.data as Category[]),
+    );
+  }
+
+  public getCategoryBySlug(categorySlug: string): Observable<Category | null> {
+    return from(
+      supabase.from('categories').select('*').eq('slug', categorySlug),
+    ).pipe(
+      map((value) => {
+        if (value.data && value.data[0]) {
+          return value.data[0] as Category;
+        }
+        return null;
+      }),
+    );
   }
 }

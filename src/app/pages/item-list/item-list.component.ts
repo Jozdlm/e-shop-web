@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IProduct } from '../../shop/product';
 import { ProductsService } from '../../shop/products.service';
 import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap, tap, throwError } from 'rxjs';
+import { CategoriesService } from '@app/shop/categories.service';
 
 @Component({
   selector: 'app-item-list',
@@ -22,6 +23,7 @@ import { Subscription } from 'rxjs';
 })
 export class ItemListComponent {
   private _productsService = inject(ProductsService);
+  private readonly _categoryService = inject(CategoriesService);
   private _subscriptions = new Subscription();
   public products: IProduct[] = [];
 
@@ -34,9 +36,17 @@ export class ItemListComponent {
   @Input()
   public set category(categorySlug: string) {
     this._subscriptions.add(
-      this._productsService
-        .getProductsByCategory(categorySlug)
-        .subscribe((arr: IProduct[]) => (this.products = arr))
+      this._categoryService
+        .getCategoryBySlug(categorySlug)
+        .pipe(
+          switchMap((result) => {
+            if (result?.id) {
+              return this._productsService.getProductsByCategory(result.id);
+            }
+            return throwError(() => new Error('Category not found'));
+          }),
+        )
+        .subscribe((arr: IProduct[]) => (this.products = arr)),
     );
   }
 }
