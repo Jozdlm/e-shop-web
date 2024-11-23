@@ -16,9 +16,8 @@ import { AuthService } from '../../auth/auth.service';
 import { ICreateUser } from '../../auth/auth';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, ButtonComponent],
-  templateUrl: './signup-page.component.html',
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, ButtonComponent],
+    templateUrl: './signup-page.component.html'
 })
 export class SignupPageComponent {
   private _authService: AuthService = inject(AuthService);

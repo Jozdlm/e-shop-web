@@ -7,15 +7,14 @@ import { RouterModule } from '@angular/router';
 import { CategoriesService } from '@app/shop/categories.service';
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ProductCardComponent,
-    SearchInputComponent,
-    RouterModule,
-  ],
+    selector: 'app-home-page',
+    templateUrl: './home-page.component.html',
+    imports: [
+        CommonModule,
+        ProductCardComponent,
+        SearchInputComponent,
+        RouterModule,
+    ]
 })
 export class HomePageComponent {
   private _productsService: ProductsService = inject(ProductsService);

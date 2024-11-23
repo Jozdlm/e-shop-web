@@ -10,16 +10,15 @@ import { Router, RouterModule } from '@angular/router';
 import { CartService } from '@app/cart/cart.service';
 
 @Component({
-  selector: 'app-product-detail',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    ButtonComponent,
-    ProductImageDirective,
-    ProductCardComponent,
-  ],
-  templateUrl: './product-detail.component.html',
+    selector: 'app-product-detail',
+    imports: [
+        CommonModule,
+        RouterModule,
+        ButtonComponent,
+        ProductImageDirective,
+        ProductCardComponent,
+    ],
+    templateUrl: './product-detail.component.html'
 })
 export class ProductDetailComponent {
   private readonly _productService = inject(ProductsService);

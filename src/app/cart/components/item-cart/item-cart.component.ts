@@ -6,10 +6,9 @@ import { MinusIconComponent } from 'src/app/shared/icons/minus-icon/minus-icon.c
 import { PlusIconComponent } from 'src/app/shared/icons/plus-icon/plus-icon.component';
 
 @Component({
-  selector: 'app-item-cart',
-  standalone: true,
-  templateUrl: './item-cart.component.html',
-  imports: [CommonModule, ProductImageDirective, MinusIconComponent, PlusIconComponent],
+    selector: 'app-item-cart',
+    templateUrl: './item-cart.component.html',
+    imports: [CommonModule, ProductImageDirective, MinusIconComponent, PlusIconComponent]
 })
 export class ItemCartComponent {
   @Input({

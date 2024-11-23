@@ -4,9 +4,8 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-empty-cart',
-  standalone: true,
-  imports: [CommonModule, RouterModule, ButtonComponent],
-  templateUrl: './empty-cart.component.html',
+    selector: 'app-empty-cart',
+    imports: [CommonModule, RouterModule, ButtonComponent],
+    templateUrl: './empty-cart.component.html'
 })
 export class EmptyCartComponent {}

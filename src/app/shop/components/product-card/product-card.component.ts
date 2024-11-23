@@ -5,10 +5,9 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 import { IProduct } from 'src/app/shop/product';
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  standalone: true,
-  imports: [CommonModule, RouterModule, ProductImageDirective],
+    selector: 'app-product-card',
+    templateUrl: './product-card.component.html',
+    imports: [CommonModule, RouterModule, ProductImageDirective]
 })
 export class ProductCardComponent {
   @Input({

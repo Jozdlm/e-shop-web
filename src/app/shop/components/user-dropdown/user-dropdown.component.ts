@@ -6,10 +6,9 @@ import { IMenuItem } from 'src/app/common/interfaces/menu-item';
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
-  selector: 'app-user-dropdown',
-  standalone: true,
-  imports: [CommonModule, RouterModule, DropdownComponent],
-  templateUrl: './user-dropdown.component.html',
+    selector: 'app-user-dropdown',
+    imports: [CommonModule, RouterModule, DropdownComponent],
+    templateUrl: './user-dropdown.component.html'
 })
 export class UserDropdownComponent {
   private _authService: AuthService = inject(AuthService);

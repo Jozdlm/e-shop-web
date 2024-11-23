@@ -7,19 +7,18 @@ import { Subscription, switchMap, tap, throwError } from 'rxjs';
 import { CategoriesService } from '@app/shop/categories.service';
 
 @Component({
-  selector: 'app-item-list',
-  standalone: true,
-  imports: [CommonModule, ProductCardComponent],
-  templateUrl: './item-list.component.html',
-  styles: [
-    `
+    selector: 'app-item-list',
+    imports: [CommonModule, ProductCardComponent],
+    templateUrl: './item-list.component.html',
+    styles: [
+        `
       .list-wrapper {
         display: grid;
         grid-template-columns: 260px 1fr;
         column-gap: 32px;
       }
     `,
-  ],
+    ]
 })
 export class ItemListComponent {
   private _productsService = inject(ProductsService);

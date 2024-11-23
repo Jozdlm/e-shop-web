@@ -9,17 +9,16 @@ import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon
 import { CartService } from '@app/cart/cart.service';
 
 @Component({
-  selector: 'app-cart-dropdown',
-  templateUrl: './cart-dropdown.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    ButtonComponent,
-    ProductImageDirective,
-    DropdownComponent,
-    ShoppingBagIconComponent,
-  ],
+    selector: 'app-cart-dropdown',
+    templateUrl: './cart-dropdown.component.html',
+    imports: [
+        CommonModule,
+        RouterLink,
+        ButtonComponent,
+        ProductImageDirective,
+        DropdownComponent,
+        ShoppingBagIconComponent,
+    ]
 })
 export class CartDropdownComponent {
   private _cartService: CartService = inject(CartService);

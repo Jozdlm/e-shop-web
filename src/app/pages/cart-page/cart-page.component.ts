@@ -10,18 +10,17 @@ import { CartService } from '@app/cart/cart.service';
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
-  selector: 'app-cart-page',
-  templateUrl: './cart-page.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ItemCartComponent,
-    ButtonComponent,
-    RouterModule,
-    OrderSummaryComponent,
-    EmptyCartComponent,
-  ],
-  styles: [`
+    selector: 'app-cart-page',
+    templateUrl: './cart-page.component.html',
+    imports: [
+        CommonModule,
+        ItemCartComponent,
+        ButtonComponent,
+        RouterModule,
+        OrderSummaryComponent,
+        EmptyCartComponent,
+    ],
+    styles: [`
     .view-wrapper {
       display: grid;
       grid-template-columns: 2fr 1fr;

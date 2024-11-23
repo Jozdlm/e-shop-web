@@ -2,10 +2,9 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-button',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-button',
+    imports: [CommonModule],
+    template: `
     <button
       class="rounded bg-green-700 px-4 py-2.5 text-white hover:bg-green-800"
       [class.w-full]="fullWidth"
@@ -18,7 +17,7 @@ import { CommonModule } from '@angular/common';
         <ng-content></ng-content>
       </span>
     </button>
-  `,
+  `
 })
 export class ButtonComponent {
   @Input() public fullWidth = false;

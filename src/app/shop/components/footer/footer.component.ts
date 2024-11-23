@@ -4,12 +4,10 @@ import { AppService } from 'src/app/app.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './footer.component.html',
-  styles: [
-  ]
+    selector: 'app-footer',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './footer.component.html',
+    styles: []
 })
 export class FooterComponent {
   private _appService: AppService = inject(AppService);

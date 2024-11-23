@@ -13,10 +13,9 @@ import { AuthService } from '../../auth/auth.service';
 import { ILoginUser } from '../../auth/auth';
 
 @Component({
-  selector: 'app-login-page',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
-  templateUrl: './login-page.component.html',
+    selector: 'app-login-page',
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
+    templateUrl: './login-page.component.html'
 })
 export class LoginPageComponent {
   private _fb: FormBuilder = inject(FormBuilder);

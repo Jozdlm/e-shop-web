@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-dropdown',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  template: `
+    selector: 'app-dropdown',
+    imports: [CommonModule, RouterModule],
+    template: `
     <div class="relative">
       <!-- Dropdown Toggle -->
       <button class="rounded p-2" [routerLink]="pageUrl">
@@ -26,7 +25,7 @@ import { RouterModule } from '@angular/router';
       </div>
     </div>
   `,
-  styles: [],
+    styles: []
 })
 export class DropdownComponent {
   public showDropdown: boolean = false;

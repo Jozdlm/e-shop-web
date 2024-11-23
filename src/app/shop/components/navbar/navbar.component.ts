@@ -10,18 +10,17 @@ import { SearchIconComponent } from 'src/app/shared/icons/search-icon/search-ico
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    CartDropdownComponent,
-    SearchInputComponent,
-    UserDropdownComponent,
-    AccountIconComponent,
-    SearchIconComponent,
-  ],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    imports: [
+        CommonModule,
+        RouterModule,
+        CartDropdownComponent,
+        SearchInputComponent,
+        UserDropdownComponent,
+        AccountIconComponent,
+        SearchIconComponent,
+    ]
 })
 export class NavbarComponent {
   private _authService: AuthService = inject(AuthService);
