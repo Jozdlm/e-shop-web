@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 import { ICartItem } from 'src/app/cart/cart';
@@ -17,12 +17,9 @@ export class ItemCartComponent {
   })
   public item!: ICartItem;
 
-  @Output()
-  public onDeleteItem = new EventEmitter<string>();
-  @Output()
-  public onIncreaseQty = new EventEmitter<string>();
-  @Output()
-  public onDecreaseQty = new EventEmitter<string>();
+  public onDeleteItem = output<string>();
+  public onIncreaseQty = output<string>();
+  public onDecreaseQty = output<string>();
 
   public increaseQty(itemId: string): void {
     this.onIncreaseQty.emit(itemId);
