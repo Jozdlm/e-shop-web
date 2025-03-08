@@ -11,6 +11,9 @@ import { PlusIconComponent } from 'src/app/shared/icons/plus-icon/plus-icon.comp
     imports: [CommonModule, ProductImageDirective, MinusIconComponent, PlusIconComponent]
 })
 export class ItemCartComponent {
+  // TODO: Skipped for migration because:
+  //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
+  //  and migrating would break narrowing currently.
   @Input({
     alias: 'cartItem',
     required: true,

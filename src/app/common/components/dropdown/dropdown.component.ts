@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
     template: `
     <div class="relative">
       <!-- Dropdown Toggle -->
-      <button class="rounded p-2" [routerLink]="pageUrl">
+      <button class="rounded p-2" [routerLink]="pageUrl()">
         <ng-content select="#toggle-content"></ng-content>
       </button>
       <div
@@ -16,8 +16,8 @@ import { RouterModule } from '@angular/router';
         [class.absolute]="showDropdown"
         [class.hidden]="!showDropdown"
         [ngClass]="{
-          'w-52 py-1': isMenu,
-          'w-80 p-4': !isMenu
+          'w-52 py-1': isMenu(),
+          'w-80 p-4': !isMenu()
         }"
       >
         <!-- Dropdown Body -->
@@ -30,11 +30,9 @@ import { RouterModule } from '@angular/router';
 export class DropdownComponent {
   public showDropdown: boolean = false;
 
-  @Input()
-  public pageUrl: string = '';
+  public readonly pageUrl = input<string>('');
 
-  @Input()
-  public isMenu: boolean = false;
+  public readonly isMenu = input<boolean>(false);
 
   constructor() {}
 

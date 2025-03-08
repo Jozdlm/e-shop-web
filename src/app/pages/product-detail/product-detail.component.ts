@@ -41,6 +41,8 @@ export class ProductDetailComponent {
     });
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set id(productId: number) {
     this.subscriptions.add(

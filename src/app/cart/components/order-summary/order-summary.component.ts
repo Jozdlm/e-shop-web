@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
@@ -16,11 +16,9 @@ import { ClipboardDocIconComponent } from 'src/app/shared/icons/clipboard-doc-ic
   templateUrl: './order-summary.component.html',
 })
 export class OrderSummaryComponent {
-  @Input({ required: true })
-  public subtotal: number = 0;
+  public readonly subtotal = input.required<number>();
 
-  @Input({ required: true })
-  public session: boolean = false;
+  public readonly session = input.required<boolean>();
 
   @Output()
   public onNoSessionClick = new EventEmitter<boolean>(false);

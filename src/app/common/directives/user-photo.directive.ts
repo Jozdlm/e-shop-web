@@ -7,6 +7,8 @@ import { Directive, ElementRef, Input, inject } from '@angular/core';
 export class UserPhotoDirective {
   private _elementRef: ElementRef = inject(ElementRef);
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set userPhoto(imgUrl: string | undefined | null) {
     if (imgUrl && imgUrl.trim().length > 1) {

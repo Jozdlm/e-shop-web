@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
@@ -10,8 +10,5 @@ import { IProduct } from 'src/app/shop/product';
     imports: [CommonModule, RouterModule, ProductImageDirective]
 })
 export class ProductCardComponent {
-  @Input({
-    required: true,
-  })
-  public product!: IProduct;
+  public readonly product = input.required<IProduct>();
 }

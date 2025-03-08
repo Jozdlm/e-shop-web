@@ -32,6 +32,8 @@ export class ItemListComponent {
     });
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set category(categorySlug: string) {
     this._subscriptions.add(
