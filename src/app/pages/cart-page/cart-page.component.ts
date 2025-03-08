@@ -8,16 +8,18 @@ import { EmptyCartComponent } from '../../cart/components/empty-cart/empty-cart.
 import { Subscription } from 'rxjs';
 import { CartService } from '@app/cart/cart.service';
 import { AuthService } from '@app/auth/auth.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   imports: [
+    AsyncPipe,
     ItemCartComponent,
     RouterModule,
     OrderSummaryComponent,
-    EmptyCartComponent
-],
+    EmptyCartComponent,
+  ],
   styles: [
     `
       .view-wrapper {

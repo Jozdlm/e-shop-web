@@ -7,17 +7,20 @@ import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.c
 import { Subscription } from 'rxjs';
 import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon/shopping-bag-icon.component';
 import { CartService } from '@app/cart/cart.service';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-cart-dropdown',
-    templateUrl: './cart-dropdown.component.html',
-    imports: [
+  selector: 'app-cart-dropdown',
+  templateUrl: './cart-dropdown.component.html',
+  imports: [
+    CurrencyPipe,
+    AsyncPipe,
     RouterLink,
     ButtonComponent,
     ProductImageDirective,
     DropdownComponent,
-    ShoppingBagIconComponent
-]
+    ShoppingBagIconComponent,
+  ],
 })
 export class CartDropdownComponent {
   private _cartService: CartService = inject(CartService);
@@ -37,12 +40,12 @@ export class CartDropdownComponent {
   public subscribeToObservables(): void {
     this._subscription.add(
       this._cartService.cartCount$.subscribe(
-        (value) => (this.cartCount = value)
-      )
+        (value) => (this.cartCount = value),
+      ),
     );
 
     this._subscription.add(
-      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value))
+      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value)),
     );
   }
 }
