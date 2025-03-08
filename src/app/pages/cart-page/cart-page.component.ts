@@ -10,23 +10,24 @@ import { CartService } from '@app/cart/cart.service';
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
-    selector: 'app-cart-page',
-    templateUrl: './cart-page.component.html',
-    imports: [
-        CommonModule,
-        ItemCartComponent,
-        ButtonComponent,
-        RouterModule,
-        OrderSummaryComponent,
-        EmptyCartComponent,
-    ],
-    styles: [`
-    .view-wrapper {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      column-gap: 80px;
-    }
-  `]
+  selector: 'app-cart-page',
+  templateUrl: './cart-page.component.html',
+  imports: [
+    CommonModule,
+    ItemCartComponent,
+    RouterModule,
+    OrderSummaryComponent,
+    EmptyCartComponent,
+  ],
+  styles: [
+    `
+      .view-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 80px;
+      }
+    `,
+  ],
 })
 export class CartPageComponent {
   private _cartService: CartService = inject(CartService);
@@ -51,12 +52,12 @@ export class CartPageComponent {
   public subscribeToObservables(): void {
     this._subscription.add(
       this._cartService.cartCount$.subscribe(
-        (value) => (this.itemsCount = value)
-      )
+        (value) => (this.itemsCount = value),
+      ),
     );
 
     this._subscription.add(
-      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value))
+      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value)),
     );
   }
 

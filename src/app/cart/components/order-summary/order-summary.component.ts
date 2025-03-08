@@ -6,15 +6,14 @@ import { LockClosedIconComponent } from 'src/app/shared/icons/lock-closed-icon/l
 import { ClipboardDocIconComponent } from 'src/app/shared/icons/clipboard-doc-icon/clipboard-doc-icon.component';
 
 @Component({
-    selector: 'app-order-summary',
-    imports: [
-        CommonModule,
-        RouterModule,
-        ButtonComponent,
-        LockClosedIconComponent,
-        ClipboardDocIconComponent
-    ],
-    templateUrl: './order-summary.component.html'
+  selector: 'app-order-summary',
+  imports: [
+    CommonModule,
+    RouterModule,
+    LockClosedIconComponent,
+    ClipboardDocIconComponent,
+  ],
+  templateUrl: './order-summary.component.html',
 })
 export class OrderSummaryComponent {
   @Input({ required: true })

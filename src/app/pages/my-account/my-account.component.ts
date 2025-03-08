@@ -13,13 +13,8 @@ import { User } from '@supabase/supabase-js';
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        ButtonComponent,
-        UserPhotoDirective,
-    ],
-    templateUrl: './my-account.component.html'
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  templateUrl: './my-account.component.html',
 })
 export class MyAccountComponent {
   private _authService: AuthService = inject(AuthService);
