@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
@@ -20,8 +20,7 @@ export class OrderSummaryComponent {
 
   public readonly session = input.required<boolean>();
 
-  @Output()
-  public onNoSessionClick = new EventEmitter<boolean>(false);
+  public readonly onNoSessionClick = output<boolean>();
 
   public handleNoSessionClick(): void {
     this.onNoSessionClick.emit(true);
