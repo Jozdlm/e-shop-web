@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   AbstractControl,
   FormBuilder,
@@ -14,7 +14,7 @@ import { ILoginUser } from '../../auth/auth';
 
 @Component({
     selector: 'app-login-page',
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, ButtonComponent],
+    imports: [ReactiveFormsModule, RouterModule, ButtonComponent],
     templateUrl: './login-page.component.html'
 })
 export class LoginPageComponent {

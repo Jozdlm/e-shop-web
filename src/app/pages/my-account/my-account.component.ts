@@ -1,5 +1,5 @@
 import { Component, effect, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { UserService } from '../../account/user.service';
 import {
   FormBuilder,
@@ -13,7 +13,7 @@ import { User } from '@supabase/supabase-js';
 import { AuthService } from '@app/auth/auth.service';
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './my-account.component.html',
 })
 export class MyAccountComponent {

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { AppService } from 'src/app/app.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-footer',
-    imports: [CommonModule, RouterModule],
+    imports: [RouterModule],
     templateUrl: './footer.component.html',
     styles: []
 })

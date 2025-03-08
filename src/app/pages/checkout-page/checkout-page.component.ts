@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './checkout-page.component.html',
     styles: [`
     .wrapper{

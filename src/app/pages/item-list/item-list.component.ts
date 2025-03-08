@@ -1,5 +1,5 @@
 import { Component, DestroyRef, Input, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { IProduct } from '../../shop/product';
 import { ProductsService } from '../../shop/products.service';
 import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
@@ -8,7 +8,7 @@ import { CategoriesService } from '@app/shop/categories.service';
 
 @Component({
     selector: 'app-item-list',
-    imports: [CommonModule, ProductCardComponent],
+    imports: [ProductCardComponent],
     templateUrl: './item-list.component.html',
     styles: [
         `

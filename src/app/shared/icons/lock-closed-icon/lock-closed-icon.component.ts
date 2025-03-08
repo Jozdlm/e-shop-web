@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'ui-lock-closed-icon',
-    imports: [CommonModule],
+    imports: [],
     template: `
     <svg
       xmlns="http://www.w3.org/2000/svg"

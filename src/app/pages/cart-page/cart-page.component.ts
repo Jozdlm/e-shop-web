@@ -1,6 +1,6 @@
 import { OrderSummaryComponent } from '../../cart/components/order-summary/order-summary.component';
 import { Component, DestroyRef, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ItemCartComponent } from '../../cart/components/item-cart/item-cart.component';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
@@ -13,12 +13,11 @@ import { AuthService } from '@app/auth/auth.service';
   selector: 'app-cart-page',
   templateUrl: './cart-page.component.html',
   imports: [
-    CommonModule,
     ItemCartComponent,
     RouterModule,
     OrderSummaryComponent,
-    EmptyCartComponent,
-  ],
+    EmptyCartComponent
+],
   styles: [
     `
       .view-wrapper {

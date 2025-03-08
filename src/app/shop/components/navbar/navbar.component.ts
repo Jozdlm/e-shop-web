@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { SearchInputComponent } from 'src/app/shop/components/search-input/search-input.component';
@@ -13,13 +13,12 @@ import { AuthService } from '@app/auth/auth.service';
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   imports: [
-    CommonModule,
     RouterModule,
     CartDropdownComponent,
     UserDropdownComponent,
     AccountIconComponent,
-    SearchIconComponent,
-  ],
+    SearchIconComponent
+],
 })
 export class NavbarComponent {
   private _authService: AuthService = inject(AuthService);

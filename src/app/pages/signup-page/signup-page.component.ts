@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import {
   AbstractControl,
@@ -16,7 +16,7 @@ import { AuthService } from '../../auth/auth.service';
 import { ICreateUser } from '../../auth/auth';
 
 @Component({
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, ButtonComponent],
+    imports: [RouterModule, ReactiveFormsModule, ButtonComponent],
     templateUrl: './signup-page.component.html'
 })
 export class SignupPageComponent {

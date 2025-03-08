@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
@@ -12,13 +12,12 @@ import { CartService } from '@app/cart/cart.service';
     selector: 'app-cart-dropdown',
     templateUrl: './cart-dropdown.component.html',
     imports: [
-        CommonModule,
-        RouterLink,
-        ButtonComponent,
-        ProductImageDirective,
-        DropdownComponent,
-        ShoppingBagIconComponent,
-    ]
+    RouterLink,
+    ButtonComponent,
+    ProductImageDirective,
+    DropdownComponent,
+    ShoppingBagIconComponent
+]
 })
 export class CartDropdownComponent {
   private _cartService: CartService = inject(CartService);
