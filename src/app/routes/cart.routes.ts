@@ -1,16 +1,16 @@
 import { Routes } from '@angular/router';
-import { CartPageComponent } from '../pages/cart-page/cart-page.component';
-import { CheckoutPageComponent } from '../pages/checkout-page/checkout-page.component';
+
+
 
 const CART_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CartPageComponent,
+    loadComponent: () => import('../pages/cart-page/cart-page.component').then(m => m.CartPageComponent),
   },
   {
     path: 'checkout',
-    component: CheckoutPageComponent,
+    loadComponent: () => import('../pages/checkout-page/checkout-page.component').then(m => m.CheckoutPageComponent),
   },
   {
     path: '**',

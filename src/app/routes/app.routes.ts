@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { isLoggedAuth, isAnonGuard } from '../auth/auth.guard';
-import { HomePageComponent } from '@app/pages/home-page/home-page.component';
+
 
 export const APP_ROUTES: Routes = [
-  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: '', loadComponent: () => import('@app/pages/home-page/home-page.component').then(m => m.HomePageComponent), pathMatch: 'full' },
   {
     path: 'cart',
     loadChildren: () => import('./cart.routes'),

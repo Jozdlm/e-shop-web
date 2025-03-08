@@ -1,22 +1,22 @@
 import { Routes } from "@angular/router";
-import { DashboardPageComponent } from "../pages/dashboard-page/dashboard-page.component";
-import { ProductsPageComponent } from "../pages/products-page/products-page.component";
-import { CategoriesPageComponent } from "../pages/categories-page/categories-page.component";
+
+
+
 
 
 const CMS_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: DashboardPageComponent
+    loadComponent: () => import('../pages/dashboard-page/dashboard-page.component').then(m => m.DashboardPageComponent)
   },
   {
     path: 'products',
-    component: ProductsPageComponent
+    loadComponent: () => import('../pages/products-page/products-page.component').then(m => m.ProductsPageComponent)
   },
   {
     path: 'categories',
-    component: CategoriesPageComponent
+    loadComponent: () => import('../pages/categories-page/categories-page.component').then(m => m.CategoriesPageComponent)
   },
   {
     path: '**',

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MyAccountComponent } from '../pages/my-account/my-account.component';
+
 
 const ACCOUNT_ROUTES: Routes = [
   {
@@ -9,7 +9,7 @@ const ACCOUNT_ROUTES: Routes = [
   },
   {
     path: 'profile',
-    component: MyAccountComponent
+    loadComponent: () => import('../pages/my-account/my-account.component').then(m => m.MyAccountComponent)
   },
   {
     path: '**',

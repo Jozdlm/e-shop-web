@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { LoginPageComponent } from '../pages/login-page/login-page.component';
-import { SignupPageComponent } from '../pages/signup-page/signup-page.component';
+
+
 
 const AUTH_ROUTES: Routes = [
   {
@@ -10,11 +10,11 @@ const AUTH_ROUTES: Routes = [
   },
   {
     path: 'login',
-    component: LoginPageComponent
+    loadComponent: () => import('../pages/login-page/login-page.component').then(m => m.LoginPageComponent)
   },
   {
     path: 'signup',
-    component: SignupPageComponent
+    loadComponent: () => import('../pages/signup-page/signup-page.component').then(m => m.SignupPageComponent)
   },
   {
     path: '**',
