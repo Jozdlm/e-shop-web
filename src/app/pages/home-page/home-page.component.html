@@ -1,5 +1,5 @@
 <div
-  class="relative z-10 mb-10 flex h-80 w-full items-center overflow-hidden rounded-[18px] bg-[url('assets/images/banner.png')] from-black bg-cover bg-center bg-no-repeat px-10 before:absolute before:inset-0 before:z-[-5] before:block before:bg-gradient-to-r before:from-slate-950 before:to-transparent before:opacity-80 before:content-['']"
+  class="relative z-10 mb-10 flex h-80 w-full items-center overflow-hidden rounded-lg bg-[url('assets/images/banner.png')] from-black bg-cover bg-center bg-no-repeat px-10 before:absolute before:inset-0 before:z-[-5] before:block before:bg-gradient-to-r before:from-slate-950 before:to-transparent before:opacity-80 before:content-['']"
 >
   <div>
     <div class="mb-6">
@@ -17,11 +17,10 @@
 
 <div>
   <div class="mb-8">
-    <h2 class="mb-2 text-lg font-medium">Categorías</h2>
-    <div class="flex flex-wrap gap-4">
+    <div class="grid grid-cols-4 gap-3">
       @for (category of categories$ | async; track category.id) {
         <a
-          class="rounded-lg border border-gray-300 px-3 py-2"
+          class="rounded-lg border border-gray-300 px-3 py-2 h-36"
           [routerLink]="['shop', category.slug]"
         >
           <p>{{ category.name }}</p>
