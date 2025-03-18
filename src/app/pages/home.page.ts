@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsService } from '@app/features/products/products.service';
 import { ProductCardComponent } from '@app/components/product-card/product-card.component';
 import { SearchInputComponent } from '@app/components/search-input/search-input.component';
 import { RouterModule } from '@angular/router';
@@ -45,27 +44,10 @@ import { CategoriesService } from '@app/features/products/categories.service';
           }
         </div>
       </div>
-      <div class="mb-4 flex items-center justify-between">
-        <h2 class="text-lg font-medium">Productos</h2>
-        <a
-          routerLink="products"
-          class="text-sm text-neutral-700 hover:text-black"
-          >Ver todos los productos</a
-        >
-      </div>
-      <div class="grid grid-cols-5 gap-4">
-        @for (product of products | async; track product.id) {
-          <app-product-card [product]="product" />
-        }
-      </div>
     </div>
   `,
 })
 export class HomePage {
-  private _productsService: ProductsService = inject(ProductsService);
   private _categoriesService: CategoriesService = inject(CategoriesService);
-  public products = this._productsService.getStarredProducts();
   public categories$ = this._categoriesService.getCategories();
-
-  constructor() {}
 }
