@@ -1,11 +1,22 @@
 import { Component } from '@angular/core';
-
-import { ButtonComponent } from '@app/components/button/button.component';
 import { RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-empty-cart',
-    imports: [RouterModule, ButtonComponent],
-    templateUrl: './empty-cart.component.html'
+  selector: 'app-empty-cart',
+  imports: [RouterModule],
+  template: `
+    <div class="h-[240px] w-full flex justify-center items-center mb-10">
+      <div class="text-center">
+        <p class="text-xl mb-2">Tu carrito de compras está vacío</p>
+        <p class="text-sm text-neutral-800 mb-8">
+          Si gustas ve a la tienda y agrega algún producto o selecciona alguno
+          de tu lista de deseos
+        </p>
+        <button routerLink="" class="btn btn-primary">
+          Dar un vistazo a la tienda!
+        </button>
+      </div>
+    </div>
+  `,
 })
 export class EmptyCartComponent {}
