@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
+import { ProductImageDirective } from '@app/directives/product-image.directive';
 import { IProduct } from '@app/features/products/product.types';
 
 @Component({

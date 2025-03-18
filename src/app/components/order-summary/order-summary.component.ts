@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { ButtonComponent } from '@app/components/button/button.component';
 import { LockClosedIconComponent } from 'src/app/shared/icons/lock-closed-icon/lock-closed-icon.component';
 import { ClipboardDocIconComponent } from 'src/app/shared/icons/clipboard-doc-icon/clipboard-doc-icon.component';
 

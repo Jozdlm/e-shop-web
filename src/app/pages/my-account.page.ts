@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { ButtonComponent } from '@app/components/button/button.component';
 import { User } from '@supabase/supabase-js';
 import { AuthService } from '@app/features/auth/auth.service';
 

@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { ButtonComponent } from '@app/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { customEmailValidator } from '../features/auth/auth.validators';
 import { AuthService } from '@app/features/auth/auth.service';

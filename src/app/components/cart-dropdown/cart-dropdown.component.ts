@@ -1,9 +1,9 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { ButtonComponent } from 'src/app/common/components/button/button.component';
-import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
-import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
+import { ButtonComponent } from '@app/components/button/button.component';
+import { ProductImageDirective } from '@app/directives/product-image.directive';
+import { DropdownComponent } from '@app/components/dropdown/dropdown.component';
 import { Subscription } from 'rxjs';
 import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon/shopping-bag-icon.component';
 import { CartService } from '@app/features/cart/cart.service';

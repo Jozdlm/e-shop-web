@@ -1,14 +1,12 @@
 import { Component, inject } from '@angular/core';
-
-import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
+import { DropdownComponent } from '@app/components/dropdown/dropdown.component';
 import { RouterModule } from '@angular/router';
-import { IMenuItem } from 'src/app/common/interfaces/menu-item';
 import { AuthService } from '@app/features/auth/auth.service';
 
 @Component({
-    selector: 'app-user-dropdown',
-    imports: [RouterModule, DropdownComponent],
-    templateUrl: './user-dropdown.component.html'
+  selector: 'app-user-dropdown',
+  imports: [RouterModule, DropdownComponent],
+  templateUrl: './user-dropdown.component.html',
 })
 export class UserDropdownComponent {
   private _authService: AuthService = inject(AuthService);

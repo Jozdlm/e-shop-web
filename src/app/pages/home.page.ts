@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from '@app/features/products/products.service';
-import { ProductCardComponent } from 'src/app/shop/components/product-card/product-card.component';
-import { SearchInputComponent } from '@app/shop/components/search-input/search-input.component';
+import { ProductCardComponent } from '@app/components/product-card/product-card.component';
+import { SearchInputComponent } from '@app/components/search-input/search-input.component';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from '@app/features/products/categories.service';
 
