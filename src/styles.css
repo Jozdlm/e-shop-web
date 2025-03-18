@@ -10,7 +10,7 @@
 }
 
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .btn {
@@ -20,7 +20,7 @@ body {
 
   display: block;
   background-color: transparent;
-  color: #1B5E20;
+  color: #1b5e20;
   font-weight: 600;
   cursor: pointer;
 
@@ -33,12 +33,22 @@ body {
 }
 
 .btn:hover {
-  border: 1px solid #1B5E20;
-  background-color: #E8F5E9;
+  border: 1px solid #1b5e20;
+  background-color: #e8f5e9;
 }
 
 .btn-primary {
   border: none;
   background-color: #275db4;
   color: white;
+}
+
+.icon-md {
+  height: 20px;
+  width: 20px;
+}
+
+.icon-sm {
+  height: 16px;
+  width: 16px;
 }
