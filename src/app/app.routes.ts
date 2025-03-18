@@ -48,6 +48,18 @@ export const APP_ROUTES: Routes = [
       import('@app/pages/contact.page').then((m) => m.ContactPage),
   },
   {
+    path: 'terms-conditions',
+    loadComponent: () =>
+      import('@app/pages/terms-conditions.page').then(
+        (m) => m.TermsConditionsPage,
+      ),
+  },
+  {
+    path: 'privacy-policy',
+    loadComponent: () =>
+      import('@app/pages/privacy-policy.page').then((m) => m.PrivacyPolicyPage),
+  },
+  {
     path: 'auth',
     canActivate: [isAnonUserGuard],
     children: [
