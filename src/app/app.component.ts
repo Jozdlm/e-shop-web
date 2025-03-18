@@ -4,19 +4,18 @@ import { FooterComponent } from './shop/components/footer/footer.component';
 import { NavbarComponent } from './shop/components/navbar/navbar.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styles: [
-        `
-      .view-wrapper {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        min-height: 100vh;
-      }
-    `,
-    ],
-    imports: [RouterOutlet, NavbarComponent, FooterComponent]
+  selector: 'app-root',
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  template: `
+    <div class="grid grid-rows-[auto_1fr_auto] min-h-screen">
+      <app-navbar></app-navbar>
+
+      <div class="mx-auto max-w-[1200px] w-[90%] mb-6">
+        <router-outlet></router-outlet>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  `,
 })
-export class AppComponent {
-  constructor() {}
-}
+export class AppComponent {}
