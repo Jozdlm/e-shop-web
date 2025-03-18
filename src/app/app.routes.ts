@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { isLoggedAuth, isAnonGuard } from '../auth/auth.guard';
+import { isLoggedAuth, isAnonGuard } from './auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -9,7 +9,12 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'cart',
-    loadChildren: () => import('./cart.routes'),
+    loadComponent: () => import('@app/pages/cart.page').then((m) => m.CartPage),
+  },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('@app/pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
     path: 'product/:id',
@@ -35,7 +40,27 @@ export const APP_ROUTES: Routes = [
   {
     path: 'auth',
     canActivate: [isAnonGuard],
-    loadChildren: () => import('./auth.routes'),
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'login',
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('@app/pages/login.page').then((m) => m.LoginPage),
+      },
+      {
+        path: 'signup',
+        loadComponent: () =>
+          import('@app/pages/signup.page').then((m) => m.SignupPage),
+      },
+      {
+        path: '**',
+        redirectTo: 'login',
+      },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];

@@ -65,7 +65,7 @@ export class AuthService {
     this.user.set(data.user);
 
     if(this._previousRoute) {
-      this._router.navigateByUrl('cart/checkout');
+      this._router.navigateByUrl('/checkout');
     } else {
       this._router.navigateByUrl('');
     }
