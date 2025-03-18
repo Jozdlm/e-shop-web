@@ -32,10 +32,13 @@ import { Pages } from '@app/pages';
             <svg-icon src="assets/svg/search.svg" class="icon-md" />
             <span class="text-sm">Buscar</span>
           </button>
-          <a [routerLink]="pages.CART" class="flex items-center gap-x-2 text-sm">
+          <a
+            [routerLink]="pages.CART"
+            class="flex items-center gap-x-2 text-sm"
+          >
             <svg-icon src="assets/svg/shopping-bag.svg" class="icon-md" />
             <span>
-              Carrito {{ cartCount > 9 ? '(+9)' : '(' + cartCount + ')' }}
+              Carrito {{ itemCount() > 9 ? '(+9)' : '(' + itemCount() + ')' }}
             </span>
           </a>
         </div>
@@ -44,12 +47,7 @@ import { Pages } from '@app/pages';
   `,
 })
 export class NavbarComponent {
-  private _cartService: CartService = inject(CartService);
   public businessName: string = BUSINESS_NAME;
-  public cartCount: number = 0;
+  public itemCount = inject(CartService).itemCount;
   public pages = Pages;
-
-  public constructor() {
-    this._cartService.cartCount$.subscribe((value) => (this.cartCount = value));
-  }
 }

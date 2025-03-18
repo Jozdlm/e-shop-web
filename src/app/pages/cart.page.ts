@@ -1,8 +1,7 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemCartComponent } from '../components/item-cart.component';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../components/empty-cart.component';
-import { Subscription } from 'rxjs';
 import { CartService } from '@app/features/cart/cart.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { SvgIconComponent } from 'angular-svg-icon';
@@ -18,7 +17,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
     SvgIconComponent,
   ],
   template: `
-    @if (itemsCount) {
+    @if (itemCount() > 0) {
       <div class="mb-10">
         <h1 class="mb-1 text-xl font-medium">Mi carrito</h1>
         <a
@@ -29,7 +28,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
       </div>
       <div class="grid grid-cols-[2fr_1fr] gap-x-20">
         <div class="pb-4">
-          @for (item of items | async; track item.id) {
+          @for (item of items(); track item.id) {
             <app-item-cart
               [cartItem]="item"
               (onIncreaseQty)="handleIncrease($event)"
@@ -41,7 +40,9 @@ import { SvgIconComponent } from 'angular-svg-icon';
         <div>
           <div class="mb-6 border-b border-gray-300 pb-4">
             <p class="mb-2 text-lg">Subtotal:</p>
-            <p class="text-2xl font-medium">{{ subtotal | currency: 'GTQ' }}</p>
+            <p class="text-2xl font-medium">
+              {{ subtotal() | currency: 'GTQ' }}
+            </p>
           </div>
 
           <button
@@ -60,30 +61,9 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class CartPage {
   private _cartService: CartService = inject(CartService);
-  private _subscription = new Subscription();
-  public items = this._cartService.cartItems$;
-  public itemsCount: number = 0;
-  public subtotal: number = 0;
-
-  public constructor() {
-    this.subscribeToObservables();
-
-    inject(DestroyRef).onDestroy(() => {
-      this._subscription.unsubscribe();
-    });
-  }
-
-  public subscribeToObservables(): void {
-    this._subscription.add(
-      this._cartService.cartCount$.subscribe(
-        (value) => (this.itemsCount = value),
-      ),
-    );
-
-    this._subscription.add(
-      this._cartService.subtotal$.subscribe((value) => (this.subtotal = value)),
-    );
-  }
+  public items = this._cartService.items;
+  public itemCount = this._cartService.itemCount;
+  public subtotal = this._cartService.subtotal;
 
   public clearShoppingCart(): void {
     this._cartService.clearCart();
