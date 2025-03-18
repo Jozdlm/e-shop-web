@@ -2,10 +2,9 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CartDropdownComponent } from '@app/components/cart-dropdown/cart-dropdown.component';
 import { UserDropdownComponent } from '@app/components/user-dropdown/user-dropdown.component';
-import { AccountIconComponent } from 'src/app/shared/icons/account-icon/account-icon.component';
-import { SearchIconComponent } from 'src/app/shared/icons/search-icon/search-icon.component';
 import { AuthService } from '@app/features/auth/auth.service';
 import { BUSINESS_NAME } from '@app/constants';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +13,7 @@ import { BUSINESS_NAME } from '@app/constants';
     RouterModule,
     CartDropdownComponent,
     UserDropdownComponent,
-    AccountIconComponent,
-    SearchIconComponent,
+    SvgIconComponent,
   ],
 })
 export class NavbarComponent {

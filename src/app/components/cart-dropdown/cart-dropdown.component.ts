@@ -1,13 +1,12 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
 import { ButtonComponent } from '@app/components/button/button.component';
 import { ProductImageDirective } from '@app/directives/product-image.directive';
 import { DropdownComponent } from '@app/components/dropdown/dropdown.component';
 import { Subscription } from 'rxjs';
-import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon/shopping-bag-icon.component';
 import { CartService } from '@app/features/cart/cart.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-cart-dropdown',
@@ -19,7 +18,7 @@ import { AsyncPipe, CurrencyPipe } from '@angular/common';
     ButtonComponent,
     ProductImageDirective,
     DropdownComponent,
-    ShoppingBagIconComponent,
+    SvgIconComponent,
   ],
 })
 export class CartDropdownComponent {

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-
-import { SearchIconComponent } from 'src/app/shared/icons/search-icon/search-icon.component';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
-    selector: 'app-search-input',
-    templateUrl: './search-input.component.html',
-    styles: [],
-    imports: [SearchIconComponent]
+  selector: 'app-search-input',
+  templateUrl: './search-input.component.html',
+  imports: [SvgIconComponent],
 })
 export class SearchInputComponent {}

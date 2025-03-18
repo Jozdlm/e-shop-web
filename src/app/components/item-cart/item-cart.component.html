@@ -29,7 +29,7 @@
         class="rounded border border-slate-300 p-1.5"
         (click)="decreaseQty(item().id)"
       >
-        <ui-minus-icon />
+        <svg-icon src="assets/svg/minus.svg" />
       </button>
       <p>{{ item().quantity }}</p>
       <button
@@ -37,7 +37,7 @@
         class="rounded border border-slate-300 p-1.5"
         (click)="increaseQty(item().id)"
       >
-        <ui-plus-icon />
+        <svg-icon src="assets/svg/plus.svg" />
       </button>
     </div>
   </div>

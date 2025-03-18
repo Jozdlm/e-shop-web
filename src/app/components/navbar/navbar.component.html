@@ -10,8 +10,8 @@
     </div>
     <!-- <app-search-input></app-search-input> -->
     <div class="flex items-center gap-x-3">
-      <button class="flex items-center gap-x-2 rounded p-2" routerLink="search">
-        <ui-search-icon />
+      <button class="flex items-center gap-x-2 rounded p-2" routerLink="products">
+        <svg-icon src="assets/svg/search.svg" />
         <span class="text-sm">Buscar</span>
       </button>
       <app-cart-dropdown></app-cart-dropdown>
@@ -20,7 +20,7 @@
         <app-user-dropdown></app-user-dropdown>
       } @else {
         <button class="flex items-center gap-x-2 rounded p-2" routerLink="auth">
-          <ui-account-icon />
+          <svg-icon src="assets/svg/account.svg" />
           <span class="text-sm">Cuenta</span>
         </button>
       }
