@@ -1,4 +1,3 @@
-import { OrderSummaryComponent } from '../components/order-summary/order-summary.component';
 import { Component, DestroyRef, inject } from '@angular/core';
 import { ItemCartComponent } from '../components/item-cart/item-cart.component';
 import { RouterModule } from '@angular/router';
@@ -6,7 +5,8 @@ import { EmptyCartComponent } from '../components/empty-cart/empty-cart.componen
 import { Subscription } from 'rxjs';
 import { CartService } from '@app/features/cart/cart.service';
 import { AuthService } from '@app/features/auth/auth.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-cart-page',
@@ -14,8 +14,9 @@ import { AsyncPipe } from '@angular/common';
     AsyncPipe,
     ItemCartComponent,
     RouterModule,
-    OrderSummaryComponent,
     EmptyCartComponent,
+    CurrencyPipe,
+    SvgIconComponent,
   ],
   template: `
     @if (itemsCount) {
@@ -38,11 +39,20 @@ import { AsyncPipe } from '@angular/common';
             />
           }
         </div>
-        <app-order-summary
-          [subtotal]="subtotal"
-          [session]="isSession"
-          (onNoSessionClick)="handleNoSessionClick()"
-        />
+        <div>
+          <div class="mb-6 border-b border-gray-300 pb-4">
+            <p class="mb-2 text-lg">Subtotal:</p>
+            <p class="text-2xl font-medium">{{ subtotal | currency: 'GTQ' }}</p>
+          </div>
+
+          <button
+            routerLink="/checkout"
+            class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
+          >
+            <p>Hacer pedido</p>
+            <svg-icon src="assets/svg/clipboard-doc.svg" class="icon-md" />
+          </button>
+        </div>
       </div>
     } @else {
       <app-empty-cart />
@@ -95,9 +105,5 @@ export class CartPage {
 
   public handleDeleteItem(itemId: string): void {
     this._cartService.removeItem(itemId);
-  }
-
-  public handleNoSessionClick(): void {
-    this._authService.previousRoute = '/cart';
   }
 }
