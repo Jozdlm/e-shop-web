@@ -1,4 +1,4 @@
-import { Component, DestroyRef, Input, inject } from '@angular/core';
+import { Component, DestroyRef, effect, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '@app/components/button/button.component';
 import { ProductImageDirective } from '@app/directives/product-image.directive';
@@ -135,6 +135,9 @@ export class ProductDetailPage {
   public subscriptions: Subscription = new Subscription();
   public product: IProduct | undefined = undefined;
   public relatedProducts: IProduct[] = [];
+  public productId = input.required<number>({
+    alias: 'id',
+  });
 
   public constructor() {
     this.subscriptions.add(
@@ -143,24 +146,23 @@ export class ProductDetailPage {
       }),
     );
 
+    effect(() => {
+      this.subscriptions.add(
+        this._productService
+          .getProductById(this.productId())
+          .subscribe((product) => {
+            if (product) {
+              this.product = product;
+              return;
+            }
+            return this._router.navigateByUrl('/');
+          }),
+      );
+    });
+
     inject(DestroyRef).onDestroy(() => {
       this.subscriptions.unsubscribe();
     });
-  }
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set id(productId: number) {
-    this.subscriptions.add(
-      this._productService.getProductById(productId).subscribe((product) => {
-        if (product) {
-          this.product = product;
-          return;
-        }
-        return this._router.navigateByUrl('/');
-      }),
-    );
   }
 
   public addToCart(): void {
