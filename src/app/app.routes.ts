@@ -38,6 +38,11 @@ export const APP_ROUTES: Routes = [
       import('@app/pages/my-account.page').then((m) => m.MyAccountPage),
   },
   {
+    path: 'about-us',
+    loadComponent: () =>
+      import('@app/pages/about-us.page').then((m) => m.AboutUsPage),
+  },
+  {
     path: 'auth',
     canActivate: [isAnonUserGuard],
     children: [
