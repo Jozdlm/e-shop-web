@@ -1,25 +1,25 @@
 <div class="mb-8 flex items-center gap-x-8">
   <img
-    [productImage]="item.img_url"
+    [productImage]="item().img_url"
     alt="Item img"
     class="h-24 w-24 rounded border object-contain object-center"
   />
 
   <div class="flex w-full items-center justify-between">
     <div>
-      <p class="mb-3 line-clamp-2">{{ item.name }}</p>
+      <p class="mb-3 line-clamp-2">{{ item().name }}</p>
       <a
         class="cursor-pointer text-sm text-gray-700 underline"
-        (click)="removeItem(item.id)"
+        (click)="removeItem(item().id)"
         >Eliminar</a
       >
     </div>
     <div>
-      <p class="text-xl">{{ item.ammount | currency: "GTQ" }}</p>
+      <p class="text-xl">{{ item().ammount | currency: "GTQ" }}</p>
 
-      @if (item.ammount > item.unit_price) {
+      @if (item().ammount > item().unit_price) {
         <p class="text-gray-70FF0 mt-1 text-sm">
-          {{ item.unit_price | currency: "GTQ" }} c/u
+          {{ item().unit_price | currency: "GTQ" }} c/u
         </p>
       }
     </div>
@@ -27,15 +27,15 @@
       <button
         title="decrease"
         class="rounded border border-slate-300 p-1.5"
-        (click)="decreaseQty(item.id)"
+        (click)="decreaseQty(item().id)"
       >
         <ui-minus-icon />
       </button>
-      <p>{{ item.quantity }}</p>
+      <p>{{ item().quantity }}</p>
       <button
         title="increase"
         class="rounded border border-slate-300 p-1.5"
-        (click)="increaseQty(item.id)"
+        (click)="increaseQty(item().id)"
       >
         <ui-plus-icon />
       </button>

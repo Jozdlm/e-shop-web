@@ -1,4 +1,4 @@
-import { Component, Input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductImageDirective } from '@app/directives/product-image.directive';
 import { ICartItem } from '@app/features/cart/cart.types';
@@ -6,19 +6,19 @@ import { MinusIconComponent } from 'src/app/shared/icons/minus-icon/minus-icon.c
 import { PlusIconComponent } from 'src/app/shared/icons/plus-icon/plus-icon.component';
 
 @Component({
-    selector: 'app-item-cart',
-    templateUrl: './item-cart.component.html',
-    imports: [CommonModule, ProductImageDirective, MinusIconComponent, PlusIconComponent]
+  selector: 'app-item-cart',
+  templateUrl: './item-cart.component.html',
+  imports: [
+    CommonModule,
+    ProductImageDirective,
+    MinusIconComponent,
+    PlusIconComponent,
+  ],
 })
 export class ItemCartComponent {
-  // TODO: Skipped for migration because:
-  //  This input is used in a control flow expression (e.g. `@if` or `*ngIf`)
-  //  and migrating would break narrowing currently.
-  @Input({
+  public item = input.required<ICartItem>({
     alias: 'cartItem',
-    required: true,
-  })
-  public item!: ICartItem;
+  });
 
   public onDeleteItem = output<string>();
   public onIncreaseQty = output<string>();
