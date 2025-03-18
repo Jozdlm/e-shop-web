@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { ICreateUser, ILoginUser } from './auth';
+import { ICreateUser, ILoginUser } from '@app/features/auth/auth.types';
 import { Router } from '@angular/router';
 import { supabase } from 'src/app/app.config';
 import { Session, User } from '@supabase/supabase-js';
@@ -64,7 +64,7 @@ export class AuthService {
 
     this.user.set(data.user);
 
-    if(this._previousRoute) {
+    if (this._previousRoute) {
       this._router.navigateByUrl('/checkout');
     } else {
       this._router.navigateByUrl('');

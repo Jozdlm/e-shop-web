@@ -7,9 +7,9 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
-import { customEmailValidator } from '../auth/auth.validators';
+import { customEmailValidator } from '../features/auth/auth.validators';
 import { AuthService } from '../auth/auth.service';
-import { ILoginUser } from '../auth/auth';
+import { ILoginUser } from '../features/auth/auth.types';
 
 @Component({
   selector: 'app-login-page',

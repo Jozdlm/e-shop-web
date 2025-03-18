@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { IUpdateAccount } from './user';
-import { AuthService } from '@app/auth/auth.service';
+import { AuthService } from '@app/features/auth/auth.service';
 import { supabase } from 'src/app/app.config';
 
 @Injectable({

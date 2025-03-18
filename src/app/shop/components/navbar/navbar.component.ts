@@ -5,7 +5,7 @@ import { CartDropdownComponent } from 'src/app/shop/components/cart-dropdown/car
 import { UserDropdownComponent } from 'src/app/shop/components/user-dropdown/user-dropdown.component';
 import { AccountIconComponent } from 'src/app/shared/icons/account-icon/account-icon.component';
 import { SearchIconComponent } from 'src/app/shared/icons/search-icon/search-icon.component';
-import { AuthService } from '@app/auth/auth.service';
+import { AuthService } from '@app/features/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',

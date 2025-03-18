@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../cart/components/empty-cart/empty-cart.component';
 import { Subscription } from 'rxjs';
 import { CartService } from '@app/cart/cart.service';
-import { AuthService } from '@app/auth/auth.service';
+import { AuthService } from '@app/features/auth/auth.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { isLoggedUserGuard, isAnonUserGuard } from './auth/auth.guard';
+import { isLoggedUserGuard, isAnonUserGuard } from '@app/features/auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {

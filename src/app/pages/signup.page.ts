@@ -10,9 +10,9 @@ import { ButtonComponent } from 'src/app/common/components/button/button.compone
 import {
   customEmailValidator,
   passwordMatchValidator,
-} from '../auth/auth.validators';
+} from '../features/auth/auth.validators';
 import { AuthService } from '../auth/auth.service';
-import { ICreateUser } from '../auth/auth';
+import { ICreateUser } from '../features/auth/auth.types';
 
 @Component({
   imports: [RouterModule, ReactiveFormsModule, ButtonComponent],

@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { User } from '@supabase/supabase-js';
-import { AuthService } from '@app/auth/auth.service';
+import { AuthService } from '@app/features/auth/auth.service';
 
 @Component({
   imports: [ReactiveFormsModule, ButtonComponent],
