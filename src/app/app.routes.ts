@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { isLoggedUserGuard, isAnonUserGuard } from '@app/features/auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -32,12 +31,6 @@ export const APP_ROUTES: Routes = [
       import('@app/pages/products.page').then((c) => c.ProductsPage),
   },
   {
-    path: 'my-account',
-    canActivate: [isLoggedUserGuard],
-    loadComponent: () =>
-      import('@app/pages/my-account.page').then((m) => m.MyAccountPage),
-  },
-  {
     path: 'about-us',
     loadComponent: () =>
       import('@app/pages/about-us.page').then((m) => m.AboutUsPage),
@@ -58,31 +51,6 @@ export const APP_ROUTES: Routes = [
     path: 'privacy-policy',
     loadComponent: () =>
       import('@app/pages/privacy-policy.page').then((m) => m.PrivacyPolicyPage),
-  },
-  {
-    path: 'auth',
-    canActivate: [isAnonUserGuard],
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'login',
-      },
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('@app/pages/login.page').then((m) => m.LoginPage),
-      },
-      {
-        path: 'signup',
-        loadComponent: () =>
-          import('@app/pages/signup.page').then((m) => m.SignupPage),
-      },
-      {
-        path: '**',
-        redirectTo: 'login',
-      },
-    ],
   },
   {
     path: '**',

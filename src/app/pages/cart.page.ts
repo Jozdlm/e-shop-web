@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../components/empty-cart/empty-cart.component';
 import { Subscription } from 'rxjs';
 import { CartService } from '@app/features/cart/cart.service';
-import { AuthService } from '@app/features/auth/auth.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { SvgIconComponent } from 'angular-svg-icon';
 
@@ -61,7 +60,6 @@ import { SvgIconComponent } from 'angular-svg-icon';
 })
 export class CartPage {
   private _cartService: CartService = inject(CartService);
-  private _authService: AuthService = inject(AuthService);
   private _subscription = new Subscription();
   public items = this._cartService.cartItems$;
   public itemsCount: number = 0;
@@ -73,10 +71,6 @@ export class CartPage {
     inject(DestroyRef).onDestroy(() => {
       this._subscription.unsubscribe();
     });
-  }
-
-  public get isSession(): boolean {
-    return this._authService.session ? true : false;
   }
 
   public subscribeToObservables(): void {
