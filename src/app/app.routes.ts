@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { isLoggedAuth, isAnonGuard } from './auth/auth.guard';
+import { isLoggedUserGuard, isAnonUserGuard } from './auth/auth.guard';
 
 export const APP_ROUTES: Routes = [
   {
@@ -33,13 +33,13 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'my-account',
-    canActivate: [isLoggedAuth],
+    canActivate: [isLoggedUserGuard],
     loadComponent: () =>
       import('@app/pages/my-account.page').then((m) => m.MyAccountPage),
   },
   {
     path: 'auth',
-    canActivate: [isAnonGuard],
+    canActivate: [isAnonUserGuard],
     children: [
       {
         path: '',

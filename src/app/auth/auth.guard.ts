@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
 import { CanActivateFn, Router } from '@angular/router';
 
-export const isLoggedAuth: CanActivateFn = (_, __) => {
+export const isLoggedUserGuard: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
@@ -14,7 +14,7 @@ export const isLoggedAuth: CanActivateFn = (_, __) => {
   return false;
 };
 
-export const isAnonGuard: CanActivateFn = (_, __) => {
+export const isAnonUserGuard: CanActivateFn = (_, __) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
