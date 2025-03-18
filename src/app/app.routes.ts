@@ -1,27 +1,28 @@
 import { Routes } from '@angular/router';
+import { Pages } from './pages';
 
 export const APP_ROUTES: Routes = [
   {
-    path: '',
+    path: Pages.HOME,
     loadComponent: () => import('@app/pages/home.page').then((m) => m.HomePage),
     pathMatch: 'full',
   },
   {
-    path: 'cart',
+    path: Pages.CART,
     loadComponent: () => import('@app/pages/cart.page').then((m) => m.CartPage),
   },
   {
-    path: 'checkout',
+    path: Pages.CHECKOUT,
     loadComponent: () =>
       import('@app/pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
-    path: 'product/:id',
+    path: Pages.PRODUCT_DETAIL,
     loadComponent: () =>
       import('@app/pages/product-detail.page').then((c) => c.ProductDetailPage),
   },
   {
-    path: 'products',
+    path: Pages.PRODUCTS,
     loadComponent: () =>
       import('@app/pages/products.page').then((c) => c.ProductsPage),
   },
@@ -31,24 +32,24 @@ export const APP_ROUTES: Routes = [
       import('@app/pages/products.page').then((c) => c.ProductsPage),
   },
   {
-    path: 'about-us',
+    path: Pages.ABOUT_US,
     loadComponent: () =>
       import('@app/pages/about-us.page').then((m) => m.AboutUsPage),
   },
   {
-    path: 'contact',
+    path: Pages.CONTACT,
     loadComponent: () =>
       import('@app/pages/contact.page').then((m) => m.ContactPage),
   },
   {
-    path: 'terms-conditions',
+    path: Pages.TERMS_CONDITIONS,
     loadComponent: () =>
       import('@app/pages/terms-conditions.page').then(
         (m) => m.TermsConditionsPage,
       ),
   },
   {
-    path: 'privacy-policy',
+    path: Pages.PRIVACY_POLICY,
     loadComponent: () =>
       import('@app/pages/privacy-policy.page').then((m) => m.PrivacyPolicyPage),
   },
