@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { ItemCartComponent } from '../components/item-cart/item-cart.component';
+import { ItemCartComponent } from '../components/item-cart.component';
 import { RouterModule } from '@angular/router';
-import { EmptyCartComponent } from '../components/empty-cart/empty-cart.component';
+import { EmptyCartComponent } from '../components/empty-cart.component';
 import { Subscription } from 'rxjs';
 import { CartService } from '@app/features/cart/cart.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';

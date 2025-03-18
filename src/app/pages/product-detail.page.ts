@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductImageDirective } from '@app/directives/product-image.directive';
 import { ProductsService } from '@app/features/products/products.service';
 import { IProduct } from '@app/features/products/product.types';
-import { ProductCardComponent } from '../components/product-card/product-card.component';
+import { ProductCardComponent } from '../components/product-card.component';
 import { Subscription } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { CartService } from '@app/features/cart/cart.service';

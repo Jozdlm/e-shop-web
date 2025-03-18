@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductCardComponent } from '@app/components/product-card/product-card.component';
-import { SearchInputComponent } from '@app/components/search-input/search-input.component';
+import { ProductCardComponent } from '@app/components/product-card.component';
+import { SearchInputComponent } from '@app/components/search-input.component';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from '@app/features/products/categories.service';
 
@@ -15,7 +15,7 @@ import { CategoriesService } from '@app/features/products/categories.service';
   ],
   template: `
     <div
-      class="relative z-10 mb-10 flex h-[400px] w-full items-center overflow-hidden rounded-xl bg-[url('assets/images/banner.png')] from-black bg-cover bg-center bg-no-repeat px-10 before:absolute before:inset-0 before:z-[-5] before:block before:bg-gradient-to-r before:from-slate-950 before:to-transparent before:opacity-80 before:content-['']"
+      class="relative z-10 mb-10 flex h-[400px] w-full items-center overflow-hidden bg-[url('assets/images/banner.png')] from-black bg-cover bg-center bg-no-repeat px-10 before:absolute before:inset-0 before:z-[-5] before:block before:bg-gradient-to-r before:from-slate-950 before:to-transparent before:opacity-80 before:content-['']"
     >
       <div>
         <div class="mb-6">
@@ -36,7 +36,7 @@ import { CategoriesService } from '@app/features/products/categories.service';
         <div class="grid grid-cols-4 gap-3">
           @for (category of categories$ | async; track category.id) {
             <a
-              class="rounded-lg border border-gray-300 px-3 py-2 h-36"
+              class="border border-gray-300 px-3 py-2 h-36"
               [routerLink]="['shop', category.slug]"
             >
               <p>{{ category.name }}</p>
