@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Category } from './product';
+import { Category } from './product.types';
 import { from, map, Observable } from 'rxjs';
 import { supabase } from '@app/app.config';
 

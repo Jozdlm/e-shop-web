@@ -1,9 +1,9 @@
 import { Component, DestroyRef, Input, inject } from '@angular/core';
-import { IProduct } from '../shop/product';
-import { ProductsService } from '../shop/products.service';
+import { IProduct } from '../features/products/product.types';
+import { ProductsService } from '../features/products/products.service';
 import { ProductCardComponent } from '../shop/components/product-card/product-card.component';
 import { Subscription, switchMap, throwError } from 'rxjs';
-import { CategoriesService } from '@app/shop/categories.service';
+import { CategoriesService } from '@app/features/products/categories.service';
 
 @Component({
   selector: 'app-item-list',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { supabase } from '@app/app.config';
 import { Observable, from, map } from 'rxjs';
-import { IProduct } from 'src/app/shop/product';
+import { IProduct } from '@app/features/products/product.types';
 
 @Injectable({
   providedIn: 'root',
