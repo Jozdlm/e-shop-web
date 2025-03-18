@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BUSINESS_NAME } from '@app/constants';
+import { Pages } from '@app/pages';
 
 @Component({
   selector: 'app-footer',
@@ -11,7 +12,7 @@ import { BUSINESS_NAME } from '@app/constants';
         class="mx-auto flex w-[90%] max-w-[1200px] items-end justify-between px-4"
       >
         <div>
-          <a class="block text-lg font-semibold" routerLink="">
+          <a class="block text-lg font-semibold" [routerLink]="pages.HOME">
             {{ businessName }}
           </a>
           <p class="text-sm">
@@ -47,4 +48,5 @@ import { BUSINESS_NAME } from '@app/constants';
 export class FooterComponent {
   public currentYear: number = new Date().getFullYear();
   public businessName: string = BUSINESS_NAME;
+  public pages = Pages;
 }

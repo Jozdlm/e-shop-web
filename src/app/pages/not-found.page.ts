@@ -1,5 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
+import { Pages } from '@app/pages';
 
 @Component({
   imports: [RouterModule],
@@ -13,8 +14,10 @@ import { Component } from '@angular/core';
         Lo sentimos, no encontramos la página que estabas buscando, por favor
         verifica que la escribiste correctamente.
       </p>
-      <a routerLink="" class="underline text-blue-900">Regresar a la tienda</a>
+      <a [routerLink]="pages.HOME" class="underline text-blue-900">Regresar a la tienda</a>
     </div>
   `,
 })
-export class NotFoundPage {}
+export class NotFoundPage {
+  public pages = Pages;
+}

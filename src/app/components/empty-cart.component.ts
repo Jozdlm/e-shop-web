@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Pages } from '@app/pages';
 
 @Component({
   selector: 'app-empty-cart',
@@ -12,11 +13,13 @@ import { RouterModule } from '@angular/router';
           Si gustas ve a la tienda y agrega algún producto o selecciona alguno
           de tu lista de deseos
         </p>
-        <button routerLink="" class="btn btn-primary">
+        <button [routerLink]="pages.HOME" class="btn btn-primary">
           Dar un vistazo a la tienda!
         </button>
       </div>
     </div>
   `,
 })
-export class EmptyCartComponent {}
+export class EmptyCartComponent {
+  public pages = Pages;
+}
