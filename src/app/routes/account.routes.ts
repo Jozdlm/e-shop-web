@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 
-
 const ACCOUNT_ROUTES: Routes = [
   {
     path: '',
@@ -9,12 +8,13 @@ const ACCOUNT_ROUTES: Routes = [
   },
   {
     path: 'profile',
-    loadComponent: () => import('../pages/my-account/my-account.component').then(m => m.MyAccountComponent)
+    loadComponent: () =>
+      import('@app/pages/my-account.page').then((m) => m.MyAccountPage),
   },
   {
     path: '**',
-    redirectTo: 'profile'
-  }
+    redirectTo: 'profile',
+  },
 ];
 
 export default ACCOUNT_ROUTES;

@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
 import { isLoggedAuth, isAnonGuard } from '../auth/auth.guard';
 
-
 export const APP_ROUTES: Routes = [
-  { path: '', loadComponent: () => import('@app/pages/home-page/home-page.component').then(m => m.HomePageComponent), pathMatch: 'full' },
+  {
+    path: '',
+    loadComponent: () => import('@app/pages/home.page').then((m) => m.HomePage),
+    pathMatch: 'full',
+  },
   {
     path: 'cart',
     loadChildren: () => import('./cart.routes'),
@@ -11,20 +14,17 @@ export const APP_ROUTES: Routes = [
   {
     path: 'product/:id',
     loadComponent: () =>
-      import('../pages/product-detail/product-detail.component').then(
-        (c) => c.ProductDetailComponent
-      ),
+      import('@app/pages/product-detail.page').then((c) => c.ProductDetailPage),
+  },
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('@app/pages/products.page').then((c) => c.ProductsPage),
   },
   {
     path: 'shop/:category',
     loadComponent: () =>
-      import('../pages/item-list/item-list.component').then(
-        (c) => c.ItemListComponent
-      ),
-  },
-  {
-    path: 'cms',
-    loadChildren: () => import('./cms.routes'),
+      import('@app/pages/products.page').then((c) => c.ProductsPage),
   },
   {
     path: 'account',

@@ -1,21 +1,20 @@
 import { Routes } from '@angular/router';
 
-
-
 const CART_ROUTES: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    loadComponent: () => import('../pages/cart-page/cart-page.component').then(m => m.CartPageComponent),
+    loadComponent: () => import('@app/pages/cart.page').then((m) => m.CartPage),
   },
   {
     path: 'checkout',
-    loadComponent: () => import('../pages/checkout-page/checkout-page.component').then(m => m.CheckoutPageComponent),
+    loadComponent: () =>
+      import('@app/pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 export default CART_ROUTES;

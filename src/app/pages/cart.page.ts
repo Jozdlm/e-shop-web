@@ -1,10 +1,8 @@
-import { OrderSummaryComponent } from '../../cart/components/order-summary/order-summary.component';
+import { OrderSummaryComponent } from '../cart/components/order-summary/order-summary.component';
 import { Component, DestroyRef, inject } from '@angular/core';
-
-import { ItemCartComponent } from '../../cart/components/item-cart/item-cart.component';
-import { ButtonComponent } from 'src/app/common/components/button/button.component';
+import { ItemCartComponent } from '../cart/components/item-cart/item-cart.component';
 import { RouterModule } from '@angular/router';
-import { EmptyCartComponent } from '../../cart/components/empty-cart/empty-cart.component';
+import { EmptyCartComponent } from '../cart/components/empty-cart/empty-cart.component';
 import { Subscription } from 'rxjs';
 import { CartService } from '@app/cart/cart.service';
 import { AuthService } from '@app/auth/auth.service';
@@ -12,7 +10,6 @@ import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart-page',
-  templateUrl: './cart-page.component.html',
   imports: [
     AsyncPipe,
     ItemCartComponent,
@@ -20,17 +17,39 @@ import { AsyncPipe } from '@angular/common';
     OrderSummaryComponent,
     EmptyCartComponent,
   ],
-  styles: [
-    `
-      .view-wrapper {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        column-gap: 80px;
-      }
-    `,
-  ],
+  template: `
+    @if (itemsCount) {
+      <div class="mb-10">
+        <h1 class="mb-1 text-xl font-medium">Mi carrito</h1>
+        <a
+          class="cursor-pointer text-sm text-gray-700 underline"
+          (click)="clearShoppingCart()"
+          >Limpiar carrito</a
+        >
+      </div>
+      <div class="grid grid-cols-[2fr_1fr] gap-x-20">
+        <div class="pb-4">
+          @for (item of items | async; track item.id) {
+            <app-item-cart
+              [cartItem]="item"
+              (onIncreaseQty)="handleIncrease($event)"
+              (onDecreaseQty)="handleDecrease($event)"
+              (onDeleteItem)="handleDeleteItem($event)"
+            />
+          }
+        </div>
+        <app-order-summary
+          [subtotal]="subtotal"
+          [session]="isSession"
+          (onNoSessionClick)="handleNoSessionClick()"
+        />
+      </div>
+    } @else {
+      <app-empty-cart />
+    }
+  `,
 })
-export class CartPageComponent {
+export class CartPage {
   private _cartService: CartService = inject(CartService);
   private _authService: AuthService = inject(AuthService);
   private _subscription = new Subscription();

@@ -1,26 +1,40 @@
 import { Component, DestroyRef, Input, inject } from '@angular/core';
-
-import { IProduct } from '../../shop/product';
-import { ProductsService } from '../../shop/products.service';
-import { ProductCardComponent } from '../../shop/components/product-card/product-card.component';
-import { Subscription, switchMap, tap, throwError } from 'rxjs';
+import { IProduct } from '../shop/product';
+import { ProductsService } from '../shop/products.service';
+import { ProductCardComponent } from '../shop/components/product-card/product-card.component';
+import { Subscription, switchMap, throwError } from 'rxjs';
 import { CategoriesService } from '@app/shop/categories.service';
 
 @Component({
-    selector: 'app-item-list',
-    imports: [ProductCardComponent],
-    templateUrl: './item-list.component.html',
-    styles: [
-        `
+  selector: 'app-item-list',
+  imports: [ProductCardComponent],
+  styles: [
+    `
       .list-wrapper {
         display: grid;
         grid-template-columns: 260px 1fr;
         column-gap: 32px;
       }
     `,
-    ]
+  ],
+  template: `
+    <div>
+      <p>Resultados: {{ products.length }}</p>
+    </div>
+
+    <div class="list-wrapper">
+      <div>
+        <p>Filters</p>
+      </div>
+      <div class="grid grid-cols-4 gap-x-6 gap-y-6">
+        @for (product of products; track product.id) {
+          <app-product-card [product]="product" />
+        }
+      </div>
+    </div>
+  `,
 })
-export class ItemListComponent {
+export class ProductsPage {
   private _productsService = inject(ProductsService);
   private readonly _categoryService = inject(CategoriesService);
   private _subscriptions = new Subscription();
