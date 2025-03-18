@@ -1,7 +1,7 @@
 import { Component, Input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductImageDirective } from 'src/app/common/directives/product-image.directive';
-import { ICartItem } from 'src/app/cart/cart';
+import { ICartItem } from '@app/features/cart/cart.types';
 import { MinusIconComponent } from 'src/app/shared/icons/minus-icon/minus-icon.component';
 import { PlusIconComponent } from 'src/app/shared/icons/plus-icon/plus-icon.component';
 

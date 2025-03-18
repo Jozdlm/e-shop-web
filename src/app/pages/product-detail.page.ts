@@ -7,7 +7,7 @@ import { IProduct } from '@app/features/products/product.types';
 import { ProductCardComponent } from '../shop/components/product-card/product-card.component';
 import { Subscription } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
-import { CartService } from '@app/cart/cart.service';
+import { CartService } from '@app/features/cart/cart.service';
 
 @Component({
   selector: 'app-product-detail',

@@ -4,7 +4,7 @@ import { ItemCartComponent } from '../cart/components/item-cart/item-cart.compon
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../cart/components/empty-cart/empty-cart.component';
 import { Subscription } from 'rxjs';
-import { CartService } from '@app/cart/cart.service';
+import { CartService } from '@app/features/cart/cart.service';
 import { AuthService } from '@app/features/auth/auth.service';
 import { AsyncPipe } from '@angular/common';
 

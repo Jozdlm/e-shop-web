@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICartItem } from './cart';
+import { ICartItem } from './cart.types';
 
 @Injectable({
   providedIn: 'root',

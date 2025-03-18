@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { ICartItem } from 'src/app/cart/cart';
-import { IShoppingCart, ItemCartDto } from '../cart';
-import { CartService } from 'src/app/cart/services/cart.service';
+import { ICartItem } from '@app/features/cart/cart.types';
+import { IShoppingCart, ItemCartDto } from '@app/features/cart/cart.types';
+import { CartService } from '@app/features/cart/cart.service';
 
 @Injectable({
   providedIn: 'root',

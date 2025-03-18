@@ -6,7 +6,7 @@ import { ProductImageDirective } from 'src/app/common/directives/product-image.d
 import { DropdownComponent } from 'src/app/common/components/dropdown/dropdown.component';
 import { Subscription } from 'rxjs';
 import { ShoppingBagIconComponent } from 'src/app/shared/icons/shopping-bag-icon/shopping-bag-icon.component';
-import { CartService } from '@app/cart/cart.service';
+import { CartService } from '@app/features/cart/cart.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { ICartItem, ItemCartDto } from '@app/cart/cart';
+import { ICartItem, ItemCartDto } from '@app/features/cart/cart.types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LocalCartService } from './local-cart.service';
 
