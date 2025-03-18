@@ -1,8 +1,6 @@
 import { Component, inject } from '@angular/core';
-
 import { RouterModule } from '@angular/router';
 import { AppService } from 'src/app/app.service';
-import { SearchInputComponent } from 'src/app/shop/components/search-input/search-input.component';
 import { CartDropdownComponent } from 'src/app/shop/components/cart-dropdown/cart-dropdown.component';
 import { UserDropdownComponent } from 'src/app/shop/components/user-dropdown/user-dropdown.component';
 import { AccountIconComponent } from 'src/app/shared/icons/account-icon/account-icon.component';
@@ -17,8 +15,8 @@ import { AuthService } from '@app/auth/auth.service';
     CartDropdownComponent,
     UserDropdownComponent,
     AccountIconComponent,
-    SearchIconComponent
-],
+    SearchIconComponent,
+  ],
 })
 export class NavbarComponent {
   private _authService: AuthService = inject(AuthService);
