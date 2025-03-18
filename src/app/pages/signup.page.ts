@@ -11,8 +11,8 @@ import {
   customEmailValidator,
   passwordMatchValidator,
 } from '../features/auth/auth.validators';
-import { AuthService } from '../auth/auth.service';
-import { ICreateUser } from '../features/auth/auth.types';
+import { AuthService } from '@app/features/auth/auth.service';
+import { ICreateUser } from '@app/features/auth/auth.types';
 
 @Component({
   imports: [RouterModule, ReactiveFormsModule, ButtonComponent],

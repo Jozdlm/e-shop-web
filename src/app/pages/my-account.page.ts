@@ -1,5 +1,5 @@
 import { Component, effect, inject } from '@angular/core';
-import { UserService } from '../account/user.service';
+import { UserService } from '../features/account/user.service';
 import {
   FormBuilder,
   FormGroup,

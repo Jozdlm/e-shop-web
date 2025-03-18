@@ -8,7 +8,7 @@ import {
 import { ButtonComponent } from 'src/app/common/components/button/button.component';
 import { RouterModule } from '@angular/router';
 import { customEmailValidator } from '../features/auth/auth.validators';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '@app/features/auth/auth.service';
 import { ILoginUser } from '../features/auth/auth.types';
 
 @Component({
