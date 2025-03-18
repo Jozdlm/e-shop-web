@@ -27,9 +27,10 @@ export const APP_ROUTES: Routes = [
       import('@app/pages/products.page').then((c) => c.ProductsPage),
   },
   {
-    path: 'account',
+    path: 'my-account',
     canActivate: [isLoggedAuth],
-    loadChildren: () => import('./account.routes'),
+    loadComponent: () =>
+      import('@app/pages/my-account.page').then((m) => m.MyAccountPage),
   },
   {
     path: 'auth',

@@ -13,13 +13,7 @@ import { AuthService } from '@app/auth/auth.service';
 export class UserDropdownComponent {
   private _authService: AuthService = inject(AuthService);
 
-  public baseLink: string = 'account';
-  public menuItems: IMenuItem[] = [
-    { link: 'profile', placeholder: 'Mi información' },
-    { link: 'shipping_addresses', placeholder: 'Mis direcciones' },
-    { link: 'my-orders', placeholder: 'Mis pedidos' },
-    { link: 'purchase-history', placeholder: 'Historial de compras' },
-  ];
+  public baseLink: string = 'my-account';
 
   public get userInfo() {
     const user = this._authService.session?.user;

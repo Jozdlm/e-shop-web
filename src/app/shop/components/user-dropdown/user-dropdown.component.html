@@ -25,14 +25,12 @@
       </div>
     </div>
     <div>
-      @for (item of menuItems; track item) {
-        <a
-          [routerLink]="[baseLink, item.link]"
-          class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
-        >
-          <span class="text-sm">{{ item.placeholder }}</span>
-        </a>
-      }
+      <a
+        [routerLink]="baseLink"
+        class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
+      >
+        <span class="text-sm">Cuenta y Configuración</span>
+      </a>
     </div>
     <a
       class="block cursor-pointer px-4 py-2 hover:bg-gray-100"
