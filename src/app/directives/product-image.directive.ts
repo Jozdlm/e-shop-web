@@ -1,4 +1,4 @@
-import { Directive, inject, ElementRef, Input } from '@angular/core';
+import { Directive, inject, ElementRef, input, effect } from '@angular/core';
 
 @Directive({
   selector: '[productImage]',
@@ -6,17 +6,15 @@ import { Directive, inject, ElementRef, Input } from '@angular/core';
 })
 export class ProductImageDirective {
   private _elementRef = inject(ElementRef);
+  public imageUrl = input<string | undefined>(undefined, {
+    alias: 'productImage',
+  });
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set productImage(imgUrl: string) {
-    if (imgUrl?.trim().length > 1) {
-      this._elementRef.nativeElement.src = imgUrl;
+  public productImage = effect(() => {
+    if (this.imageUrl()) {
+      this._elementRef.nativeElement.src = this.imageUrl();
     } else {
       this._elementRef.nativeElement.src = 'assets/images/no-product-img.jpg';
     }
-  }
-
-  constructor() {}
+  });
 }
