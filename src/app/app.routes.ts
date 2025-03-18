@@ -62,5 +62,9 @@ export const APP_ROUTES: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: '' },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('@app/pages/not-found.page').then((m) => m.NotFoundPage),
+  },
 ];
