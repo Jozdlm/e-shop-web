@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '@app/components/product-card.component';
 import { SearchInputComponent } from '@app/components/search-input.component';
 import { RouterModule } from '@angular/router';
-import { CategoriesService } from '@app/features/products/categories.service';
+import { CategoriesService } from '@app/services/categories.service';
 
 @Component({
   selector: 'app-home-page',

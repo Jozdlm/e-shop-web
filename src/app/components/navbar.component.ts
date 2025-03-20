@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BUSINESS_NAME } from '@app/constants';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { CartService } from '@app/features/cart/cart.service';
+import { CartService } from '@app/services/cart.service';
 import { Pages } from '@app/pages';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { ICartItem, ItemCartDto } from '@app/features/cart/cart.types';
+import { ICartItem, ItemCartDto } from '@app/types/cart.types';
 import { LocalCartService } from './local-cart.service';
 
 @Injectable({

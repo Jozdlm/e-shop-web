@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { APP_ROUTES } from './app.routes';
+import { APP_ROUTES } from './routes';
 import { createClient } from '@supabase/supabase-js';
 import { provideAngularSvgIcon } from 'angular-svg-icon';
 

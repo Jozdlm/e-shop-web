@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductImageDirective } from '@app/directives/product-image.directive';
-import { ICartItem } from '@app/features/cart/cart.types';
+import { ICartItem } from '@app/types/cart.types';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
