@@ -3,13 +3,12 @@ import { ItemCartComponent } from '../components/item-cart.component';
 import { RouterModule } from '@angular/router';
 import { EmptyCartComponent } from '../components/empty-cart.component';
 import { CartService } from '@app/services/cart.service';
-import { AsyncPipe, CurrencyPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { SvgIconComponent } from 'angular-svg-icon';
 
 @Component({
   selector: 'app-cart-page',
   imports: [
-    AsyncPipe,
     ItemCartComponent,
     RouterModule,
     EmptyCartComponent,

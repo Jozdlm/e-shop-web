@@ -1,18 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductCardComponent } from '@app/components/product-card.component';
 import { SearchInputComponent } from '@app/components/search-input.component';
 import { RouterModule } from '@angular/router';
 import { CategoriesService } from '@app/services/categories.service';
 
 @Component({
   selector: 'app-home-page',
-  imports: [
-    CommonModule,
-    ProductCardComponent,
-    SearchInputComponent,
-    RouterModule,
-  ],
+  imports: [CommonModule, SearchInputComponent, RouterModule],
   template: `
     <div
       class="relative z-10 mb-10 flex h-[400px] w-full items-center overflow-hidden bg-[url('assets/images/banner.png')] from-black bg-cover bg-center bg-no-repeat px-10 before:absolute before:inset-0 before:z-[-5] before:block before:bg-gradient-to-r before:from-slate-950 before:to-transparent before:opacity-80 before:content-['']"
