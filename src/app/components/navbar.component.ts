@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BUSINESS_NAME } from '@app/constants';
 import { SvgIconComponent } from 'angular-svg-icon';
@@ -37,9 +37,7 @@ import { Pages } from '@app/pages';
             class="flex items-center gap-x-2 text-sm"
           >
             <svg-icon src="assets/svg/shopping-bag.svg" class="icon-md" />
-            <span>
-              Carrito {{ itemCount() > 9 ? '(+9)' : '(' + itemCount() + ')' }}
-            </span>
+            <span> Carrito {{ countLabel() }} </span>
           </a>
         </div>
       </div>
@@ -47,7 +45,11 @@ import { Pages } from '@app/pages';
   `,
 })
 export class NavbarComponent {
-  public businessName: string = BUSINESS_NAME;
   public itemCount = inject(CartService).itemCount;
+  public businessName: string = BUSINESS_NAME;
   public pages = Pages;
+
+  public countLabel = computed<string>(() => {
+    return this.itemCount() > 9 ? '(+9)' : `(${this.itemCount()})`;
+  });
 }
