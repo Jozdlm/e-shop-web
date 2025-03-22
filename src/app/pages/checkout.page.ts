@@ -2,16 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   imports: [],
-  styles: [
-    `
-      .wrapper {
-        display: grid;
-        grid-template-columns: 1fr 394px;
-      }
-    `,
-  ],
   template: `
-    <div class="wrapper pt-6">
+    <div class="grid grid-cols-[1fr,394px] pt-6">
       <div>
         <p class="text-lg font-medium">Articulos</p>
       </div>
