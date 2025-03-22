@@ -1,8 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductImageDirective } from '@app/directives/product-image.directive';
 import { IProduct } from '@app/types/product.types';
+import { Pages } from '@app/pages';
 
 @Component({
   selector: 'app-product-card',
@@ -14,7 +15,7 @@ import { IProduct } from '@app/types/product.types';
         [productImage]="product().img_url"
         title="Product Image"
         [alt]="product().name"
-        [routerLink]="['/product', product().id]"
+        [routerLink]="productUrl"
       />
       <div class="p-4">
         <p class="line-clamp-3 mb-2">{{ product().name | titlecase }}</p>
@@ -25,6 +26,11 @@ import { IProduct } from '@app/types/product.types';
     </div>
   `,
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
   public readonly product = input.required<IProduct>();
+  public productUrl: [string, number] = ['', 0];
+
+  public ngOnInit(): void {
+    this.productUrl = [`/${Pages.PRODUCT_DETAIL}`, this.product().id];
+  }
 }

@@ -17,14 +17,14 @@ export const APP_ROUTES: Routes = [
       import('@app/pages/checkout.page').then((m) => m.CheckoutPage),
   },
   {
-    path: Pages.PRODUCT_DETAIL,
-    loadComponent: () =>
-      import('@app/pages/product-detail.page').then((c) => c.ProductDetailPage),
-  },
-  {
     path: Pages.PRODUCTS,
     loadComponent: () =>
       import('@app/pages/products.page').then((c) => c.ProductsPage),
+  },
+  {
+    path: `${Pages.PRODUCT_DETAIL}/:id`,
+    loadComponent: () =>
+      import('@app/pages/product-detail.page').then((c) => c.ProductDetailPage),
   },
   {
     path: 'shop/:category',

@@ -2,7 +2,7 @@ export enum Pages {
   HOME = '',
   CART = 'cart',
   CHECKOUT = 'checkout',
-  PRODUCT_DETAIL = 'product/:id',
+  PRODUCT_DETAIL = 'product',
   PRODUCTS = 'products',
   ABOUT_US = 'about-us',
   CONTACT = 'contact',

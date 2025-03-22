@@ -5,6 +5,7 @@ import { EmptyCartComponent } from '../components/empty-cart.component';
 import { CartService } from '@app/services/cart.service';
 import { CurrencyPipe } from '@angular/common';
 import { SvgIconComponent } from 'angular-svg-icon';
+import { Pages } from '@app/pages';
 
 @Component({
   selector: 'app-cart-page',
@@ -45,7 +46,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
           </div>
 
           <button
-            routerLink="/checkout"
+            [routerLink]="checkoutPageUrl"
             class="flex w-full items-center justify-center gap-x-2 rounded-md border px-2 py-2.5 text-sm font-medium text-neutral-800 hover:border-neutral-400"
           >
             <p>Hacer pedido</p>
@@ -63,6 +64,7 @@ export class CartPage {
   public items = this._cartService.items;
   public itemCount = this._cartService.itemCount;
   public subtotal = this._cartService.subtotal;
+  public checkoutPageUrl = `/${Pages.CHECKOUT}`;
 
   public clearShoppingCart(): void {
     this._cartService.clearCart();
